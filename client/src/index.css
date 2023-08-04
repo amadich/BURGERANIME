@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Signika+Negative:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@500&family=Signika+Negative:wght@300;700&display=swap');
+
+body {
+   background: #222;
+   max-width: 2000px;
+   margin: auto;
+}
+
+:root {
+  background: transparent;
+}
+/* fix */
+
+
+::-webkit-scrollbar {
+   width: 5px;
+ }
+ ::-webkit-scrollbar-track {
+   background: #222;
+   
+ }
+ ::-webkit-scrollbar-thumb {
+   background: #b64e4e;
+   
+  }

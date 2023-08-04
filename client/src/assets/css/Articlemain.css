@@ -1,0 +1,34 @@
+::selection {
+   color: orange;
+   background: #333;
+ }
+
+ article h1 {
+   
+   font-family: cursive;
+   color: aliceblue;
+   font-size: 28px;
+   font-weight: 600;
+ }
+
+ article #ttborder1 {
+   background: linear-gradient(45deg,lightblue, rgb(22, 124, 124) ,  deeppink, purple);
+ }
+
+ article #ttborder2 {
+  background: linear-gradient(45deg,red, rgb(248, 99, 0) ,  orange, orange);
+}
+
+/* CSS */
+#slider::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+#slider::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a; /* Set the color of the scrollbar thumb (scrollbar handle) */
+  border-radius: 4px; /* Set the radius of the scrollbar thumb */
+}
+
+#slider::-webkit-scrollbar-thumb:hover {
+  background-color: #333; /* Set the color of the scrollbar thumb on hover */
+}

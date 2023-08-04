@@ -1,0 +1,16 @@
+#btn_showme {
+   font-family: 'Lilita One', cursive;
+   font-family: 'Signika Negative', sans-serif;
+   border-top-left-radius: 0.5em;
+   border-bottom-right-radius: 0.5em;
+   width: 120px;
+   margin-top: 5%;
+   padding: 1%;
+   transition: 0.4s;
+   font-weight: 700;
+   background-color: rgb(24, 87, 204);
+}
+#btn_showme:hover{
+   width: 180px;
+   background-color: rgb(235, 130, 81);
+}

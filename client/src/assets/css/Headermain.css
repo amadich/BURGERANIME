@@ -1,0 +1,17 @@
+header{
+   user-select: none;
+   font-family: 'Lilita One', cursive;
+   font-family: 'Signika Negative', sans-serif;
+   font-weight: 700;
+}
+
+
+
+#shd {
+	position: fixed;
+   
+   width: 100%;
+   height: 150px;
+   z-index: +1;
+   background: url(../../../public/assets/images/lights-min.png) repeat-x left 75px;
+}

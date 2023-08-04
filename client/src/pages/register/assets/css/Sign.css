@@ -1,0 +1,53 @@
+/* Sign.css */
+.signup-container {
+   margin: 0;
+   padding: 0;
+   /*background-image: url('../../../../../public/assets/images/signback.jpg'); */
+   background-color: rgba(33, 2, 90, 0.5);
+   background-size: cover;
+   background-position: center;
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ /* Add additional styling for the signup form or content as needed */
+ #boxsign {
+   width: 50%;
+   height: 30%;
+   border: 1px solid snow;
+   background: snow;
+ }
+
+#titlesignup {
+   user-select: none;
+   font-family: 'Lilita One', cursive;
+   font-family: 'Signika Negative', sans-serif;
+   font-weight: 700;
+   color: black;
+ }
+#settoutaforminput {
+  margin-top: 10%;
+}
+ #signupform input {
+  display: block;
+  margin: auto;
+  width: 80%;
+  height: 50px;
+  padding: 15px;
+  color: black;
+  border-bottom: 1px solid darkblue;
+  background: transparent;
+  outline: none;
+  transition: 0.4s;
+ }
+ #signupform input:focus {
+  border-bottom: 2px solid deepskyblue;
+ }
+ #settoutaforminput label span {
+  color: darkblue;
+  font-weight: 700;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding-left: 10%;
+ }
