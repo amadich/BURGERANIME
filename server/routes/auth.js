@@ -31,6 +31,7 @@ router.post("/auth", async (req, res) => {
       avatar : user.avatar,
       ranks : user.ranks,
       favoriteAnime: user.favoriteAnime,
+      aboutme: user.aboutme,
       datecreate: user.datecreate
 
     }

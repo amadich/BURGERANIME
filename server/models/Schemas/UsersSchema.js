@@ -7,6 +7,7 @@ const UserSchema = Schema({
    avatar : {type: String , required : true},
    ranks : {type : Object , required : true},
    favoriteAnime: { type: Schema.Types.ObjectId, ref: "FavoriteAnime" },
+   aboutme: {type : String},
    datecreate : {type : String}
 })
 

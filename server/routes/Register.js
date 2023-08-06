@@ -21,7 +21,7 @@ router.post("/register/signup" , async (req, res) => {
          username,
          email,
          password : pwd,
-         avatar : "demo.png",
+         avatar : "https://firebasestorage.googleapis.com/v0/b/burgeranime-4a245.appspot.com/o/avatars%2Favatar.png?alt=media",
          // Rank User VIP / ADMIN / DEMO
          ranks: {
                admin : 0,
@@ -30,6 +30,7 @@ router.post("/register/signup" , async (req, res) => {
          },
          //
          favoriteAnime : null,
+         aboutme: "Hello",
          datecreate : time 
       }).save();
 
@@ -41,9 +42,10 @@ router.post("/register/signup" , async (req, res) => {
          avatar : Usernew.avatar,
          ranks : Usernew.ranks,
          favoriteAnime: Usernew.favoriteAnime,
+         aboutme: Usernew.aboutme,
          datecreate: Usernew.datecreate
       };
-      const token = jwt.sign(payload,process.env.JWT_SECRET);
+      const token = jwt.sign(payload,"burger");
 
       // Send the successful response with the newly created user
       return res.status(201).json({token , message : "successfully..."});
@@ -77,10 +79,11 @@ router.post("/register/signin" , async (req, res) => {
       avatar : user.avatar,
       ranks : user.ranks,
       favoriteAnime: user.favoriteAnime,
+      aboutme: user.aboutme,
       datecreate: user.datecreate
    };
 
-   const token = await jwt.sign(payload, process.env.JWT_SECRET);
+   const token = await jwt.sign(payload, "burger");
    return res.status(200).json({token , message: "Signin successfully!!"});
 
 })

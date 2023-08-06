@@ -12,6 +12,8 @@ connectDB();
 
 app.use("/api" , require("./routes/Register"));
 app.use("/api" , require("./routes/auth"));
+app.use("/api", require("./routes/Profile/Profileinfo"));
+app.use("/api", require("./routes/Profile/Changeavatar"));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {console.log(`Server Connecting PORT : ${PORT}`);})

@@ -51,3 +51,17 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding-left: 10%;
  }
+ #signupform input::placeholder {
+  transition: 0.4s;
+ }
+ #signupform input:hover::placeholder {
+  color: rebeccapurple;
+  font-size: small;
+  font-weight: 700;
+  transform: translateX(0.5cm)
+}
+
+#signupform input:focus::placeholder {
+  color: transparent;
+  
+}

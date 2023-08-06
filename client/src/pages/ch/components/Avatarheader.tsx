@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import AvatarDemo from "../../../../public/assets/icons/avatar.png";
 import SearchLogo from "../../../../public/assets/icons/search.png";
 import Logo from "../../../../public/assets/logo.png";
+import Avatardash from "../../../components/Avatardash";
 function AvatarHeader() {
    return ( 
       <>
@@ -27,23 +27,7 @@ function AvatarHeader() {
                            />
                         </div>
                      </Link>
-                     <div className="dropdown dropdown-end mr-10">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                           <img src={AvatarDemo} />
-                        </div>
-                        </label>
-                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu  menu-sm dropdown-content text-white rounded-box w-52 bg-[#222]">
-                        <li>
-                           <a className="justify-between">
-                              Profile
-                              <span className="badge bg-amber-400 border-none text-black">VIP</span>
-                           </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                        </ul>
-                     </div>
+                     <Avatardash />
                   </div>
             </div>
       </>

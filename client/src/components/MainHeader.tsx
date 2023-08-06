@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import "../assets/css/Headermain.css";
 import Logo from "../../public/assets/logo.png";
+import Avatardash from "./Avatardash";
 function MainHeader() {
    return ( 
       <>
@@ -19,11 +20,7 @@ function MainHeader() {
                   <li className="hidden md:block">More</li>
                   <li className="hidden md:block">Search</li>
 
-               <Link to="/signup">
-                  <li>
-                     <button className=" p-2 rounded-md bg-[#d64d2b] duration-300 text-white hover:bg-[#e48022]">Create new</button>
-                  </li>
-               </Link>
+                  <li><Avatardash /></li>
                </ul>
                
             
