@@ -7,6 +7,11 @@ Burgeranime is a captivating virtual sanctuary where anime enthusiasts embark on
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/8df26769-c7f1-4e54-afe0-c3a06e68646c)
 # And don't forget the Registration Page 🙊
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/0950265c-c467-4178-8df9-38d403afeb0c)
+
+# Modern profile page design + admin features
+![image](https://github.com/amadich/BURGERANIME/assets/74735976/82970b72-1e7c-4976-ab78-4a3a5cb206bf)
+
+
 ###
 #
 The site is still under development. I will upload the Frontend and complete the Backend in the plan. It may be downloaded on Vercel hosting.
