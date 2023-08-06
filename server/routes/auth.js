@@ -8,7 +8,7 @@ router.post("/auth", async (req, res) => {
 
   try {
     // Verify the token and decode its payload
-    const decodedToken = jwt.verify(token, "burger");
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
     const userID = decodedToken.id;
     
@@ -34,7 +34,7 @@ router.post("/auth", async (req, res) => {
       datecreate: user.datecreate
 
     }
-    const newtoken = jwt.sign(compte,"burger");
+    const newtoken = jwt.sign(compte,process.env.JWT_SECRET);
     return res.json({ token : newtoken });
 
 
