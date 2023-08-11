@@ -5,6 +5,8 @@ Burgeranime is a captivating virtual sanctuary where anime enthusiasts embark on
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/cd1dc440-4d9c-4fa1-84be-7c8f6c193777)
 # Back to the Main page 🙈
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/8df26769-c7f1-4e54-afe0-c3a06e68646c)
+![image](https://github.com/amadich/BURGERANIME/assets/74735976/cc9dac36-5394-4563-b795-41517391d399)
+
 # And don't forget the Registration Page 🙊
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/0950265c-c467-4178-8df9-38d403afeb0c)
 
