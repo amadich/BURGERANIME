@@ -161,7 +161,7 @@ export default function Series() {
       <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
        
       {animeEps.length == 1 ? (
-                  <p>No Episodes Available</p>
+                  <p className="text-white font-bold">No Episodes Available</p>
                 ) : (
                   animeEps
                   .slice(1)
