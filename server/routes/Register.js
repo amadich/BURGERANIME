@@ -45,7 +45,7 @@ router.post("/register/signup" , async (req, res) => {
          aboutme: Usernew.aboutme,
          datecreate: Usernew.datecreate
       };
-      const token = jwt.sign(payload,"burger");
+      const token = jwt.sign(payload, process.env.JWT_KEY );
 
       // Send the successful response with the newly created user
       return res.status(201).json({token , message : "successfully..."});
@@ -83,7 +83,7 @@ router.post("/register/signin" , async (req, res) => {
       datecreate: user.datecreate
    };
 
-   const token = await jwt.sign(payload, "burger");
+   const token = await jwt.sign(payload, process.env.JWT_KEY);
    return res.status(200).json({token , message: "Signin successfully!!"});
 
 })
