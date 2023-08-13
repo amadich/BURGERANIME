@@ -4,7 +4,13 @@ const cors = require("cors");
 const connectDB = require("./models/db");
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: ['https://burgeranime.vercel.app'],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 connectDB();
