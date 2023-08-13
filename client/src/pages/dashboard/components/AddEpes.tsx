@@ -32,7 +32,7 @@ export default function AddEpes() {
    const [decoded, setDecoded] = useState<DecodedObject | null >(null); // Set initial decoded to null
    const [btndisable , setBtndisable] = useState<boolean>(true);
 
-   const [animeTitle,setAnimeTilte] = useState<String>("");
+   
    const [idanime , setIDanime] = useState<String>("");
    const [animeurl , setAnimeurl] = useState<String>("");
    const [nbrps , setNbrps] = useState<Number>(0);
@@ -100,14 +100,7 @@ export default function AddEpes() {
 
    {/* Effects to accept change inputs !! */}
 
-   useEffect(() => {
-      if (animeTitle) {
-         setBtndisable(false);
-      }
-      else {
-         setBtndisable(true);
-      }
-   }, [animeTitle] )
+
 
 
    useEffect(() => {

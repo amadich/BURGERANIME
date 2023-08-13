@@ -38,6 +38,7 @@ export default function Banusers() {
             window.location.href = "/dashboard";
          }, 5000);
       }).catch((e) => {
+         console.log(e);
          window.location.href = "/";
       })
 
