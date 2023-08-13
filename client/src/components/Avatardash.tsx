@@ -42,7 +42,7 @@ export default function Avatardash() {
   const Logoutuser = () => {
     window.localStorage.removeItem("token");
     setCookies("burgertoken","");
-    window.location.href = "";
+    window.location.href = "/signin";
     
   }
 
@@ -100,7 +100,7 @@ export default function Avatardash() {
               </li>
               {
                decoded.ranks.admin === 1 && decoded.ranks.demo === 0
-                      ? <li className="btn bg-orange-500 text-white mt-5">Dashboard</li>
+                      ? <Link to="/dashboard" className="text-center"><li className="btn bg-orange-500 text-white mt-5">Dashboard</li></Link>
                       : null
                }
             </ul>

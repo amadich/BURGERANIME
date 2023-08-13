@@ -19,7 +19,7 @@
   background: linear-gradient(45deg,red, rgb(248, 99, 0) ,  orange, orange);
 }
 
-/* CSS */
+/* CSS Slide 1  */
 #slider::-webkit-scrollbar {
   width: 8px; /* Set the width of the scrollbar */
 }
@@ -30,5 +30,20 @@
 }
 
 #slider::-webkit-scrollbar-thumb:hover {
+  background-color: #333; /* Set the color of the scrollbar thumb on hover */
+}
+
+
+/* CSS  Slide 2 */
+#slider_2::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+#slider_2::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a; /* Set the color of the scrollbar thumb (scrollbar handle) */
+  border-radius: 4px; /* Set the radius of the scrollbar thumb */
+}
+
+#slider_2::-webkit-scrollbar-thumb:hover {
   background-color: #333; /* Set the color of the scrollbar thumb on hover */
 }

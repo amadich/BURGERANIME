@@ -1,7 +1,51 @@
-import TestImg from "../../../../public/assets/images/689e2efcf9f192ba6c0f7a538ee99027.png";
-import TestImg2 from "../../../../public/assets/images/77fb4ad8d5c781685695bc574eb34b0a.png";
+import "../../../assets/css/Articlemain.css"
 import { MdChevronLeft , MdChevronRight } from "react-icons/md";
-function AnimeList() {
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+interface Episode {
+   title?: string;
+   nbrps?: number;
+   epsimage?: string;
+   epsurl?: string;
+ }
+interface Anime {
+   _id?: string;
+   title: string;
+   genres: string[];
+   description: string;
+   imageUrl1: string;
+   imageUrl2: string;
+   rating?: number;
+   seasonal?: number;
+   eps: Episode[];
+   // Add other fields specific to anime data as needed
+ }
+
+function Mainarticle() {
+
+   const SERVER = import.meta.env.VITE_HOSTSERVER;
+   const [Listanime , setListanime] = useState<Anime[]>([]);
+   const [seasonalAnimeList, setSeasonalAnimeList] = useState<Anime[]>([]);
+
+   useEffect(() => {
+      axios
+        .get(`${SERVER}/api/dashboard/getlistanime`)
+        .then((response) => {
+          const listAnime: Anime[] = response.data.data;
+          setListanime(listAnime);
+  
+          // Filter animeList to get only the seasonal anime
+          const filteredSeasonalAnimeList = listAnime.filter(anime => anime.seasonal === 1);
+          setSeasonalAnimeList(filteredSeasonalAnimeList);
+        })
+        .catch((error) => {
+          console.error("Error fetching anime list:", error);
+        });
+    }, []);
+
+    {/* Slider 1 */}
 
    const sliderLeft = () => {
       let slider = document.getElementById("slider");
@@ -18,117 +62,146 @@ function AnimeList() {
    }
 
 
+   {/* Slider 2 */}
+
+   const sliderLeft_2 = () => {
+      let slider = document.getElementById("slider_2");
+      if(slider) {
+         slider.scrollLeft = slider.scrollLeft - 500
+      }
+   }
+
+   const sliderRight_2 = () => {
+      let slider = document.getElementById("slider_2");
+      if(slider) {
+         slider.scrollLeft = slider.scrollLeft + 500
+      }
+   }
+
+
    return ( 
       <>
-             <article className=" w-full pt-[1%]  bg-[#222] md:relative ">
+         <article className=" w-full pt-[1%]  bg-[#222] md:relative ">
 
-                     {/* Details List animes saison   */}
+            {/* Details List animes saison   */}
 
-                        <div>
-                           <h1 className=" m-5  md:m-10 md:ml-32">
-                              Aperçu de la saison du été 2023
-                              <p className="text-[15px] text-gray-400 font-mono">
-                                 Regardez gratuitement les trois premiers épisodes de ces simulcast d'été !
-                              </p>
-                           </h1>
-                           <div id="ttborder1" className="w-[80%] h-[5px]  rounded-xl m-5 md:m-10 md:ml-32"></div>
-                        </div>
+               <div>
+                  <h1 className=" m-5  md:m-10 md:ml-32">
+                  Preview of the Summer  Season
+                     <p className="text-[15px] text-gray-400 font-mono">
+                     Watch the first three episodes of these summer simulcasts for free!
+                     </p>
+                  </h1>
+                  <div id="ttborder1" className="w-[80%] h-[5px]  rounded-xl m-5 md:m-10 md:ml-32"></div>
+               </div>
 
-                        {/* Create Cards animes List */}
-                     <div className=" relative m-auto w-[90%] h-full flex justify-around items-center">
-                        <MdChevronLeft 
-                        onClick={sliderLeft}
-                        size={40} 
-                        className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               {/* Create Cards animes List */}
+            <div className=" relative m-auto w-[90%] h-full flex justify-around items-center">
+               <MdChevronLeft 
+               onClick={sliderLeft}
+               size={40} 
+               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
-                        <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
+               <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
 
-                           
-                           
-                              <div className=" w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg ">
-                                 <div
-                                 className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40"
-                                 style={{ backgroundImage: `url(${TestImg2})` }}
-                                 ></div>
-
-                                 <p className="text-white text-center ">
-                                 JUJUTSU KAISEN <br />
-                                    <span className="text-gray-500">VOST | Dub</span>
-                                 </p>
-                              
-                              </div>
-
-
-
-                        </div>
-
-                        <MdChevronRight 
-                        onClick={sliderRight}
-                        size={40} 
-                        className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
-
-                     </div>
-
-
-                     {/* Best Show List Anime */}
-
-
-
-
-                     <div>
-                           <h1 className=" m-5  md:m-10 md:ml-32">
-                              Anime Best Show
-                              <p className="text-[15px] text-gray-400 font-mono">
-                                 Regardez gratuitement les trois premiers épisodes de ces simulcast d'été !
-                              </p>
-                           </h1>
-                           <div id="ttborder2" className="w-[80%] h-[5px]  rounded-xl m-5 md:m-10 md:ml-32"></div>
-                        </div>
-
-                        {/* Create Cards animes bestShow */}
-
+                    
+               {seasonalAnimeList.map((anime, index) => (
+                  <Link to={`/series/${anime._id}`} key={index}>
+                     <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
+                        <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
                         
-                        <div className=" relative m-auto w-[90%] h-full flex justify-around items-center">
-                        <MdChevronLeft 
-                        onClick={sliderLeft}
-                        size={40} 
-                        className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
-
-                        <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
-
+                        <p className="text-white text-center">
+                           <span className="block overflow-hidden overflow-ellipsis p-2 ">
+                              {anime.title}
+                           </span>
                            
-                           
-                              <div className=" w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg ">
-                                 <div
-                                 className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40"
-                                 style={{ backgroundImage: `url(${TestImg})` }}
-                                 ></div>
+                           <span className="text-gray-500">Seasonal</span>
+                        </p>
 
-                                 <p className="text-white text-center ">
-                                    Spy X FAMILY <br />
-                                    <span className="text-gray-500">VOST | Dub</span>
-                                 </p>
-                              
-                              </div>
-
-
-
-                        </div>
-
-                        <MdChevronRight 
-                        onClick={sliderRight}
-                        size={40} 
-                        className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
                      </div>
+                     </Link>
+          ))}
+                    
+
+
+
+               </div>
+
+               <MdChevronRight 
+               onClick={sliderRight}
+               size={40} 
+               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+
+            </div>
+
+
+            {/* Best Show List Anime */}
+
+
+
+
+            <div>
+                  <h1 className=" m-5  md:m-10 md:ml-32">
+                     Anime Best Show
+                     <p className="text-[15px] text-gray-400 font-mono">
+                     Watch the first three episodes of these summer simulcasts for free!
+                     </p>
+                  </h1>
+                  <div id="ttborder2" className="w-[80%] h-[5px]  rounded-xl m-5 md:m-10 md:ml-32"></div>
+               </div>
+
+               {/* Create Cards animes bestShow */}
+
+               
+               <div className=" relative m-auto w-[90%] h-full flex justify-around items-center">
+               <MdChevronLeft 
+               onClick={sliderLeft_2}
+               size={40} 
+               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+
+               <div id="slider_2" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
+
+                    
+                    
+               {Listanime.map((anime, index) => (
+                   <Link to={`/series/${anime._id}`} key={index}>
+                     <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
+                        <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
+                        
+                        <p className="text-white text-center p-2">
+                           <span className="block overflow-hidden overflow-ellipsis">
+                              {anime.title}
+                           </span>
+                          
+                          
+                           <span className="text-gray-500"> Dub edition</span>
+                          
+                        </p>
+
+
+                     </div>
+                  </Link>
+          ))}
+
+
+
+               </div>
+
+               <MdChevronRight 
+               onClick={sliderRight_2}
+               size={40} 
+               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+
+            </div>
 
 
 
 
 
-                     </article>
+         </article>
       </>
     );
 }
 
-export default AnimeList;
+export default Mainarticle;

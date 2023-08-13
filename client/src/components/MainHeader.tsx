@@ -3,6 +3,13 @@ import "../assets/css/Headermain.css";
 import Logo from "../../public/assets/logo.png";
 import Avatardash from "./Avatardash";
 function MainHeader() {
+
+   const moveDown = () => {
+      document.getElementById("main_article")?.scrollIntoView({
+         behavior: "smooth"
+      })
+   }
+
    return ( 
       <>
             <header className=" relative z-20 flex justify-around items-center h-16 bg-[#222] text-white">
@@ -15,10 +22,10 @@ function MainHeader() {
                   
                </div>
                <ul className="flex space-x-8 text-gray-300 items-center">
-                  <li className="hidden md:block text-orange-500 ">Home</li>
+                  <Link to="/"><li className="hidden md:block text-orange-500 ">Home</li></Link>
                   <Link to="/main"><li className="hidden md:block">Animes</li></Link>
-                  <li className="hidden md:block">More</li>
-                  <li className="hidden md:block">Search</li>
+                  <li onClick={moveDown} className="hidden md:block cursor-pointer ">More</li>
+                  <Link to="/search"><li className="hidden md:block">Search</li></Link>
 
                   <li><Avatardash /></li>
                </ul>

@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import Logo from "../../../public/assets/amadich_Discord.jpg";
 import Mainfooter from "../../components/MainFooter";
 import MainHeader from "../../components/MainHeader";
 import axios from "axios";
@@ -35,6 +34,7 @@ export default function Profile() {
   const [me,setMe] = useState<boolean>(false);
   const [otheravatar,setOtheravatar] = useState<String>("");
   const [otheraboutme,setOtherAboutme] = useState<String>("");
+  const [otherRanks , setOtherRanks] = useState<String>("");
 
 
   useEffect(() => {
@@ -48,6 +48,15 @@ export default function Profile() {
          setMe(response.data.me);
          setOtheravatar(response.data.avatar);
          setOtherAboutme(response.data.aboutme);
+
+         {/* Ranks Other users */}
+         response.data.ranks.demo === 1 ? setOtherRanks("Demo") : null;
+         response.data.ranks.vip === 1 ? setOtherRanks("VIP") : null;
+         response.data.ranks.admin === 1 ? setOtherRanks("Admin") : null;
+
+         
+         
+
 
         })
         .catch((error) => {
@@ -75,9 +84,17 @@ export default function Profile() {
    })
   }
   // Submit Changz avatar
+  
   const handupload = (e: FormEvent) => {
    e.preventDefault();
+   
+   
    if (avatar == null || me == false) return;
+   if ((avatar.type !== "image/png") && (avatar.type !== "image/jpeg")) 
+   {
+    alert('Please select a PNG or JPEG image.'); // Show an error message
+    return;
+   }
 
    setIsSubmitting(true);
    
@@ -109,25 +126,34 @@ export default function Profile() {
       <MainHeader />
 
       {/* Hero */}
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-400">
         <div className="hero-content flex-col lg:flex-row">
           <img 
-          src={decoded && me ? decoded.avatar : otheravatar ? `${otheravatar}` : Logo} 
+          src={decoded && me ? decoded.avatar : otheravatar ? `${otheravatar}` : `https://firebasestorage.googleapis.com/v0/b/burgeranime-4a245.appspot.com/o/avatars%2Favatar.png?alt=media`} 
           className="max-w-sm rounded-lg shadow-2xl" 
           draggable={false} />
 
           <div>
-            <h1 className="text-5xl font-bold">{user.toUpperCase()}</h1>
+            <h1 
+              className="text-5xl font-bold text-white">
+              {user.toUpperCase()}
+              <span 
+                style={otherRanks === "Demo" ? { color : "gold"} : otherRanks === "VIP" ? {color:  "limegreen"} : otherRanks === "Admin" ? {color: "orangered"} : {}  }
+                
+                className="pl-5  text-sm select-none">
+                {otherRanks}
+              </span>
+            </h1>
 
             <div className="py-6">
-              <h1 className="text-white text-3xl font-mono">About me</h1>
+              <h1 className=" text-3xl font-mono text-gray-500">About me</h1>
               <textarea
               onChange={(e) => {setAboutme(e.target.value)}}
                      rows={5}
                      cols={100}
                      readOnly={!me}
                      style={!me ? { resize: "none" } : {}}
-                     className="bg-transparent outline-none w-96 md:w-full"
+                     className="bg-transparent outline-none w-96 md:w-full text-white font-bold "
                      defaultValue={decoded && me ? `${decoded.aboutme}` : `${otheraboutme}`}
                      />
 
@@ -148,6 +174,7 @@ export default function Profile() {
                   disabled={isSubmitting}
                    className="btn btn-primary">Change Avatar</button>
                   <input 
+                  accept=".png, .jpg, .jpeg"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAvatar(e.target.files && e.target.files[0])}}
                   type="file"
                      className="file-input file-input-bordered file-input-primary w-full max-w-xs ml-1 md:ml-5" />

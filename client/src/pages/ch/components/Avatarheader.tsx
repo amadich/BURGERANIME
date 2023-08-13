@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SearchLogo from "../../../../public/assets/icons/search.png";
 import Logo from "../../../../public/assets/logo.png";
 import Avatardash from "../../../components/Avatardash";
+import Crown from "../../../../public/assets/icons/crown.png";
 function AvatarHeader() {
    return ( 
       <>
@@ -9,9 +10,13 @@ function AvatarHeader() {
                   <div className="flex-1">
                      <ul className="md:flex hidden space-x-10 text-white ml-16 ">
                         <Link to="/"><li>Home</li></Link>
-                        <li>Series</li>
-                        <li>Movies</li>
-                        <li>Premier</li>
+                        <li className=" cursor-not-allowed ">Series</li>
+                        <li className=" cursor-not-allowed ">Movies</li>
+                        <li 
+                              className="inline-flex items-center space-x-3 cursor-not-allowed duration-300 hover:text-black" >
+                              <span>Premier</span>
+                              <img src={Crown} alt="Crown Logo" width={16} draggable={false} /> 
+                        </li>
                      </ul>
                     <Link to="/">
                         <img src={Logo} alt="Logo" width={50} draggable={false}

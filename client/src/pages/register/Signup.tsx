@@ -26,6 +26,7 @@ export default function Signup() {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
   const handsubmit = async (e : FormEvent) => {
+    setIsSubmitting(true);
     e.preventDefault();
     const formData = {
       username,
@@ -46,8 +47,8 @@ export default function Signup() {
       axios.post(`${SERVER}/api/register/signup`, {username , email , password})
       .then((response : AxiosResponse<any, any> ) => {
 
-            setIsSubmitting(true);
-            setTimeout(() => {setIsSubmitting(false)},3000)
+            
+            
           // Get the token from the response
           const token = response.data.token;
 
@@ -58,6 +59,7 @@ export default function Signup() {
           }
           
             // Get Message Response
+            setIsSubmitting(false);
             setCheckformdata(true);
             setFormdatamsg(response.data.message);
             console.log(response.data);
@@ -66,6 +68,7 @@ export default function Signup() {
       })
       .catch((e) => {
         console.log(e);
+        setIsSubmitting(false);
        
       })
 
@@ -75,8 +78,8 @@ export default function Signup() {
     }
 
     else {
-      setIsSubmitting(true);
-      setTimeout(() => {setIsSubmitting(false)},3000)
+      setIsSubmitting(false);
+      
     }
     
     

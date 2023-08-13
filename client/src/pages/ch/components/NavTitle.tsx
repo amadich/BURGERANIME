@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "../assets/css/mainchain.css";
+import { Link } from "react-router-dom";
 function NavTitle() {
    const Mytitle = "ready to start watching";
 
@@ -39,7 +40,9 @@ function NavTitle() {
             </h1>
 
                <div>
+                  <Link to="/series/64d6aa322d028f303499e2ad">
                <button id="btn_chaine" className=" w-28 h-8 font-mono  text-white border-none mt-5 duration-300 hover:w-36 hover:text-black">Play ♣</button>
+               </Link>
                </div>
          </div>
       </>
