@@ -1,13 +1,16 @@
 // models/db.js
 const mongoose = require('mongoose');
-const Urldb = process.env.MONGODB;
+const Urldb = "mongodb+srv://fox224994:YJ3PwEfkEpfGKfXX@backpack.mcyyvkv.mongodb.net/burgeranime";
 const connectDB = async () => {
   try {
-    const connection = await mongoose.connect(Urldb);
+    const connection = await mongoose.connect(Urldb, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     console.log('MongoDB connected:', connection.connection.host);
   } catch (error) {
     console.error('Error connecting to MongoDB:', error.message);
-    process.exit(1); // Exit the process with failure status (non-zero code)
+    process.exit(1); // Exit the process with a failure status (non-zero code)
   }
 };
 

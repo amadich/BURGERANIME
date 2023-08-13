@@ -9,10 +9,10 @@ router.get("/profileinfo/:id/:tokenid", async (req,res) => {
          const user = await Usermodel.findById(id);
          if (user) {
             if ( user._id == tokenid ) {
-               return res.status(200).json({username : user.username , me:true});
+               return res.status(200).json({username : user.username , avatar : user.avatar , aboutme: user.aboutme , ranks : user.ranks , me:true});
             }
             else {
-               return res.status(200).json({username : user.username , avatar : user.avatar , aboutme: user.aboutme , me:false});
+               return res.status(200).json({username : user.username , avatar : user.avatar , aboutme: user.aboutme , ranks : user.ranks , me:false});
             }
          }
          
