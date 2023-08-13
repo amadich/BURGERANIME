@@ -1,6 +1,6 @@
 // models/db.js
 const mongoose = require('mongoose');
-const Urldb = "mongodb+srv://fox224994:YJ3PwEfkEpfGKfXX@backpack.mcyyvkv.mongodb.net/burgeranime";
+const Urldb = process.env.MONGODB;
 const connectDB = async () => {
   try {
     const connection = await mongoose.connect(Urldb, {
