@@ -164,7 +164,7 @@ function Mainarticle() {
 
                     
                     
-               {Listanime.map((anime, index) => (
+               {Listanime.reverse().map((anime, index) => (
                      <Link to={`/series/${anime._id}`} key={index}>
                            <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
                               <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
