@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { Link , redirect } from 'react-router-dom';
+import { Link , useHistory } from 'react-router-dom';
 import './assets/css/Sign.css';
 import RejAS1 from "./assets/images/867145640.png";
 import Logo from "./assets/images/logo.png";
@@ -17,6 +17,8 @@ export default function Signin() {
   const [checkformdata,setCheckformdata] = useState<boolean>(false);
   const [formdatamsg,setFormdatamsg] = useState<string>("");
   const [_,setCookies] = useCookies(["burgertoken"]);
+  const history = useHistory();
+
 
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
@@ -51,7 +53,7 @@ export default function Signin() {
             setCookies("burgertoken",token);
             window.localStorage.setItem("token", token);
             //window.location.href = "/";
-            return redirect("/");
+            history.push("/");
           }
             
           // Get Message Response
