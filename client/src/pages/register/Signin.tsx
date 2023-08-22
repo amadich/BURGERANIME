@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { Link , Redirect } from 'react-router-dom';
+import { Link , redirect } from 'react-router-dom';
 import './assets/css/Sign.css';
 import RejAS1 from "./assets/images/867145640.png";
 import Logo from "./assets/images/logo.png";
@@ -51,7 +51,7 @@ export default function Signin() {
             setCookies("burgertoken",token);
             window.localStorage.setItem("token", token);
             //window.location.href = "/";
-            return <Redirect to="/" />
+            return redirect("/");
           }
             
           // Get Message Response
