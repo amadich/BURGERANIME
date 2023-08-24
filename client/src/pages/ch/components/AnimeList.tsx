@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
 interface Episode {
    title?: string;
    nbrps?: number;
@@ -26,6 +29,7 @@ interface Anime {
 function Mainarticle() {
 
    const SERVER = import.meta.env.VITE_HOSTSERVER;
+   const [open, setOpen] = useState(true);
    const [Listanime , setListanime] = useState<Anime[]>([]);
    const [seasonalAnimeList, setSeasonalAnimeList] = useState<Anime[]>([]);
 
@@ -39,9 +43,11 @@ function Mainarticle() {
           // Filter animeList to get only the seasonal anime
           const filteredSeasonalAnimeList = listAnime.filter(anime => anime.seasonal === 1);
           setSeasonalAnimeList(filteredSeasonalAnimeList);
+          setOpen(false);
         })
         .catch((error) => {
           console.error("Error fetching anime list:", error);
+          setOpen(true);
         });
     }, []);
 
@@ -86,6 +92,15 @@ function Mainarticle() {
             {/* Details List animes saison   */}
 
                <div>
+
+               <Backdrop
+                     sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                     open={open}
+                     
+                     >
+                     <CircularProgress color="inherit" />
+                </Backdrop>
+
                   <h1 className=" m-5  md:m-10 md:ml-32">
                   Preview of the Summer  Season
                      <p className="text-[15px] text-gray-400 font-mono">
