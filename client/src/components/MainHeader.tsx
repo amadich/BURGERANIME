@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import "../assets/css/Headermain.css";
 import Logo from "../../public/assets/logo.png";
 import Avatardash from "./Avatardash";
+import SearchLogo from "../../public/assets/icons/search.png";
 function MainHeader() {
 
    const moveDown = () => {
@@ -27,6 +28,14 @@ function MainHeader() {
                   <li onClick={moveDown} className="hidden md:block cursor-pointer ">More</li>
                   <Link to="/search"><li className="hidden md:block">Search</li></Link>
 
+                  <Link to="/search" className="block md:hidden">
+                        <div className="form-control">
+                           <img src={SearchLogo} alt="Search" width={25}
+                           style={{ filter: 'brightness(0) invert(1)', color: 'white' }}
+                           
+                           />
+                        </div>
+                  </Link>
                   <li><Avatardash /></li>
                </ul>
                
