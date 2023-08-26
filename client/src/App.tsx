@@ -3,7 +3,7 @@ import Main from "./pages/Main";
 import Mainch from "./pages/ch/Main";
 import Signup from "./pages/register/Signup";
 import Signin from "./pages/register/Signin";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import Profile from "./pages/Profile/Profile";
@@ -17,11 +17,26 @@ import Watch from "./pages/watch/Watch";
 import Banusers from "./pages/dashboard/components/Banusers";
 import Search from "./pages/search/Search";
 import Rankedusers from "./pages/dashboard/components/Rankedusers";
+
+import jwtDecode from "jwt-decode";
+// Define the interface for the decoded object
+interface DecodedObject {
+  id : String,
+  avatar: String,
+  ranks: {
+    admin: number;
+    demo: number;
+    vip: number;
+  };
+}
+
+
 function App() {
 
   const [_,setCookies] = useCookies(["burgertoken"]);
   const location = useLocation();
   const token = window.localStorage.getItem("token");
+  const [decoded, setDecoded] = useState<DecodedObject | null >(null); // Set initial decoded to null
   
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
@@ -35,6 +50,18 @@ function App() {
             window.localStorage.removeItem("token");
             window.localStorage.setItem("token",newToken);
             setCookies("burgertoken",newToken);
+
+                try {
+
+                  // Decode the token and store the decoded object in state
+                  const decodedToken = jwtDecode(token);
+                  setDecoded(decodedToken as DecodedObject);
+                  
+                } catch (error) {
+                  console.log(error);
+                  
+                }
+
             
            }
 
@@ -43,6 +70,8 @@ function App() {
             setCookies("burgertoken" , "");
             window.location.href = "/";
           }
+
+          
           
            
            
@@ -65,12 +94,23 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/showallusers" element={<Showallusers />} />
-            <Route path="/dashboard/uploadanime" element={<Uploadanime />} />
-            <Route path="/dashboard/AddEpes" element={<AddEpes />} />
-            <Route path="/dashboard/Banusers" element={<Banusers />} />
-            <Route path="/dashboard/Rankedusers" element={<Rankedusers />} />
+            {
+              decoded?.ranks.admin == 1 &&
+              
+                  (
+                    <>
+                      <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/dashboard/showallusers" element={<Showallusers />} />
+                      <Route path="/dashboard/uploadanime" element={<Uploadanime />} />
+                      <Route path="/dashboard/AddEpes" element={<AddEpes />} />
+                      <Route path="/dashboard/Banusers" element={<Banusers />} />
+                      <Route path="/dashboard/Rankedusers" element={<Rankedusers />} />
+                    </>
+                  )
+
+              
+            }
+            
 
             <Route path="/series/:id" element={<Series />} />
             <Route path="/series/:id/:epsid" element={<Watch />} />
