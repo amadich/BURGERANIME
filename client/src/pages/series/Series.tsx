@@ -169,7 +169,7 @@ export default function Series() {
                   .map((val , key) => {
                     return (
                       <Link to={`/series/${id}/${val._id}`} key={key}>
-                          <div className=" w-full h-42 bg-[#0000004a] rounded-lg">
+                          <div className=" w-64 h-42 bg-[#0000004a] rounded-lg">
                               <div
                                 style={{backgroundImage: `url(${val.epsimage})`}}
                                 className="w-full h-32 bg-cover bg-center bg-no-repeat duration-300 hover:transition-opacity  hover:opacity-30 rounded-lg ">
