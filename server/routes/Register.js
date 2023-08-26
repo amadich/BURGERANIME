@@ -15,7 +15,9 @@ router.post("/register/signup" , async (req, res) => {
       }
 
       const pwd = await bcrypt.hashSync(password,10);
-      const time =  new Date(Date.now()).getDate() + " / " + new Date(Date.now()).getMonth() + " / "  + new Date(Date.now()).getFullYear() + " - " +new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes();
+      const now = new Date();
+      const formattedDateTime = `${now.getDate()} / ${now.getMonth() + 1} / ${now.getFullYear()} - ${now.getHours()}:${now.getMinutes()}`;
+
 
       const Usernew = await new Usermodel({
          username,
