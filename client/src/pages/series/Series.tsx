@@ -130,7 +130,7 @@ export default function Series() {
                 />
               </span>
               <span className="font-bold text-white text-xl">
-                {anime.rating || "-"}
+                {anime.rating && anime.rating*2 || "-"}
               </span>
             </p>
             <p className="text-slate-300">{anime.description}</p>
