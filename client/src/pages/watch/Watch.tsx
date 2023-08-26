@@ -117,8 +117,11 @@ export default function Watch() {
         <p className="text-gray-400">
           {anime.description}
         </p>
+
+        <Mainfooter />
+        
       </div>
-      <Mainfooter />
+      
     </>
   );
 }
