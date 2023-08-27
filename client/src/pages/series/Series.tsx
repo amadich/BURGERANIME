@@ -7,12 +7,19 @@ import { MdChevronLeft , MdChevronRight } from "react-icons/md";
 import axios from "axios";
 import Mainfooter from "../../components/MainFooter";
 
+
+
 interface Episode {
   _id?: string;
   title?: string;
   nbrps?: number;
   epsimage?: string;
   epsurl?: string;
+}
+
+interface Format {
+  seriesChecked : number;
+  filmChecked : number;
 }
 
 interface Anime {
@@ -22,6 +29,7 @@ interface Anime {
   imageUrl1: string;
   imageUrl2: string;
   rating?: number;
+  format?: Format;
   seasonal?: number;
   eps: Episode[];
   // Add other fields specific to anime data as needed
@@ -29,6 +37,7 @@ interface Anime {
 
 export default function Series() {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
+
   const { id } = useParams();
   const [anime, setAnime] = useState<Anime | null>(null); // Change to nullable type
   const [animeEps , setAnimeEps] = useState<Episode[]>([]);
@@ -60,6 +69,7 @@ export default function Series() {
           setAnimeEps(response.data.anime.eps);
           if (response.data.anime.eps[1] != null) {
             setFiestEps(response.data.anime.eps[1]._id);
+            
           }
           
         }
@@ -71,6 +81,7 @@ export default function Series() {
     return (
       <>
       <AvatarHeader />
+
         <div className=" select-none mt-[5%] ">
          
         <figure className="m-auto relative   ">
@@ -87,6 +98,8 @@ export default function Series() {
                  Loading ... <span className="text-blue-500">Anime ID</span> 
                </p>
             </figure>
+
+           
         
         </div>
         <Mainfooter />
@@ -116,7 +129,12 @@ export default function Series() {
             style={{ backgroundImage: `url(${anime.imageUrl1})` }}
           ></div>
           <div className="md:w-[70%]  space-y-4 md:border md:border-[#222] md:bg-[#222] md:p-5 rounded-lg">
-            <h1 className="text-white font-bold text-3xl">{anime.title}</h1>
+            <h1 className="text-white font-bold text-3xl">
+              {anime.title}
+              <span className="text-black rounded-lg p-2 float-right text-sm bg-orange-500">
+                { anime?.format ?  anime?.format?.seriesChecked == 1 ? <span>Serie</span> : <span>Film</span> : null  }
+              </span>
+            </h1>
             <p className="font-bold text-slate-200">
               {anime.genres.join(", ")}
             </p>
@@ -149,10 +167,15 @@ export default function Series() {
       </div>
 
       {/* Article Episodes Series ... */}
+
+     
+       
+      
       
 
       <article className="relative m-auto mt-16 w-[90%] h-full flex justify-around items-center z-20 bg-[#0000004a] rounded-xl ">
-       
+
+     
               
                <MdChevronLeft 
                onClick={sliderLeft}
@@ -161,7 +184,7 @@ export default function Series() {
       <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
        
       {animeEps.length == 1 ? (
-                  <p className="text-white font-bold">No Episodes Available</p>
+                  <p>No Episodes Available</p>
                 ) : (
                   animeEps
                   .slice(1)
@@ -169,18 +192,20 @@ export default function Series() {
                   .map((val , key) => {
                     return (
                       <Link to={`/series/${id}/${val._id}`} key={key}>
-                          <div className=" w-64 h-42 bg-[#0000004a] rounded-lg">
+                          <div className=" w-56 h-42 bg-[#0000004a] rounded-lg">
                               <div
                                 style={{backgroundImage: `url(${val.epsimage})`}}
                                 className="w-full h-32 bg-cover bg-center bg-no-repeat duration-300 hover:transition-opacity  hover:opacity-30 rounded-lg ">
                             </div>
 
                               <div className="text-center">
-                                <div className="overflow-hidden">
+                                
+                              <div className="overflow-hidden">
                                   <p className="font-bold text-white truncate p-2">
                                    <span className="text-orange-500">{val.nbrps}</span> - {val.title} 
                                   </p>
                               </div>
+
                                   <p>
                                     VOST | <span className="text-orange-500 font-bold" >Dub</span>
                                   </p>
