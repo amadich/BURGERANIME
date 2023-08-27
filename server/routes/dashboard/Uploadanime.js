@@ -11,6 +11,7 @@ router.post("/uploadanime", async (req, res) => {
       animeimgOr,
       animeimgBack,
       rating,
+      format,
       animeSes,
     } = req.body;
 
@@ -31,6 +32,7 @@ router.post("/uploadanime", async (req, res) => {
       imageUrl1: fullurl1,
       imageUrl2: fullurl2,
       rating: rating,
+      format,
       seasonal: animeSes,
       eps: [newEpisode],
     };
