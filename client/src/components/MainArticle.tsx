@@ -97,6 +97,23 @@ function Mainarticle() {
       }
    }
 
+   {/* Slider 3 */}
+
+   const sliderLeft_3 = () => {
+      let slider = document.getElementById("slider_3");
+      if(slider) {
+         slider.scrollLeft = slider.scrollLeft - 500
+      }
+   }
+
+   const sliderRight_3 = () => {
+      let slider = document.getElementById("slider_3");
+      if(slider) {
+         slider.scrollLeft = slider.scrollLeft + 500
+      }
+   }
+
+
 
    return ( 
       <>
@@ -248,11 +265,11 @@ function Mainarticle() {
                
                <div className=" relative m-auto w-[90%] h-full flex justify-around items-center">
                <MdChevronLeft 
-               onClick={sliderLeft_2}
+               onClick={sliderLeft_3}
                size={40} 
                className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
-               <div id="slider_2" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
+               <div id="slider_3" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
 
                     
                     
@@ -281,7 +298,7 @@ function Mainarticle() {
                </div>
 
                <MdChevronRight 
-               onClick={sliderRight_2}
+               onClick={sliderRight_3}
                size={40} 
                className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
