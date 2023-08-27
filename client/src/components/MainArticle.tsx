@@ -13,6 +13,12 @@ interface Episode {
    epsimage?: string;
    epsurl?: string;
  }
+
+ interface Format {
+   seriesChecked : number;
+   filmChecked : number;
+ }
+
 interface Anime {
    _id?: string;
    title: string;
@@ -21,6 +27,7 @@ interface Anime {
    imageUrl1: string;
    imageUrl2: string;
    rating?: number;
+   format?: Format;
    seasonal?: number;
    eps: Episode[];
    // Add other fields specific to anime data as needed
@@ -32,6 +39,7 @@ function Mainarticle() {
    const [open, setOpen] = useState(true);
    const [Listanime , setListanime] = useState<Anime[]>([]);
    const [seasonalAnimeList, setSeasonalAnimeList] = useState<Anime[]>([]);
+   const [FilmAnimeList, setFilmAnimeList] = useState<Anime[]>([]);
 
    useEffect(() => {
       axios
@@ -43,6 +51,11 @@ function Mainarticle() {
           // Filter animeList to get only the seasonal anime
           const filteredSeasonalAnimeList = listAnime.filter(anime => anime.seasonal === 1);
           setSeasonalAnimeList(filteredSeasonalAnimeList);
+
+           // Filter animeList to get only the Film anime
+           const filteredFilmAnimeList = listAnime.filter(anime => anime?.format?.filmChecked === 1);
+           setFilmAnimeList(filteredFilmAnimeList);
+
           setOpen(false);
         })
         .catch((error) => {
@@ -150,6 +163,69 @@ function Mainarticle() {
                className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
             </div>
+
+
+
+
+                  {/* Film  List Anime */}
+
+
+
+
+                  <div>
+                                    <h1 className=" m-5  md:m-10 md:ml-32">
+                                    Find your Favorite Movies
+                                       <p className="text-[15px] text-gray-400 font-mono">
+                                       All anime movies are presented in high quality. You can choose your favorite movie!
+                                       </p>
+                                    </h1>
+                                    <div id="ttborder2" className="w-[80%] h-[5px]  rounded-xl m-5 md:m-10 md:ml-32"></div>
+                                 </div>
+
+                                 {/* Create Cards animes bestShow */}
+
+                                 
+                                 <div className=" relative m-auto w-[90%] h-full flex justify-around items-center">
+                                 <MdChevronLeft 
+                                 onClick={sliderLeft_2}
+                                 size={40} 
+                                 className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+
+                                 <div id="slider_2" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
+
+                                    
+                                    
+                                 {FilmAnimeList.reverse().map((anime, index) => (
+                                       <Link to={`/series/${anime._id}`} key={index}>
+                                             <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
+                                                <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
+                                                
+                                                <p className="text-white text-center p-2">
+                                                   <span className="block overflow-hidden overflow-ellipsis">
+                                                      {anime.title}
+                                                   </span>
+                                                
+                                                
+                                                   <span className="text-gray-500"> Dub edition</span>
+                                                
+                                                </p>
+
+
+                                             </div>
+                                       </Link>
+                           ))}
+
+
+
+                                 </div>
+
+                                 <MdChevronRight 
+                                 onClick={sliderRight_2}
+                                 size={40} 
+                                 className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+
+                              </div>
+            {/* End Film List Anime */}
 
 
             {/* Best Show List Anime */}
