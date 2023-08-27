@@ -29,7 +29,7 @@ export default function Uploadanime() {
   const [animeimg2 , setAnimeImg2] = useState<File | null>(null);
   const [animeSes, setAnimeSes] = useState<Number>(0);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Romance'];
+  const availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Romance', 'Sci-Fi' , 'Shounen', "Bloody", "Mystery"];
 
   const [rating, setRating] = useState<number>(3); // Initial rating value
 
@@ -48,6 +48,21 @@ export default function Uploadanime() {
    // get state for show loading uploaded ...
    const [loadup , setLoadUp] = useState<String>("Loading ...");
    const [fixloadup , setFixloadUp] = useState<boolean>(false);
+
+
+   // Film || Series
+   const [seriesChecked, setSeriesChecked] = useState<number>(1);
+   const [filmChecked, setFilmChecked] = useState<number>(0);
+
+   const handleTypeChange = (type: 'series' | 'film') => {
+      if (type === 'series') {
+         setSeriesChecked(1);
+         setFilmChecked(0);
+      } else {
+         setSeriesChecked(0);
+         setFilmChecked(1);
+      }
+   };
 
   {/* Submit The Form Data to Server .... */}
    const handsubmit = () => {
@@ -94,6 +109,10 @@ export default function Uploadanime() {
 
                setLoadUp("Uploaded Successfully !!");
 
+               const format = {
+                  seriesChecked,
+                  filmChecked
+               }
                const formData = {
                   animeTitle,
                   selectedGenres,
@@ -101,6 +120,7 @@ export default function Uploadanime() {
                   animeimgOr : myUUID_1,
                   animeimgBack : myUUID_2,
                   rating,
+                  format,
                   animeSes
                }
 
@@ -431,12 +451,63 @@ export default function Uploadanime() {
             </div>
 
 
-
             <div id="slide7" className="carousel-item relative w-full">
+                     <div className="flex justify-around items-center m-auto text-center">
+                     <a href="#slide6">
+                           <button 
+                           
+                           className="btn btn-error duration-500 hover:btn-error">Back</button>
+                           </a>
+
+                           {/* inputs */}
+
+                           <div className="block p-16">
+                                 <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                       <span className="label-text pr-5 font-bold text-white">Series ? </span> 
+                                       <input 
+                                       type="radio" 
+                                       name="radio-10" 
+                                       className="radio checked:bg-red-500" 
+                                       checked 
+                                       onChange={() => handleTypeChange('series')}
+                                       />
+                                    </label>
+                                 </div>
+                                 
+                                 <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                       <span className="label-text pr-5 font-bold text-white">Film ?</span> 
+                                       <input 
+                                       type="radio" 
+                                       name="radio-10" 
+                                       className="radio checked:bg-blue-500"  
+                                       onChange={() => handleTypeChange('film')}
+                                       />
+                                    </label>
+                                 </div>
+                           </div>
+                           
+                           
+                          <a href="#slide8">
+                           <button 
+                           onClick={clickbacktoTrue}
+                           className="btn btn-warning duration-500 hover:btn-accent">Next</button>
+                           </a>
+                        </div>
+            </div>
+
+
+
+            
+
+
+
+            <div id="slide8" className="carousel-item relative w-full">
                                  
                      <div className="flex justify-around items-center m-auto text-center">
                         
-                     <a href="#slide6">
+                     <a href="#slide7">
                            <button 
                            style={ !fixloadup ? { display: "block" } : { display: "none" } } 
                            className="btn btn-error duration-500 hover:btn-error">Back</button>
