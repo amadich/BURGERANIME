@@ -176,9 +176,11 @@ export default function Series() {
                             </div>
 
                               <div className="text-center">
-                                <p className="font-bold text-white ">
-                                  {val.title} - {val.nbrps}
+                                <div className="overflow-hidden">
+                                  <p className="font-bold text-white truncate p-2">
+                                   <span className="text-orange-500">{val.nbrps}</span> - {val.title} 
                                   </p>
+                              </div>
                                   <p>
                                     VOST | <span className="text-orange-500 font-bold" >Dub</span>
                                   </p>
