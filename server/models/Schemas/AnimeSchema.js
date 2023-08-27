@@ -1,7 +1,6 @@
 // models/AnimeSchema.js
 const { Schema, model } = require("mongoose");
 
-
 const EpisodeSchema = Schema({
   title: { type: String },
   nbrps: { type: Number },
@@ -16,6 +15,7 @@ const AnimeSchema = Schema({
   imageUrl1: { type: String, required: true },
   imageUrl2: { type: String, required: true },
   rating: { type: Number },
+  format: { type: Object  , required: true },
   seasonal: { type: Number },
   
   
