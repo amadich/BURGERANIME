@@ -131,7 +131,7 @@ export default function Series() {
           <div className="md:w-[70%]  space-y-4 md:border md:border-[#222] md:bg-[#222] md:p-5 rounded-lg">
             <h1 className="text-white font-bold text-3xl">
               {anime.title}
-              <span className="text-black rounded-lg p-2 float-right text-sm bg-orange-500">
+              <span className="text-black rounded-lg p-2 float-right text-sm bg-orange-500 m-5 ">
                 { anime?.format ?  anime?.format?.seriesChecked == 1 ? <span>Serie</span> : <span>Film</span> : null  }
               </span>
             </h1>
