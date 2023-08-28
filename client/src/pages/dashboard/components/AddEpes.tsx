@@ -10,7 +10,7 @@ import { ref , uploadBytes } from "firebase/storage";
 import axios from "axios";
 import FilterIDanime from "./FilterIDanime";
 import Mainfooter from "../../../components/MainFooter";
-
+import { Link } from "react-router-dom";
 // Define the interface for the decoded object
 interface DecodedObject {
    id : String,
@@ -245,7 +245,7 @@ export default function AddEpes() {
 
 
             <div id="slide2" className="carousel-item relative w-full">
-                     <div className="flex justify-around items-center m-auto text-center">
+                     <div className=" justify-around items-center m-auto text-center">
                      <a href="#slide1" >
                            <button 
                            className="btn btn-error duration-500 hover:btn-error">Back</button>
@@ -258,6 +258,12 @@ export default function AddEpes() {
                            placeholder="Anime Frame HTML URL ..."
                            type="text" 
                            onChange={(e) => {setAnimeurl(e.target.value)}}/>
+
+                        <div className="pb-5">
+                              <Link to="/learn_discord" target="_blank" className="text-blue-500 underline uppercase" >
+                              How can I get the URL?
+                                 </Link>
+                           </div>
                           
                           <a href="#slide3">
                            <button 
