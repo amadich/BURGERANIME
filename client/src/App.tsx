@@ -19,6 +19,7 @@ import Search from "./pages/search/Search";
 import Rankedusers from "./pages/dashboard/components/Rankedusers";
 
 import jwtDecode from "jwt-decode";
+import Learn_discord from "./pages/dashboard/components/Learn_discord";
 // Define the interface for the decoded object
 interface DecodedObject {
   id : String,
@@ -111,7 +112,7 @@ function App() {
               
             }
             
-
+            <Route path="/learn_discord" element={<Learn_discord />} />
             <Route path="/series/:id" element={<Series />} />
             <Route path="/series/:id/:epsid" element={<Watch />} />
             <Route path="/search" element={<Search />} />
