@@ -37,7 +37,7 @@ function Mainarticle() {
 
    const SERVER = import.meta.env.VITE_HOSTSERVER;
    const [open, setOpen] = useState(true);
-   const [Listanime , setListanime] = useState<Anime[]>([]);
+   //const [Listanime , setListanime] = useState<Anime[]>([]);
    const [ListanimeRev , setListanimeRev] = useState<Anime[]>([]);
    const [seasonalAnimeList, setSeasonalAnimeList] = useState<Anime[]>([]);
    const [FilmAnimeList, setFilmAnimeList] = useState<Anime[]>([]);
@@ -67,7 +67,7 @@ function Mainarticle() {
         .get(`${SERVER}/api/dashboard/getlistanime`)
         .then((response) => {
           const listAnime: Anime[] = response.data.data;
-          setListanime(listAnime);
+          //setListanime(listAnime);
           
   
           // Filter animeList to get only the seasonal anime
