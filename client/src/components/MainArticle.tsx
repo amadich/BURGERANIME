@@ -38,11 +38,29 @@ function Mainarticle() {
    const SERVER = import.meta.env.VITE_HOSTSERVER;
    const [open, setOpen] = useState(true);
    const [Listanime , setListanime] = useState<Anime[]>([]);
+   const [ListanimeRev , setListanimeRev] = useState<Anime[]>([]);
    const [seasonalAnimeList, setSeasonalAnimeList] = useState<Anime[]>([]);
    const [FilmAnimeList, setFilmAnimeList] = useState<Anime[]>([]);
 
-   
-   
+   //
+   useEffect(() => {
+      axios
+        .get(`${SERVER}/api/dashboard/getlistanime/reversed`)
+        .then((response) => {
+          const listAnimeRev: Anime[] = response.data.data;
+          setListanimeRev(listAnimeRev);
+     
+           setOpen(false);
+           
+        })
+         
+        .catch((error) => {
+          console.error("Error fetching anime list:", error);
+          setOpen(true);
+           
+        });
+    }, []);
+   //
 
    useEffect(() => {
       axios
@@ -277,7 +295,7 @@ function Mainarticle() {
 
                     
                     
-               {Listanime.reverse().map((anime, index) => (
+               {ListanimeRev.map((anime, index) => (
                      <Link to={`/series/${anime._id}`} key={index}>
                            <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
                               <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
