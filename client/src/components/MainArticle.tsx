@@ -50,7 +50,7 @@ function Mainarticle() {
         .then((response) => {
           const listAnime: Anime[] = response.data.data;
           setListanime(listAnime);
-          setReversedListAnime([...Listanime].reverse());
+          setReversedListAnime(listAnime.reverse());
   
           // Filter animeList to get only the seasonal anime
           const filteredSeasonalAnimeList = listAnime.filter(anime => anime.seasonal === 1);
