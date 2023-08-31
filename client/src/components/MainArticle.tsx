@@ -41,12 +41,16 @@ function Mainarticle() {
    const [seasonalAnimeList, setSeasonalAnimeList] = useState<Anime[]>([]);
    const [FilmAnimeList, setFilmAnimeList] = useState<Anime[]>([]);
 
+   const [reversedListAnime, setReversedListAnime] = useState<Anime[]>([]);
+   
+
    useEffect(() => {
       axios
         .get(`${SERVER}/api/dashboard/getlistanime`)
         .then((response) => {
           const listAnime: Anime[] = response.data.data;
           setListanime(listAnime);
+          setReversedListAnime([...Listanime].reverse());
   
           // Filter animeList to get only the seasonal anime
           const filteredSeasonalAnimeList = listAnime.filter(anime => anime.seasonal === 1);
@@ -273,7 +277,7 @@ function Mainarticle() {
 
                     
                     
-               {Listanime.reverse().map((anime, index) => (
+               {reversedListAnime.map((anime, index) => (
                      <Link to={`/series/${anime._id}`} key={index}>
                            <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
                               <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
