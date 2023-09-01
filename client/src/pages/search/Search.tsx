@@ -69,7 +69,7 @@ export default function Search() {
       className="w-full h-full mt-16 p-16 space-y-4 m-auto text-center">
         <h1 className="text-white text-2xl font-bold">Meilleurs résultats</h1>
 
-        <div className=" md:inline-grid md:grid-cols-2 gap-4 ">
+        <div className=" sm:inline-grid md:grid-cols-2 gap-4 ">
           {filteredAnime.map((anime) => (
             <Link to={`/series/${anime._id}`}>
                      <div
