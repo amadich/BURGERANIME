@@ -94,7 +94,7 @@ export default function Watch() {
         <h1 className="text-orange-500 text-3xl font-bold">
           <span>{anime.title} | </span>
 
-          <div className="inline-flex space-x-3">
+          <div className=" mt-10 space-x-3">
             {nexteps && (
               <Link to={`/series/${anime._id}/${nexteps}`}>
                 <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
