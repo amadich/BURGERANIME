@@ -294,7 +294,7 @@ export default function Uploadanime() {
                            
                            {/* Select Gendre */}
 
-                        <div className="m-5">
+                        <div className="m-5 text-white ">
                                  <h2>Select Anime Genres:</h2>
                                  <table>
                                     <thead>
