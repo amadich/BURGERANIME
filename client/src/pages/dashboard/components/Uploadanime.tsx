@@ -516,7 +516,7 @@ export default function Uploadanime() {
                            {/* inputs */}
                            <div className="form-control" style={ !fixloadup ? { display: "block" } : { display: "none" } } >
                               <label className="cursor-pointer label">
-                                 <span className="label-text pl-5">seasonal ? </span>
+                                 <span className="label-text pl-5 text-white ">seasonal ? </span>
                                  <input 
                                  onChange={() => {setAnimeSes(1)}}
                                  type="checkbox"  
