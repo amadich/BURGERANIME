@@ -13,6 +13,7 @@ interface DecodedObject {
    avatar: string;
    ranks: {
      admin: number;
+     helper: number;
      demo: number;
      vip: number;
    };
@@ -38,7 +39,7 @@ export default function FilterIDanime() {
         const decodedToken = jwtDecode(token);
         setDecoded(decodedToken as DecodedObject);
 
-        if (Number(decoded?.ranks.admin) === 0) {
+        if (Number(decoded?.ranks.admin) === 0 && Number(decoded?.ranks.helper) === 0 ) {
           window.location.href = "/";
         } else {
           axios.get(`${SERVER}/api/dashboard/getlistanime`)
