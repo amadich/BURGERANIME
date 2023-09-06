@@ -10,6 +10,7 @@ interface DecodedObject {
   avatar: String,
   ranks: {
     admin: number;
+    helper: number;
     demo: number;
     vip: number;
   };
@@ -87,6 +88,9 @@ export default function Avatardash() {
                         {decoded.ranks.admin === 1 && decoded.ranks.demo === 0
                           ? "Admin"
                           : null}
+                        
+                        {decoded.ranks.helper === 1 ? "Helper " : null}
+
                       </span>
                     </span>
                   </li>
@@ -101,6 +105,12 @@ export default function Avatardash() {
               {
                decoded.ranks.admin === 1 && decoded.ranks.demo === 0
                       ? <Link to="/dashboard" className="text-center"><li className="btn bg-orange-500 text-white mt-5">Dashboard</li></Link>
+                      : null
+               }
+
+{
+               decoded.ranks.helper === 1
+                      ? <Link to="/dashboard_helper" className="text-center"><li className="btn bg-blue-700 text-white mt-5">Dashboard Helper</li></Link>
                       : null
                }
             </ul>
