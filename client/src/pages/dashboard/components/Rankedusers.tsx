@@ -25,11 +25,27 @@ export default function Rankedusers() {
    const handadmin = () => {
       const newRanks = {
          admin: 1, // Update to 0 to remove admin rank
+         helper : 1, // Update to 1 to make user Helper
          vip: 0,   // Update to 1 to make user VIP
          demo: 0   // Update to 0 to remove demo rank
        };
 
       axios.post(`${SERVER}/api/dashboard/toadmin`, { id : iduser , newRanks } )
+      .then((response) => {
+            setResmessage(response.data.message);
+      })
+   }
+
+
+   const handhelper = () => {
+      const newRanks = {
+         admin: 0, // Update to 0 to remove admin rank
+         helper : 1, // Update to 1 to make user Helper
+         vip: 0,   // Update to 1 to make user VIP
+         demo: 0   // Update to 0 to remove demo rank
+       };
+
+      axios.post(`${SERVER}/api/dashboard/tohelper`, { id : iduser , newRanks } )
       .then((response) => {
             setResmessage(response.data.message);
       })
@@ -65,6 +81,7 @@ export default function Rankedusers() {
                
                <button className="btn btn-warning" onClick={handdemo} >Demo</button>
                <button className="btn btn-success" onClick={handvip}>VIP</button>
+               <button className="btn btn-info " onClick={handhelper}>Helper ♣</button>
                <button className="btn btn-error" onClick={handadmin}>Admin ♦</button>
 
                </div>
