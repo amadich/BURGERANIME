@@ -16,6 +16,7 @@ interface DecodedObject {
    avatar: String,
    ranks: {
      admin: number;
+     helper:number;
      demo: number;
      vip: number;
    };
@@ -29,7 +30,7 @@ export default function Uploadanime() {
   const [animeimg2 , setAnimeImg2] = useState<File | null>(null);
   const [animeSes, setAnimeSes] = useState<Number>(0);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Supernatural' , 'Romance', 'School' , 'Sci-Fi' , 'Shounen', "Bloody", "Mystery"];
+  const availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Romance', 'Sci-Fi' , 'Shounen', "Bloody", "Mystery"];
 
   const [rating, setRating] = useState<number>(3); // Initial rating value
 
@@ -207,7 +208,7 @@ export default function Uploadanime() {
             const decodedToken = jwtDecode(token);
             setDecoded(decodedToken as DecodedObject);
             
-               if (Number(decoded?.ranks.admin) == 0) {
+               if (Number(decoded?.ranks.admin) == 0 && Number(decoded?.ranks.helper) == 0) {
                   window.location.href = "/"; 
                   
                   
@@ -294,7 +295,7 @@ export default function Uploadanime() {
                            
                            {/* Select Gendre */}
 
-                        <div className="m-5 text-white ">
+                        <div className="m-5 text-white">
                                  <h2>Select Anime Genres:</h2>
                                  <table>
                                     <thead>
@@ -451,7 +452,7 @@ export default function Uploadanime() {
             </div>
 
 
-            <div id="slide7" className="carousel-item relative w-full">
+            <div id="slide7" className="carousel-item relative w-full  ">
                      <div className="flex justify-around items-center m-auto text-center">
                      <a href="#slide6">
                            <button 
@@ -461,7 +462,7 @@ export default function Uploadanime() {
 
                            {/* inputs */}
 
-                           <div className="block p-16">
+                           <div className="block p-16 ">
                                  <div className="form-control">
                                     <label className="label cursor-pointer">
                                        <span className="label-text pr-5 font-bold text-white">Series ? </span> 
