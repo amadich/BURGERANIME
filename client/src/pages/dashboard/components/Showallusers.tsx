@@ -10,6 +10,7 @@ interface UserData {
   avatar: string;
   ranks: {
     admin: number;
+    helper: number;
     demo: number;
     vip: number;
   };
@@ -92,6 +93,7 @@ export default function Showallusers() {
               <th>Avatar</th>
               <th>Email</th>
               <th>Admin</th>
+              <th>Helper</th>
               <th>VIP</th>
               <th>Demo</th>
               <th>Date Created</th>
@@ -103,17 +105,20 @@ export default function Showallusers() {
                 <th>{index + 1}</th>
                 <th>{user._id}</th>
                 <td>{user.username}</td>
-                <td>
-                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                     <div className="w-10 rounded-full">
-                        <img
-                        draggable={false} 
-                        src={user.avatar} />
-                     </div>
-                  </label>
-                </td>
+                <Link to={`/profile/${user._id}`}>
+                  <td>
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                      <div className="w-10 rounded-full">
+                          <img
+                          draggable={false} 
+                          src={user.avatar} />
+                      </div>
+                    </label>
+                  </td>
+                </Link>
                 <td>{user.email}</td>
                 <td>{user.ranks.admin === 1 ? <span className="text-red-500">Yes</span> : "No"}</td>
+                <td>{user.ranks.helper === 1 ? <span className="text-blue-600">Yes</span> : "No"}</td>
                 <td>{user.ranks.vip === 1 ?   <span className="text-green-500">Yes</span> : "No"}</td>
                 <td>{user.ranks.demo === 1 ?  <span className="text-yellow-500">Yes</span> : "No"}</td>
                 <td>{user.datecreate}</td>
