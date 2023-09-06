@@ -11,12 +11,14 @@ import axios from "axios";
 import FilterIDanime from "./FilterIDanime";
 import Mainfooter from "../../../components/MainFooter";
 import { Link } from "react-router-dom";
+
 // Define the interface for the decoded object
 interface DecodedObject {
    id : String,
    avatar: String,
    ranks: {
      admin: number;
+     helper: number;
      demo: number;
      vip: number;
    };
@@ -162,7 +164,7 @@ export default function AddEpes() {
             const decodedToken = jwtDecode(token);
             setDecoded(decodedToken as DecodedObject);
             
-               if (Number(decoded?.ranks.admin) == 0) {
+               if (Number(decoded?.ranks.admin) == 0 && Number(decoded?.ranks.helper) == 0) {
                   window.location.href = "/"; 
                   
                   
@@ -259,7 +261,7 @@ export default function AddEpes() {
                            type="text" 
                            onChange={(e) => {setAnimeurl(e.target.value)}}/>
 
-                        <div className="pb-5">
+                           <div className="pb-5">
                               <Link to="/learn_discord" target="_blank" className="text-blue-500 underline uppercase" >
                               How can I get the URL?
                                  </Link>
