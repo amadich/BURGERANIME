@@ -20,12 +20,14 @@ import Rankedusers from "./pages/dashboard/components/Rankedusers";
 
 import jwtDecode from "jwt-decode";
 import Learn_discord from "./pages/dashboard/components/Learn_discord";
+import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 // Define the interface for the decoded object
 interface DecodedObject {
   id : String,
   avatar: String,
   ranks: {
     admin: number;
+    helper:number;
     demo: number;
     vip: number;
   };
@@ -111,11 +113,30 @@ function App() {
 
               
             }
+
+
+            {
+              decoded?.ranks.helper == 1 &&
+              
+                  (
+                    <>
+                      <Route path="/dashboard_helper" element={<Dashboard_helper />} />
+                     
+                      <Route path="/dashboard_helper/uploadanime" element={<Uploadanime />} />
+                      <Route path="/dashboard_helper/AddEpes" element={<AddEpes />} />
+                      
+                      
+                    </>
+                  )
+
+              
+            }
             
             <Route path="/learn_discord" element={<Learn_discord />} />
             <Route path="/series/:id" element={<Series />} />
             <Route path="/series/:id/:epsid" element={<Watch />} />
             <Route path="/search" element={<Search />} />
+            
 
       </Routes>
 
