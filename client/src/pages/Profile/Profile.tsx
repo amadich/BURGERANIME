@@ -52,6 +52,7 @@ export default function Profile() {
          {/* Ranks Other users */}
          response.data.ranks.demo === 1 ? setOtherRanks("Demo") : null;
          response.data.ranks.vip === 1 ? setOtherRanks("VIP") : null;
+         response.data.ranks.helper === 1 ? setOtherRanks("Helper") : null;
          response.data.ranks.admin === 1 ? setOtherRanks("Admin") : null;
 
          
@@ -138,7 +139,7 @@ export default function Profile() {
               className="text-5xl font-bold text-white">
               {user.toUpperCase()}
               <span 
-                style={otherRanks === "Demo" ? { color : "gold"} : otherRanks === "VIP" ? {color:  "limegreen"} : otherRanks === "Admin" ? {color: "orangered"} : {}  }
+                style={otherRanks === "Demo" ? { color : "gold"} : otherRanks === "VIP" ? {color:  "limegreen"} : otherRanks === "Admin" ? {color: "orangered"} : otherRanks === "Helper" ? { color: "deepskyblue" } :  {}  }
                 
                 className="pl-5  text-sm select-none">
                 {otherRanks}
