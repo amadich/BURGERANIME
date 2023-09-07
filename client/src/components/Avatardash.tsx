@@ -85,11 +85,13 @@ export default function Avatardash() {
                         }
                       >
                         {decoded.ranks.vip === 1 ? "VIP " : null}
-                        {decoded.ranks.admin === 1 && decoded.ranks.demo === 0
+                        {decoded.ranks.admin === 1 && decoded.ranks.helper === 1
                           ? "Admin"
-                          : null}
+                          : 
+                          decoded.ranks.helper === 1 && decoded.ranks.admin === 0 ? "Helper " : null
+                          }
                         
-                        {decoded.ranks.helper === 1 ? "Helper " : null}
+                        
 
                       </span>
                     </span>
