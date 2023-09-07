@@ -87,7 +87,7 @@ export default function AddEpes() {
           axios.post(`${SERVER}/api/dashboard/addEps`, formData)
          .then((response) => {
             console.log(response.data);
-            window.location.href = "/dashboard";
+            window.location.href = "/dashboard_helper";
             
          })
          
