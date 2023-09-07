@@ -21,7 +21,7 @@ function Mainnav() {
                   <br />
                   {/* <button onClick={moveDown} id="btn_showme">Show me</button> */}
                   <figure onClick={moveDown} className=" duration-500 hover:mt-[-70%] cursor-pointer ">
-                     <img src={Burgeranime_sh_0} alt="Burgeranime" />
+                     <img src={Burgeranime_sh_0} alt="Burgeranime_sh0" draggable={false} />
                   </figure>
                   </p>
                   <img src={SupraMain} alt="Supra Anime" draggable={false} className="select-none hidden md:block"  />
