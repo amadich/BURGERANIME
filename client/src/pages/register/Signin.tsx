@@ -104,7 +104,7 @@ export default function Signin() {
                       
                       <form action="" id='signupform' onSubmit={handsubmit}>
 
-                        <h1 className='text-blue-800 font-bold text-3xl pl-16 pt-10'>♦ Se connecter </h1>
+                        <h1 className='text-blue-800 font-bold text-3xl pl-16 pt-10 uppercase '>♦ Se connecter </h1>
                         {
                               !checker ? <span className='text-center text-red-500 block w-[80%] m-auto mt-10 font-mono font-bold'>You have entered an invalid email address or the password you have entered is too short and must contain at least 8 characters</span> : null
                         }
