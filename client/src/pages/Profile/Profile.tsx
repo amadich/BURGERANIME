@@ -29,6 +29,8 @@ export default function Profile() {
   const [isclickupdate , setIsclickupdate] = useState<boolean>(false);
   const [aboutme,setAboutme] = useState<String>("");
 
+  const [disableChangeAvatar , setDisableChangeAvatar] = useState<boolean>(true);
+
   // information
   const [user,setUser] = useState<String>("");
   const [me,setMe] = useState<boolean>(false);
@@ -120,6 +122,26 @@ export default function Profile() {
 
 }
 
+useEffect(() => {
+
+  if (avatar == null) {setDisableChangeAvatar(true)}
+  if (avatar) {
+      
+      
+      
+        if ((avatar.type !== "image/png") && (avatar.type !== "image/jpeg")) 
+        {
+          setDisableChangeAvatar(true);
+        }
+        else {
+          setDisableChangeAvatar(false)
+        }
+   }
+
+   
+  
+} , [avatar]);
+
   return (
     <>
       {/* Header */}
@@ -154,6 +176,7 @@ export default function Profile() {
                      cols={100}
                      readOnly={!me}
                      style={!me ? { resize: "none" } : {}}
+                     placeholder="..."
                      className="bg-transparent outline-none w-96 md:w-full text-white font-bold "
                      defaultValue={decoded && me ? `${decoded.aboutme}` : `${otheraboutme}`}
                      />
@@ -172,8 +195,9 @@ export default function Profile() {
             <form onSubmit={handupload}>
                   <div style={me ? {display:"block"} : {display: "none"}} className="space-y-5">
                   <button
-                  disabled={isSubmitting}
-                   className="btn btn-primary">Change Avatar</button>
+                   className="btn btn-primary"
+                    disabled={disableChangeAvatar || isSubmitting} >
+                    Change Avatar</button>
                   <input 
                   accept=".png, .jpg, .jpeg"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAvatar(e.target.files && e.target.files[0])}}
