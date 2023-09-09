@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/getlistanime", async (req, res) => {
   try {
-    const listAnime = await Anime.find();
+    const listAnime = await Anime.find().select("-eps.epsurl"); // Exclude epsurl field
     return res.status(200).json({ success: true, data: listAnime });
   } catch (error) {
     console.error("Error fetching anime list:", error);
@@ -14,7 +14,7 @@ router.get("/getlistanime", async (req, res) => {
 
 router.get("/getlistanime/reversed", async (req, res) => {
   try {
-    const listAnime = await Anime.find();
+    const listAnime = await Anime.find().select("-eps.epsurl"); // Exclude epsurl field
     const reversedListAnime = listAnime.reverse(); // Reverse the list
     return res.status(200).json({ success: true, data: reversedListAnime });
   } catch (error) {
@@ -24,20 +24,32 @@ router.get("/getlistanime/reversed", async (req, res) => {
 });
 
 router.get("/getlistanime/:id", async (req, res) => {
-    const { id } = req.params;
-    try {
-
-      const anime = await Anime.findById(id);
-      if (!anime) {
-        return res.json({message: "Cant Find This Anime in Burgeranime !" , success: false });
-      }
-
-      return res.status(200).json({success: true, anime});
-      
-    } catch (error) {
-      console.error("Error fetching anime list:", error);
-      return res.status(500).json({ success: false, error: "An error occurred while fetching the anime list." });
+  const { id } = req.params;
+  try {
+    const anime = await Anime.findById(id).select("-eps.epsurl"); // Exclude epsurl field
+    if (!anime) {
+      return res.json({ message: "Can't Find This Anime in Burgeranime!", success: false });
     }
-} )
+    return res.status(200).json({ success: true, anime });
+  } catch (error) {
+    console.error("Error fetching anime list:", error);
+    return res.status(500).json({ success: false, error: "An error occurred while fetching the anime list." });
+  }
+});
+
+
+router.get("/getlistanime_watch/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const anime = await Anime.findById(id)
+    if (!anime) {
+      return res.json({ message: "Can't Find This Anime in Burgeranime!", success: false });
+    }
+    return res.status(200).json({ success: true, anime });
+  } catch (error) {
+    console.error("Error fetching anime list:", error);
+    return res.status(500).json({ success: false, error: "An error occurred while fetching the anime list." });
+  }
+});
 
 module.exports = router;
