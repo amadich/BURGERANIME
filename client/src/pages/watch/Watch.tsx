@@ -52,6 +52,8 @@ export default function Watch() {
   const [animeEpsURL, setAnimeEpsURL] = useState<Episode[]>([]);
   const [nexteps, setNextEps] = useState<string | undefined>("");
 
+ 
+
   useEffect(() => {
     try {
       // Decode the token and store the decoded object in state
@@ -87,8 +89,16 @@ export default function Watch() {
     });
   }, [id, epsid]);
 
+
   useEffect(() => {
-    if (anime && anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1) {
+      if (!token && anime && (anime.premium === 1)  ) {
+        //window.location.replace("/");
+        
+      }
+  },[anime])
+
+  useEffect(() => {
+    if (   anime && (anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1)  ) {
       // Redirect if the anime is premium and the user is not a VIP
       setTimeout(() => {
         window.location.replace("/");
@@ -96,6 +106,22 @@ export default function Watch() {
     }
   }, [anime, decodeduser]);
 
+  if (!token && anime && (anime.premium === 1)  ) {
+    return (
+      <>
+        <div className="select-none mt-[5%]">
+          <figure className="m-auto relative">
+            <img draggable={false} src={KonataErrorVIP} alt="Error 404" width={250} className="m-auto" />
+            <p className="mt-[-4.3em] text-[#222] w-48 m-auto font-bold relative z-10 text-center ">
+              <span className="text-blue-600" >Only Premuim</span>  <span className="text-green-600  ">VIP</span>
+              <br /> <Link to="/main" ><button className=" p-1 w-16 rounded-full bg-green-500 text-white duration-300 hover:bg-green-900 " >Back</button></Link>
+            </p>
+          </figure>
+        </div>
+        <MainFooter />
+      </>
+    );
+  }
 
   if (anime && anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1) {
     return (
