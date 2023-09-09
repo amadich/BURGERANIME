@@ -3,6 +3,7 @@ import { MdChevronLeft , MdChevronRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CrownPremium from "../../../../public/assets/icons/crown.png";
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -22,6 +23,7 @@ interface Anime {
    imageUrl2: string;
    rating?: number;
    seasonal?: number;
+   premium: number;
    eps: Episode[];
    // Add other fields specific to anime data as needed
  }
@@ -138,7 +140,15 @@ function Mainarticle() {
                {seasonalAnimeList.map((anime, index) => (
                   <Link to={`/series/${anime._id}`} key={index}>
                      <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
-                        <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
+                        <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}>
+                           {/* Premium Show */}
+                           <div style={anime.premium == 1 ? {display: "flex"} : {display : "none"}} className="text-yellow-500 rounded-lg p-2 flex space-x-2 m-2 float-right text-sm bg-[#00000083] font-bold " >
+                                             <figure> 
+                                                <img src={CrownPremium} alt="VIP" width={16} />  
+                                             </figure>
+                                             <p className=" text-xs ">Premium</p>
+                                          </div>
+                        </div>
                         
                         <p className="text-white text-center">
                            <span className="block overflow-hidden overflow-ellipsis p-2 ">
@@ -197,7 +207,15 @@ function Mainarticle() {
                {ListanimeRev.map((anime, index) => (
                    <Link to={`/series/${anime._id}`} key={index}>
                      <div  title={anime.title} className="w-40 h-76 group cursor-pointer duration-300 bg-[#0000004a] rounded-lg">
-                        <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}></div>
+                        <div className="bg-cover bg-center border-b w-40 h-64 transition-opacity duration-300 ease-in-out group-hover:opacity-40" style={{ backgroundImage: `url(${anime.imageUrl1})` }}>
+                           {/* Premium Show */}
+                           <div style={anime.premium == 1 ? {display: "flex"} : {display : "none"}} className="text-yellow-500 rounded-lg p-2 flex space-x-2 m-2 float-right text-sm bg-[#00000083] font-bold " >
+                                             <figure> 
+                                                <img src={CrownPremium} alt="VIP" width={16} />  
+                                             </figure>
+                                             <p className=" text-xs ">Premium</p>
+                           </div>
+                        </div>
                         
                         <p className="text-white text-center p-2">
                            <span className="block overflow-hidden overflow-ellipsis">
