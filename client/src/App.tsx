@@ -126,6 +126,7 @@ function App() {
                      
                       <Route path="/dashboard_helper/uploadanime" element={<Uploadanime />} />
                       <Route path="/dashboard_helper/AddEpes" element={<AddEpes />} />
+                      <Route path="/dashboard_helper/Premiumanime" element={<Premiumanime />} />
                       
                       
                     </>
