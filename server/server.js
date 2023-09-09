@@ -33,6 +33,7 @@ app.use("/api/dashboard", require("./routes/dashboard/Uploadanime"));
 app.use("/api/dashboard", require("./routes/dashboard/GetListAnime"));
 app.use("/api/dashboard", require("./routes/dashboard/Banusers"));
 app.use("/api/dashboard", require("./routes/dashboard/Rankedusers"));
+app.use("/api/dashboard", require("./routes/dashboard/Premium"));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
