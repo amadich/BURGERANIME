@@ -3,10 +3,19 @@ import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-interface UserData {
+
+interface By_Anime {
+  adminID : string;
+  Name : string ;
+}
+
+interface AnimeData {
   _id: string;
   title: string;
+  by_admin?: By_Anime;
 }
+
+
 
 interface DecodedObject {
    id: string;
@@ -21,7 +30,7 @@ interface DecodedObject {
 
 export default function FilterIDanime() {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
-  const [animeList, setAnimeList] = useState<UserData[]>([]);
+  const [animeList, setAnimeList] = useState<AnimeData[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [showsearchterm , setShowsearchterm] = useState<boolean>(false);
   
@@ -87,15 +96,17 @@ export default function FilterIDanime() {
               <th></th>
               <th>ID</th>
               <th>Title</th>
+              <th>Uploded By</th>
               
             </tr>
           </thead>
           <tbody>
-            {filteredanime.map((user: UserData, index) => (
+            {filteredanime.map((user: AnimeData, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <th>{user._id}</th>
                 <td>{user.title}</td>
+                <td> <span>{user.by_admin?.Name || ""}</span> |  <span className="text-green-500" >{ user.by_admin?.adminID || "" }</span> </td> {/* Use optional chaining */}
                 
               </tr>
             ))}
