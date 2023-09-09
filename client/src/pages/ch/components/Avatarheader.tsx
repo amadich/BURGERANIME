@@ -14,7 +14,7 @@ function AvatarHeader() {
                         <li className=" cursor-not-allowed ">Movies</li>
                         <li 
                               className="inline-flex items-center space-x-3 cursor-not-allowed duration-300 hover:text-black" >
-                              <span>Premier</span>
+                              <span>Premium</span>
                               <img src={Crown} alt="Crown Logo" width={16} draggable={false} /> 
                         </li>
                      </ul>
