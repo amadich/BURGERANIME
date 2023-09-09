@@ -201,7 +201,7 @@ export default function Series() {
                                 className="w-full h-32 bg-cover bg-center bg-no-repeat duration-300 hover:transition-opacity  hover:opacity-30 rounded-lg ">
                                 
                                 {/* Premium Show */}
-                                <div className="text-yellow-500 rounded-lg p-2 flex space-x-2 m-2 float-right text-sm bg-[#00000083] font-bold " >
+                                <div style={anime.premium == 1 ? {display: "flex"} : {display : "none"}} className="text-yellow-500 rounded-lg p-2 flex space-x-2 m-2 float-right text-sm bg-[#00000083] font-bold " >
                                   <figure> 
                                     <img src={CrownPremium} alt="VIP" width={16} />  
                                    </figure>
