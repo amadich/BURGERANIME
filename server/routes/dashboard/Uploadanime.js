@@ -13,6 +13,7 @@ router.post("/uploadanime", async (req, res) => {
       rating,
       format,
       animeSes,
+      by_admin
     } = req.body;
 
     const fullurl1 = `https://firebasestorage.googleapis.com/v0/b/burgeranime-4a245.appspot.com/o/animes%2F${animeimgOr}?alt=media`;
@@ -34,6 +35,7 @@ router.post("/uploadanime", async (req, res) => {
       rating: rating,
       format,
       seasonal: animeSes,
+      by_admin,
       eps: [newEpisode],
     };
 
