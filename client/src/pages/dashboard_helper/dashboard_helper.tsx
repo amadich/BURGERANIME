@@ -78,7 +78,7 @@ Remember that the specific features and components of the admin dashboard will d
                   {/* TAP2 */}
                   
                   <div className="mt-5">
-                     <Link to="/dashboard/Premiumanime"><button className="btn btn-success text-black  " >
+                     <Link to="/dashboard_helper/Premiumanime"><button className="btn btn-success text-black  " >
                         Make Anime Premium <span className="text-green-900" >♣</span> </button> 
                      </Link>
                   </div>
