@@ -72,6 +72,15 @@ Remember that the specific features and components of the admin dashboard will d
                      <Link to="/dashboard/Rankedusers"><button className="btn bg-blue-500 text-white" >Ranked Users</button></Link>
                      <Link to="/dashboard/Banusers"><button className="btn btn-error  " >Banned Users</button> </Link>
                   </div>
+
+                   {/* TAP2 */}
+                  
+                  <div className="mt-5">
+                     <Link to="/dashboard/Premiumanime"><button className="btn btn-success text-black  " >
+                        Make Anime Premium <span className="text-green-900" >♣</span> </button> 
+                     </Link>
+                  </div>
+                  
                </div>
             </div>
          </div>
