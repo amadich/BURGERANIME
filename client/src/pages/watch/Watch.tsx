@@ -92,7 +92,9 @@ export default function Watch() {
 
   useEffect(() => {
       if (!token && anime && (anime.premium === 1)  ) {
-        //window.location.replace("/");
+         setTimeout(() => {
+            window.location.replace("/");
+          },1000)
         
       }
   },[anime])
