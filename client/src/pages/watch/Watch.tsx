@@ -39,7 +39,7 @@ export default function Watch() {
       return;
     }
 
-    axios.get(`${SERVER}/api/dashboard/getlistanime/${id}`).then((response) => {
+    axios.get(`${SERVER}/api/dashboard/getlistanime_watch/${id}`).then((response) => {
       if (response.data.success) {
         const fetchedAnime = response.data.anime;
         setAnime(fetchedAnime);
