@@ -21,6 +21,7 @@ import Rankedusers from "./pages/dashboard/components/Rankedusers";
 import jwtDecode from "jwt-decode";
 import Learn_discord from "./pages/dashboard/components/Learn_discord";
 import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
+import Premiumanime from "./pages/dashboard/components/Premiumanime";
 // Define the interface for the decoded object
 interface DecodedObject {
   id : String,
@@ -108,6 +109,7 @@ function App() {
                       <Route path="/dashboard/AddEpes" element={<AddEpes />} />
                       <Route path="/dashboard/Banusers" element={<Banusers />} />
                       <Route path="/dashboard/Rankedusers" element={<Rankedusers />} />
+                      <Route path="/dashboard/Premiumanime" element={<Premiumanime />} />
                     </>
                   )
 
