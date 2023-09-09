@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AvatarHeader from "../ch/components/Avatarheader";
 import Star from "./assets/images/star.png";
 import Konata_error_404_ from "../../../public/assets/images/konata_error_404_.png";
+import CrownPremium from "../../../public/assets/icons/crown.png";
 import { Link, useParams } from "react-router-dom";
 import { MdChevronLeft , MdChevronRight } from "react-icons/md";
 import axios from "axios";
@@ -31,6 +32,7 @@ interface Anime {
   rating?: number;
   format?: Format;
   seasonal?: number;
+  premium?:  number;
   eps: Episode[];
   // Add other fields specific to anime data as needed
 }
@@ -131,9 +133,10 @@ export default function Series() {
           <div className="md:w-[70%]  space-y-4 md:border md:border-[#222] md:bg-[#222] md:p-5 rounded-lg">
             <h1 className="text-white font-bold text-3xl">
               {anime.title}
-              <span className="text-black rounded-lg p-2 float-right text-sm bg-orange-500 m-5 ">
+              <span className="text-black rounded-lg p-2 float-right text-sm bg-orange-500">
                 { anime?.format ?  anime?.format?.seriesChecked == 1 ? <span>Serie</span> : <span>Film</span> : null  }
               </span>
+              
             </h1>
             <p className="font-bold text-slate-200">
               {anime.genres.join(", ")}
@@ -184,7 +187,7 @@ export default function Series() {
       <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
        
       {animeEps.length == 1 ? (
-                  <p className="font-bold text-white" >No Episodes Available</p>
+                  <p className="font-bold text-white">No Episodes Available</p>
                 ) : (
                   animeEps
                   .slice(1)
@@ -196,6 +199,15 @@ export default function Series() {
                               <div
                                 style={{backgroundImage: `url(${val.epsimage})`}}
                                 className="w-full h-32 bg-cover bg-center bg-no-repeat duration-300 hover:transition-opacity  hover:opacity-30 rounded-lg ">
+                                
+                                {/* Premium Show */}
+                                <div className="text-yellow-500 rounded-lg p-2 flex space-x-2 m-2 float-right text-sm bg-[#00000083] font-bold " >
+                                  <figure> 
+                                    <img src={CrownPremium} alt="VIP" width={16} />  
+                                   </figure>
+                                  <p className=" text-xs ">Premium</p>
+                                </div>
+
                             </div>
 
                               <div className="text-center">
