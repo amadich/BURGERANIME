@@ -26,7 +26,7 @@ export default function Rankedusers() {
       const newRanks = {
          admin: 1, // Update to 0 to remove admin rank
          helper : 1, // Update to 1 to make user Helper
-         vip: 0,   // Update to 1 to make user VIP
+         vip: 1,   // Update to 1 to make user VIP
          demo: 0   // Update to 0 to remove demo rank
        };
 
@@ -41,7 +41,7 @@ export default function Rankedusers() {
       const newRanks = {
          admin: 0, // Update to 0 to remove admin rank
          helper : 1, // Update to 1 to make user Helper
-         vip: 0,   // Update to 1 to make user VIP
+         vip: 1,   // Update to 1 to make user VIP
          demo: 0   // Update to 0 to remove demo rank
        };
 
