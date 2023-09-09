@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import MainHeader from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
 import KonataError404 from "../../../public/assets/images/konata_error_404_.png";
+import KonataErrorVIP from "../../../public/assets/images/konata_error_vip_.png";
 import axios from "axios";
 import Mainfooter from "../../components/MainFooter";
-
 import jwtDecode from "jwt-decode";
 
 interface Episode {
@@ -25,17 +25,17 @@ interface Anime {
   imageUrl2: string;
   rating?: number;
   seasonal?: number;
-  premium :  number;
+  premium: number;
   eps: (Episode | null)[];
 }
 
 // Define the interface for the decoded object
 interface DecodedObject {
-  id : String,
-  avatar: String,
+  id: string;
+  avatar: string;
   ranks: {
     admin: number;
-    helper:number;
+    helper: number;
     demo: number;
     vip: number;
   };
@@ -46,43 +46,28 @@ export default function Watch() {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
   const token = window.localStorage.getItem("token");
-  const [decodeduser , setDecodedUser] = useState<DecodedObject |  null>(null);
+  const [decodeduser, setDecodedUser] = useState<DecodedObject | null>(null);
 
   const [anime, setAnime] = useState<Anime | null>(null);
   const [animeEpsURL, setAnimeEpsURL] = useState<Episode[]>([]);
   const [nexteps, setNextEps] = useState<string | undefined>("");
 
-  useEffect(  () => 
-  {
+  useEffect(() => {
     try {
-
       // Decode the token and store the decoded object in state
       if (token) {
         const decodedToken = jwtDecode(token);
         setDecodedUser(decodedToken as DecodedObject);
       }
-
-      
-      
-      
     } catch (error) {
       console.log(error);
-      
     }
-  }
-  ,[token])
-
-  useEffect(() => {
-    if ( ((anime?.premium == 1) &&  (decodeduser?.ranks.vip !== 1))          ) {
-      window.location.replace("/");
-  }
-  },[token , anime])
+  }, [token]);
 
   useEffect(() => {
     if (!id || !epsid) {
       return;
     }
-
     axios.get(`${SERVER}/api/dashboard/getlistanime_watch/${id}`).then((response) => {
       if (response.data.success) {
         const fetchedAnime = response.data.anime;
@@ -102,18 +87,39 @@ export default function Watch() {
     });
   }, [id, epsid]);
 
-  if (!anime || !id || !epsid) {
+  useEffect(() => {
+    if (anime && anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1) {
+      // Redirect if the anime is premium and the user is not a VIP
+      setTimeout(() => {
+        window.location.replace("/");
+      },1000)
+    }
+  }, [anime, decodeduser]);
+
+
+  if (anime && anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1) {
     return (
       <>
         <div className="select-none mt-[5%]">
           <figure className="m-auto relative">
-            <img
-              draggable={false}
-              src={KonataError404}
-              alt="Error 404"
-              width={250}
-              className="m-auto"
-            />
+            <img draggable={false} src={KonataErrorVIP} alt="Error 404" width={250} className="m-auto" />
+            <p className="mt-[-4.3em] text-[#222] w-48 m-auto font-bold relative z-10 text-center ">
+              <span className="text-blue-600" >Only Premuim</span>  <span className="text-green-600  ">VIP</span>
+              <br /> <Link to="/main" ><button className=" p-1 w-16 rounded-full bg-green-500 text-white duration-300 hover:bg-green-900 " >Back</button></Link>
+            </p>
+          </figure>
+        </div>
+        <MainFooter />
+      </>
+    );
+  }
+
+  else if (!anime || !id || !epsid) {
+    return (
+      <>
+        <div className="select-none mt-[5%]">
+          <figure className="m-auto relative">
+            <img draggable={false} src={KonataError404} alt="Error 404" width={250} className="m-auto" />
             <p className="mt-[-4.3em] text-[#222] w-48 m-auto font-bold relative z-10">
               Loading ... <span className="text-blue-500">Anime ID</span>
             </p>
@@ -157,10 +163,10 @@ export default function Watch() {
         {animeEpsURL.length > 0 && (
           <p className="text-2xl text-slate-200">Episode - {animeEpsURL[0].nbrps}</p>
         )}
-        <p>VOST | <span className="text-blue-500 font-bold">Dub</span></p>
-        <p className="text-gray-400">
-          {anime.description}
+        <p>
+          VOST | <span className="text-blue-500 font-bold">Dub</span>
         </p>
+        <p className="text-gray-400">{anime.description}</p>
 
         <Link to="/contactus">
           <span className="text-red-500 block float-right font-mono">
@@ -170,7 +176,6 @@ export default function Watch() {
 
         <Mainfooter />
       </div>
-      
     </>
   );
 }
