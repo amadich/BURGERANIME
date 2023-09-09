@@ -6,6 +6,8 @@ import KonataError404 from "../../../public/assets/images/konata_error_404_.png"
 import axios from "axios";
 import Mainfooter from "../../components/MainFooter";
 
+import jwtDecode from "jwt-decode";
+
 interface Episode {
   _id: string;
   title: string;
@@ -23,16 +25,58 @@ interface Anime {
   imageUrl2: string;
   rating?: number;
   seasonal?: number;
+  premium :  number;
   eps: (Episode | null)[];
+}
+
+// Define the interface for the decoded object
+interface DecodedObject {
+  id : String,
+  avatar: String,
+  ranks: {
+    admin: number;
+    helper:number;
+    demo: number;
+    vip: number;
+  };
 }
 
 export default function Watch() {
   const { id, epsid } = useParams();
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
+  const token = window.localStorage.getItem("token");
+  const [decodeduser , setDecodedUser] = useState<DecodedObject |  null>(null);
+
   const [anime, setAnime] = useState<Anime | null>(null);
   const [animeEpsURL, setAnimeEpsURL] = useState<Episode[]>([]);
   const [nexteps, setNextEps] = useState<string | undefined>("");
+
+  useEffect(  () => 
+  {
+    try {
+
+      // Decode the token and store the decoded object in state
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        setDecodedUser(decodedToken as DecodedObject);
+      }
+
+      
+      
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+  ,[token])
+
+  useEffect(() => {
+    if ( ((anime?.premium == 1) &&  (decodeduser?.ranks.vip !== 1))          ) {
+      window.location.replace("/");
+  }
+  },[token , anime])
 
   useEffect(() => {
     if (!id || !epsid) {
@@ -94,7 +138,7 @@ export default function Watch() {
         <h1 className="text-orange-500 text-3xl font-bold">
           <span>{anime.title} | </span>
 
-          <div className=" mt-5 space-x-3">
+          <div className="inline-flex space-x-3">
             {nexteps && (
               <Link to={`/series/${anime._id}/${nexteps}`}>
                 <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
@@ -118,8 +162,13 @@ export default function Watch() {
           {anime.description}
         </p>
 
+        <Link to="/contactus">
+          <span className="text-red-500 block float-right font-mono">
+            Report an anime episode that does not work?
+          </span>
+        </Link>
+
         <Mainfooter />
-        
       </div>
       
     </>
