@@ -18,6 +18,7 @@ const AnimeSchema = Schema({
   format: { type: Object  , required: true },
   seasonal: { type: Number },
   premium: {type : Number} , 
+  by_admin: { type : Object },
   
   
   eps: [EpisodeSchema]
