@@ -13,6 +13,7 @@ import Mainfooter from "../../../components/MainFooter";
 // Define the interface for the decoded object
 interface DecodedObject {
    id : String,
+   username : string ,
    avatar: String,
    ranks: {
      admin: number;
@@ -114,6 +115,11 @@ export default function Uploadanime() {
                   seriesChecked,
                   filmChecked
                }
+               const formBy_Admin = {
+                  adminID : decoded?.id,
+                  Name : decoded?.username
+               }
+
                const formData = {
                   animeTitle,
                   selectedGenres,
@@ -122,7 +128,8 @@ export default function Uploadanime() {
                   animeimgBack : myUUID_2,
                   rating,
                   format,
-                  animeSes
+                  animeSes,
+                  by_admin: formBy_Admin
                }
 
                axios.post(`${SERVER}/api/dashboard/uploadanime`, formData)
