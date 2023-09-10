@@ -219,7 +219,7 @@ export default function Series() {
                               </div>
 
                                   <p>
-                                    VOST | <span className="text-orange-500 font-bold" >Dub</span>
+                                    VOST | <span className="text-orange-500 font-bold" >Sub</span>
                                   </p>
                               </div>
 
