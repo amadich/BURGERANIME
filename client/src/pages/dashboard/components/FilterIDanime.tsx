@@ -84,7 +84,7 @@ export default function FilterIDanime() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-         <Link to="/dashboard" >
+         <Link to="/dashboard_helper" >
          <button className="btn btn-warning duration-500 hover:btn-primary">Dashboard</button>
          </Link>
 
