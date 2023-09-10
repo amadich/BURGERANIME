@@ -107,8 +107,8 @@ export default function Profile() {
 
    uploadBytes(photoRef,avatar)
    .then(() => {
-      if (decoded) {
-         axios.post(`${SERVER}/api/profile/changeavatar`,{id : decoded.id , avatarID : myUUID})
+      if ( token && decoded) {
+         axios.post(`${SERVER}/api/profile/changeavatar`,{id : decoded.id , avatarID : myUUID , token})
          .then(() => {
             setIsSubmitting(false)
             
