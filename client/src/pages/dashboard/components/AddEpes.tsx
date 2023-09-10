@@ -219,7 +219,7 @@ export default function AddEpes() {
 
             {/* */}
 
-            <nav className="  carousel w-full hidden md:flex select-none ">
+            <nav className="  carousel w-full hidden md:flex select-none text-white ">
             
            
 
@@ -335,7 +335,7 @@ export default function AddEpes() {
                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAnimeImg1(e.target.files && e.target.files[0])}}
                            type="file" 
                            accept=".png, .jpg, .jpeg"
-                           className="file-input file-input-bordered file-input-success  w-full max-w-xs m-5" />
+                           className="file-input file-input-bordered file-input-success  w-full max-w-xs m-5 bg-[#222] " />
                            </label>
                            
                            
