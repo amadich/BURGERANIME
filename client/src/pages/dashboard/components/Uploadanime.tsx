@@ -266,7 +266,7 @@ export default function Uploadanime() {
 
             {/* */}
 
-            <nav className="  carousel w-full hidden md:flex select-none ">
+            <nav className="  carousel w-full hidden md:flex select-none text-white ">
             
            
 
@@ -382,7 +382,7 @@ export default function Uploadanime() {
                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAnimeImg1(e.target.files && e.target.files[0])}}
                            type="file" 
                            accept=".png, .jpg, .jpeg"
-                           className="file-input file-input-bordered file-input-warning w-full max-w-xs m-5" />
+                           className="file-input file-input-bordered file-input-warning w-full max-w-xs m-5 bg-[#222] "  />
                            </label>
                            
                           <a href={!btndisable ? "#slide5" : ""}>
@@ -410,7 +410,7 @@ export default function Uploadanime() {
                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAnimeImg2(e.target.files && e.target.files[0])}}
                               type="file" 
                               accept=".png, .jpg, .jpeg"
-                              className="file-input file-input-bordered file-input-secondary w-full max-w-xs m-5" />
+                              className="file-input file-input-bordered file-input-secondary w-full max-w-xs m-5 bg-[#222] " />
                            </label>
                            
                           <a href={!btndisable ? "#slide6" : ""}>
