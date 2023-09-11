@@ -33,6 +33,7 @@ export default function Profile() {
   const [aboutme,setAboutme] = useState<String>("");
 
   const [disableChangeAvatar , setDisableChangeAvatar] = useState<boolean>(true);
+  const [disableChangeInfo , setDisableChangeInfo] = useState<boolean>(true);
 
   // information
   const [user,setUser] = useState<String>("");
@@ -156,6 +157,16 @@ useEffect(() => {
   
 } , [avatar]);
 
+  useEffect(() => {
+      if (aboutme) {
+        setDisableChangeInfo(false);
+      }
+      else {
+        setDisableChangeInfo(true);
+      }
+  },[aboutme])
+  
+
   return (
     <>
       {/* Header */}
@@ -198,7 +209,7 @@ useEffect(() => {
             </div>
 
             <button
-            disabled={isclickupdate}
+            disabled={isclickupdate || disableChangeInfo}
             onClick={handupdateabout}
             style={me ? {display:"block"} : {display: "none"}}
              type="button" 
