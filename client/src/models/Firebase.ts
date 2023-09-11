@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
-import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth"; // Import necessary functions
+import { getAuth, setPersistence, browserSessionPersistence } from "firebase/auth"; // Import necessary functions
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,7 +22,7 @@ setPersistence(auth, browserSessionPersistence)
   .then(() => {
     // This is an asynchronous operation, so you can proceed with authentication
     // after setting persistence.
-    signInWithEmailAndPassword(auth, import.meta.env.VITE_emailauthbase , import.meta.env.VITE_pwdauthbase);
+    
    
   })
   .catch((error) => {
