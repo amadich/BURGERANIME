@@ -31,7 +31,7 @@ export default function Profile() {
 
   const [disableChangeAvatar , setDisableChangeAvatar] = useState<boolean>(true);
 
-  // information
+  // informations
   const [user,setUser] = useState<String>("");
   const [me,setMe] = useState<boolean>(false);
   const [otheravatar,setOtheravatar] = useState<String>("");
