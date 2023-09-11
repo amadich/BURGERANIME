@@ -22,6 +22,13 @@ import jwtDecode from "jwt-decode";
 import Learn_discord from "./pages/dashboard/components/Learn_discord";
 import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 import Premiumanime from "./pages/dashboard/components/Premiumanime";
+import Search_Geners from "./pages/search_geners/Search_Geners";
+
+
+import { auth } from "./models/Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth"; // Import necessary functions
+
+
 // Define the interface for the decoded object
 interface DecodedObject {
   id : String,
@@ -37,12 +44,17 @@ interface DecodedObject {
 
 function App() {
 
+  
+  
+
   const [_,setCookies] = useCookies(["burgertoken"]);
   const location = useLocation();
   const token = window.localStorage.getItem("token");
   const [decoded, setDecoded] = useState<DecodedObject | null >(null); // Set initial decoded to null
   
   const SERVER = import.meta.env.VITE_HOSTSERVER;
+
+ 
 
   if (token) {
     useEffect(() => {
@@ -85,68 +97,93 @@ function App() {
     }, [location , token]);
   }
 
-  return ( 
-    <>
-      
-
-      
-
-      <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Main />} />
-            <Route path="/main" element={<Mainch />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/profile/:id" element={<Profile />} />
-            {
-              decoded?.ranks.admin == 1 &&
-              
-                  (
-                    <>
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route path="/dashboard/showallusers" element={<Showallusers />} />
-                      <Route path="/dashboard/uploadanime" element={<Uploadanime />} />
-                      <Route path="/dashboard/AddEpes" element={<AddEpes />} />
-                      <Route path="/dashboard/Banusers" element={<Banusers />} />
-                      <Route path="/dashboard/Rankedusers" element={<Rankedusers />} />
-                      <Route path="/dashboard/Premiumanime" element={<Premiumanime />} />
-                    </>
-                  )
-
-              
-            }
 
 
-            {
-              decoded?.ranks.helper == 1 &&
-              
-                  (
-                    <>
-                      <Route path="/dashboard_helper" element={<Dashboard_helper />} />
-                     
-                      <Route path="/dashboard_helper/uploadanime" element={<Uploadanime />} />
-                      <Route path="/dashboard_helper/AddEpes" element={<AddEpes />} />
-                      <Route path="/dashboard_helper/Premiumanime" element={<Premiumanime />} />
-                      
-                      
-                    </>
-                  )
 
-              
-            }
+
+
+
+  
+  
+      try {
+        signInWithEmailAndPassword(auth, import.meta.env.VITE_emailauthbase , import.meta.env.VITE_pwdauthbase);
+        
+
+        return ( 
+          <>
             
-            <Route path="/learn_discord" element={<Learn_discord />} />
-            <Route path="/series/:id" element={<Series />} />
-            <Route path="/series/:id/:epsid" element={<Watch />} />
-            <Route path="/search" element={<Search />} />
+      
             
-
-      </Routes>
-
+      
+            <Routes>
+                  <Route path="*" element={<NotFound />} />
+                  <Route path="/" element={<Main />} />
+                  <Route path="/main" element={<Mainch />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/signin" element={<Signin />} />
+                  <Route path="/profile/:id" element={<Profile />} />
+                  {
+                    decoded?.ranks.admin == 1 &&
+                    
+                        (
+                          <>
+                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/dashboard/showallusers" element={<Showallusers />} />
+                            <Route path="/dashboard/uploadanime" element={<Uploadanime />} />
+                            <Route path="/dashboard/AddEpes" element={<AddEpes />} />
+                            <Route path="/dashboard/Banusers" element={<Banusers />} />
+                            <Route path="/dashboard/Rankedusers" element={<Rankedusers />} />
+                            <Route path="/dashboard/Premiumanime" element={<Premiumanime />} />
+                          </>
+                        )
+      
+                    
+                  }
+      
+      
+                  {
+                    decoded?.ranks.helper == 1 &&
+                    
+                        (
+                          <>
+                            <Route path="/dashboard_helper" element={<Dashboard_helper />} />
+                           
+                            <Route path="/dashboard_helper/uploadanime" element={<Uploadanime />} />
+                            <Route path="/dashboard_helper/AddEpes" element={<AddEpes />} />
+                            <Route path="/dashboard_helper/Premiumanime" element={<Premiumanime />} />
+                            
+                            
+                          </>
+                        )
+      
+                    
+                  }
+                  
+                  <Route path="/learn_discord" element={<Learn_discord />} />
+                  <Route path="/series/:id" element={<Series />} />
+                  <Route path="/series/:id/:epsid" element={<Watch />} />
+                  <Route path="/search" element={<Search />} />
+                  <Route path="/search_geners" element={<Search_Geners />} />
+                  
+      
+            </Routes>
+      
+          
+      
+          </>
+         );
+        
+      } catch (error) {
+        // Handle authentication errors here
+        console.error("Error signing in:", error);
+      }
+    };
     
+ 
 
-    </>
-   );
-}
+
+
+  
+
 
 export default App;
