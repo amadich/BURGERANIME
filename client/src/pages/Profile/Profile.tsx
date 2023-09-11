@@ -35,6 +35,8 @@ export default function Profile() {
   const [disableChangeAvatar , setDisableChangeAvatar] = useState<boolean>(true);
   const [disableChangeInfo , setDisableChangeInfo] = useState<boolean>(true);
 
+  const [messageResavatar , setMessageResavatar] = useState<string>("");
+
   // information
   const [user,setUser] = useState<String>("");
   const [me,setMe] = useState<boolean>(false);
@@ -94,7 +96,7 @@ export default function Profile() {
   
   const handupload = async (e: FormEvent) => {
    e.preventDefault();
-   
+   setMessageResavatar("Loading ...")
    
    if (avatar == null || me == false) return;
    if ((avatar.type !== "image/png") && (avatar.type !== "image/jpeg")) 
@@ -224,10 +226,12 @@ useEffect(() => {
                     disabled={disableChangeAvatar || isSubmitting} >
                     Change Avatar</button>
                   <input 
-                  accept=".png, .jpg, .jpeg"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAvatar(e.target.files && e.target.files[0])}}
-                  type="file"
-                     className="file-input file-input-bordered file-input-primary w-full max-w-xs ml-1 md:ml-5" />
+                      accept=".png, .jpg, .jpeg"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAvatar(e.target.files && e.target.files[0])}}
+                      type="file"
+                      className="file-input file-input-bordered file-input-primary w-full max-w-xs ml-1 md:ml-5" />
+
+                    <span className="pl-5 text-green-500 font-mono " > {messageResavatar} </span>
 
 
                   </div>
