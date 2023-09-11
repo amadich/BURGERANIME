@@ -203,6 +203,7 @@ useEffect(() => {
                      cols={100}
                      readOnly={!me}
                      style={!me ? { resize: "none" } : {}}
+                     maxLength={250}
                      placeholder="..."
                      className="bg-transparent outline-none w-96 md:w-full text-white font-bold "
                      defaultValue={decoded && me ? `${decoded.aboutme}` : `${otheraboutme}`}
