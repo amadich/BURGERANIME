@@ -24,10 +24,6 @@ import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 import Premiumanime from "./pages/dashboard/components/Premiumanime";
 
 
-import { auth } from "./models/Firebase";
-import { signInWithEmailAndPassword } from "firebase/auth"; // Import necessary functions
-
-
 // Define the interface for the decoded object
 interface DecodedObject {
   id : String,
@@ -104,8 +100,8 @@ function App() {
 
   
   
-      try {
-        signInWithEmailAndPassword(auth, import.meta.env.VITE_emailauthbase , import.meta.env.VITE_pwdauthbase);
+     
+        
         
 
         return ( 
@@ -162,7 +158,7 @@ function App() {
                   <Route path="/series/:id" element={<Series />} />
                   <Route path="/series/:id/:epsid" element={<Watch />} />
                   <Route path="/search" element={<Search />} />
-                
+                  
                   
       
             </Routes>
@@ -172,11 +168,7 @@ function App() {
           </>
          );
         
-      } catch (error) {
-        // Handle authentication errors here
-        console.error("Error signing in:", error);
-      }
-    };
+      } 
     
  
 
