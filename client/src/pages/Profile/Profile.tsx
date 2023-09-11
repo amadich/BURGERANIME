@@ -8,6 +8,9 @@ import { storage } from "../../models/Firebase";
 import { v4 } from "uuid";
 import { ref , uploadBytes } from "firebase/storage";
 
+import { auth } from "../../models/Firebase";
+import { signInWithEmailAndPassword , signOut } from "firebase/auth";
+
 interface DecodedObject {
   id: string; // Change 'String' to 'string' to match TypeScript type conventions
   avatar: string
@@ -31,7 +34,7 @@ export default function Profile() {
 
   const [disableChangeAvatar , setDisableChangeAvatar] = useState<boolean>(true);
 
-  // informations
+  // information
   const [user,setUser] = useState<String>("");
   const [me,setMe] = useState<boolean>(false);
   const [otheravatar,setOtheravatar] = useState<String>("");
@@ -88,7 +91,7 @@ export default function Profile() {
   }
   // Submit Changz avatar
   
-  const handupload = (e: FormEvent) => {
+  const handupload = async (e: FormEvent) => {
    e.preventDefault();
    
    
@@ -102,11 +105,14 @@ export default function Profile() {
    setIsSubmitting(true);
    
 
+   await signInWithEmailAndPassword(auth,"upload@me.me","gitmegit");
+
    let myUUID = v4();
    const photoRef = ref(storage, `avatars/${myUUID}`);
 
    uploadBytes(photoRef,avatar)
-   .then(() => {
+   .then( async  () => {
+    await signOut(auth);
       if ( token && decoded) {
          axios.post(`${SERVER}/api/profile/changeavatar`,{id : decoded.id , avatarID : myUUID , token})
          .then(() => {
@@ -115,9 +121,17 @@ export default function Profile() {
             
             window.location.href = "";
             
-         }).catch((e) => {console.log(e);})
+         }).catch( async (e) => {
+          await signOut(auth);
+          console.log(e);
+          window.location.replace("/");
+        })
       }
-   }).catch((e) => {console.log(e);})
+   }).catch( async (e) => {
+          await signOut(auth);
+          console.log(e);
+          window.location.replace("/");
+  })
 
 
 }
