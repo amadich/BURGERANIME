@@ -4,6 +4,10 @@ import AvatarDemo from "../../public/assets/icons/avatar.png";
 import jwtDecode from "jwt-decode";
 import { useCookies } from "react-cookie";
 
+
+import { auth } from "../models/Firebase";
+import { signOut } from "firebase/auth";
+
 // Define the interface for the decoded object
 interface DecodedObject {
   id : String,
@@ -40,7 +44,8 @@ export default function Avatardash() {
 
 
   /* Logout system */
-  const Logoutuser = () => {
+  const Logoutuser = async () => {
+    await signOut(auth);
     window.localStorage.removeItem("token");
     setCookies("burgertoken","");
     window.location.href = "/signin";
