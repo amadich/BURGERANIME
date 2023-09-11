@@ -4,6 +4,9 @@ import jwtDecode from "jwt-decode";
 import D1 from "./assets/images/D1.jpg";
 import { Link } from "react-router-dom";
 
+import { auth } from "../../models/Firebase";
+import {signInWithEmailAndPassword} from "firebase/auth";
+
 // Define the interface for the decoded object
 interface DecodedObject {
    id : String,
@@ -18,6 +21,10 @@ interface DecodedObject {
  
 
 function Dashboard_helper() {
+
+      signInWithEmailAndPassword(auth, import.meta.env.VITE_emailauthbase , import.meta.env.VITE_pwdauthbase);
+
+   
    const token = window.localStorage.getItem("token");
    const [decoded, setDecoded] = useState<DecodedObject | null >(null); // Set initial decoded to null
 
