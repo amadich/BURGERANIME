@@ -22,7 +22,6 @@ import jwtDecode from "jwt-decode";
 import Learn_discord from "./pages/dashboard/components/Learn_discord";
 import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 import Premiumanime from "./pages/dashboard/components/Premiumanime";
-import Search_Geners from "./pages/search_geners/Search_Geners";
 
 
 import { auth } from "./models/Firebase";
@@ -163,7 +162,7 @@ function App() {
                   <Route path="/series/:id" element={<Series />} />
                   <Route path="/series/:id/:epsid" element={<Watch />} />
                   <Route path="/search" element={<Search />} />
-                  <Route path="/search_geners" element={<Search_Geners />} />
+                
                   
       
             </Routes>
