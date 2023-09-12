@@ -23,6 +23,8 @@ import Learn_discord from "./pages/dashboard/components/Learn_discord";
 import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 import Premiumanime from "./pages/dashboard/components/Premiumanime";
 import ProfileVip from "./pages/Profile/ProfileVip";
+import Myseries from "./pages/MySeries/Myseries";
+
 
 // Define the interface for the decoded object
 interface DecodedObject {
@@ -163,6 +165,7 @@ function App() {
                   }
                   
                   <Route path="/learn_discord" element={<Learn_discord />} />
+                  <Route path="/series" element={<Myseries />} />
                   <Route path="/series/:id" element={<Series />} />
                   <Route path="/series/:id/:epsid" element={<Watch />} />
                   <Route path="/search" element={<Search />} />
