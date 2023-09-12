@@ -43,7 +43,8 @@ export default function GetMySeries() {
         .get(`${SERVER}/api/dashboard/getlistanime/reversed`)
         .then((response) => {
           const listAnimeRev: Anime[] = response.data.data;
-          setListanimeRev(listAnimeRev);
+           const animenonfilm = listAnimeRev.filter(anime => anime?.format?.filmChecked === 0)
+             setListanimeRev(animenonfilm);
           setOpen(false);
      
            
