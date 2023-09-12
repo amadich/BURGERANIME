@@ -154,6 +154,7 @@ export default function Profile() {
             
                 <button 
                 disabled={ decoded?.ranks.vip == 1 ? false : true }
+                  style={ me ? {display: "block"} : {display:"none"} }
                 className="  btn btn-accent mt-5  ">
                   <Link 
                   className="flex justify-between items-center space-x-4"
