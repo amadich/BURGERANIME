@@ -22,7 +22,7 @@ import jwtDecode from "jwt-decode";
 import Learn_discord from "./pages/dashboard/components/Learn_discord";
 import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 import Premiumanime from "./pages/dashboard/components/Premiumanime";
-
+import ProfileVip from "./pages/Profile/ProfileVip";
 
 // Define the interface for the decoded object
 interface DecodedObject {
@@ -117,6 +117,14 @@ function App() {
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/signin" element={<Signin />} />
                   <Route path="/profile/:id" element={<Profile />} />
+                {
+                    decoded?.ranks.vip == 1 &&
+                    (
+                      <>
+                        <Route path="/profile/:id/changeavatar" element={<ProfileVip />} />
+                      </>
+                    )
+                  }
                   {
                     decoded?.ranks.admin == 1 &&
                     
