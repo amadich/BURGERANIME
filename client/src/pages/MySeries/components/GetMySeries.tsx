@@ -63,7 +63,7 @@ export default function GetMySeries() {
       <>
 
       
-      <article className=" w-full h-full container m-auto ">
+      <article className=" w-full h-full   ">
       <nav className="border border-blue-500  "></nav>
             <Backdrop
                      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -84,7 +84,7 @@ export default function GetMySeries() {
                         <div 
                            className=" w-full h-full bg-cover bg-center m-auto " 
                            style={{backgroundImage: `url(${anime.imageUrl1})`}}>
-                           <div className="w-full h-full m-auto border border-transparent bg-[#2222227e] duration-300 hover:bg-[#5560ff7c] " >
+                           <div className="w-full h-full m-auto border border-transparent bg-[#22222218] duration-300 hover:bg-[#14051262] " >
                               <div className="w-full h-full m-auto " >
 
                                  <div className="w-12  bg-[#222] rounded-lg mt-1 ">
