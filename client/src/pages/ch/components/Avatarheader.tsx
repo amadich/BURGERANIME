@@ -10,7 +10,7 @@ function AvatarHeader() {
                   <div className="flex-1">
                      <ul className="md:flex hidden space-x-10 text-white ml-16 ">
                         <Link to="/"><li>Home</li></Link>
-                        <li className=" cursor-not-allowed ">Series</li>
+                        <Link to="/series"><li>Series</li></Link>
                         <li className=" cursor-not-allowed ">Movies</li>
                         <li 
                               className="inline-flex items-center space-x-3 cursor-not-allowed duration-300 hover:text-black" >
