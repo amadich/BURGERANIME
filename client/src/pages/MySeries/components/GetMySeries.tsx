@@ -79,15 +79,16 @@ export default function GetMySeries() {
                      <Link 
                      to={`/series/${anime._id}`}
                      key={key} 
-                     className=" inline-flex  p-1  w-56 h-96 m-auto " >
+                     title={anime.title}
+                     className=" inline-flex  p-1  w-56 h-96 m-auto shadow-lg duration-300 hover:shadow-orange-500	  " >
                         
                         <div 
-                           className=" w-full h-full bg-cover bg-center m-auto " 
+                           className=" w-full h-full bg-cover bg-center m-auto rounded-xl " 
                            style={{backgroundImage: `url(${anime.imageUrl1})`}}>
                            <div className="w-full h-full m-auto border border-transparent bg-[#22222218] duration-300 hover:bg-[#14051262] " >
                               <div className="w-full h-full m-auto " >
 
-                                 <div className="w-12  bg-[#222] rounded-lg mt-1 ">
+                                 <div className="w-12 mt-2 ml-3  bg-[#222] rounded-lg  ">
                                        <p className="flex justify-center items-center text-white font-bold " >
                                           { 
                                              anime.format?.seriesChecked == 1 ? 
@@ -98,12 +99,10 @@ export default function GetMySeries() {
                                        </p>
                                  </div>
                                  
-                                 <div
-                                    className=" mt-[100%] bg-[#22222291] rounded-xl w-[90%] flex justify-center items-center m-auto   overflow-hidden   text-white font-bold text-center ">
-                                    <p className="p-1" >
-                                       {anime.title}
-                                    </p>
+                                 <div className="mt-64 bg-[#130505bd] rounded-xl w-[90%] flex justify-center items-center m-auto overflow-hidden text-white font-bold text-center">
+                                       <p className="p-1 line-clamp-2">{anime.title}</p>
                                  </div>
+
 
                               </div>
                            </div>
