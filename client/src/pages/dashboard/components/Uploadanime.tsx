@@ -31,7 +31,7 @@ export default function Uploadanime() {
   const [animeimg2 , setAnimeImg2] = useState<File | null>(null);
   const [animeSes, setAnimeSes] = useState<Number>(0);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Demons'  ,'Seinen' , 'Shoujo' , 'Reverse Harem' , 'Harem' , 'Kids' , 'Magic' ,'Music' , 'Space' , 'Vampir' , 'Thriller'  ,'Fantasy', 'Romance', 'School' , 'Supernatural' , 'Fiction' , 'Sports' ,'Sci-Fi' , 'Shounen', "Bloody", "Mystery" , "Horror"];
+  const availableGenres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Demons' , 'Slice of Life'  ,'Seinen' , 'Shoujo' , 'Reverse Harem' , 'Harem' , 'Kids' , 'Magic' ,'Music' , 'Space' , 'Vampir' , 'Thriller'  ,'Fantasy', 'Romance', 'School' , 'Supernatural' , 'Fiction' , 'Sports' ,'Sci-Fi' , 'Shounen', "Bloody", "Mystery" , "Horror"];
 
   const [rating, setRating] = useState<number>(3); // Initial rating value
 
