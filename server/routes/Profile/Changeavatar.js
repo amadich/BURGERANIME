@@ -45,8 +45,26 @@ router.post("/profile/changeavatar", async (req, res) => {
 
 
 router.post("/profile/updateaboutme", async (req, res) => {
-   const {id , aboutme} = req.body;
+   const {id , aboutme , token} = req.body;
    try {
+
+          // Verify the token and decode its payload
+          const decodedToken = jwt.verify(token, process.env.JWT_KEY);
+
+          const userID = decodedToken.id;
+          
+          
+
+          if (!userID) {
+            return res.json({ message: "Invalid" });
+          }
+
+          if (userID != id) {
+              return res.json({message: "Error Hack" , ok:407})
+          }
+
+      
+        // 
 
       const updatedUser = await Usermodel.findOneAndUpdate(
          { _id: id },

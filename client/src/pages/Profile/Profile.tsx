@@ -83,7 +83,7 @@ export default function Profile() {
   // Click Update information
   const handupdateabout = () => {
    setIsclickupdate(true);
-   decoded && axios.post(`${SERVER}/api/profile/updateaboutme`, {id : decoded.id  , aboutme})
+   decoded && axios.post(`${SERVER}/api/profile/updateaboutme`, {id : decoded.id  , aboutme , token})
    .then((response) => {
       alert(response.data.message);
       setIsclickupdate(false);
