@@ -1,4 +1,4 @@
-import SupraMain from "../../public/assets/images/supramain.png";
+import SupraMain from "../../public/assets/images/supramain_1.png";
 import Burgeranime_sh_0 from "../../public/assets/Burgeranime_sh_0.png";
 import "../assets/css/Navmain.css"
 function Mainnav() {
@@ -20,11 +20,11 @@ function Mainnav() {
                   </span>
                   <br />
                   {/* <button onClick={moveDown} id="btn_showme">Show me</button> */}
-                  <figure onClick={moveDown} className=" duration-500 hover:mt-[-70%] cursor-pointer ">
+                  <figure onClick={moveDown} className=" hidden duration-500 hover:mt-[-70%] cursor-pointer ">
                      <img src={Burgeranime_sh_0} alt="Burgeranime_sh0" draggable={false} />
                   </figure>
                   </p>
-                  <img src={SupraMain} alt="Supra Anime" draggable={false} className="select-none hidden md:block"  />
+                  <img src={SupraMain} alt="Supra Anime" draggable={false} className="select-none hidden md:block scale-x-[-1] "  />
                   </div>
                
 
