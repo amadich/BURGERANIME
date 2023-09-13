@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -6,7 +7,7 @@ const connectDB = require("./models/db");
 app.use(express.json());
 
 // CORS Configuration
-const allowedOrigins = ['https://burgeranime.vercel.app'];
+const allowedOrigins = ['https://burgeranime.vercel.app']; // https://burgeranime.vercel.app
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.includes(origin)) {
