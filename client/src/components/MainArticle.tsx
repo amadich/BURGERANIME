@@ -141,6 +141,7 @@ function Mainarticle() {
 
    return ( 
       <>
+         {/* IF you are used image 'Supramain' in MainNav  change md:mt-[-620px] */}
          <article id="main_article" className=" w-full pt-[1%]  bg-[#222] md:relative md:mt-[-120px]">
          
 
