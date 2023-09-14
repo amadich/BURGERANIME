@@ -76,6 +76,8 @@ export default function Watch() {
   const [likeStatus, setLikeStatus] = useState(false);
   const [dislikeStatus, setDislikeStatus] = useState(false);
 
+  const [heclickLike , setHeclickLike] = useState<boolean>(true);
+
   useEffect(() => {
     try {
       // Decode the token and store the decoded object in state
@@ -141,6 +143,7 @@ export default function Watch() {
   }, [animeEpsURL, decodeduser]);
 
   const handleLike = async () => {
+    setHeclickLike(false);
 
     if (!decodeduser) {
       window.location.href = "/signin";
@@ -199,6 +202,7 @@ export default function Watch() {
   };
   
   const handleDislike = async () => {
+    setHeclickLike(false);
     if (!decodeduser) {
       window.location.href = "/signin";
       return;
@@ -343,7 +347,7 @@ export default function Watch() {
           <div className="w-32 h-12 border rounded-lg flex justify-between items-center bg-slate-100 select-none">
             <p
               className="text-black text-lg p-3 flex  items-center cursor-pointer"
-              onClick={handleLike}
+              onClick={ heclickLike ? handleLike : () => {}}
             >
               <span>
                 {animeEpsURL[0]?.Likes ? animeEpsURL[0].Likes.HeLiked : 0}
@@ -359,7 +363,7 @@ export default function Watch() {
             </p>
             <p
               className="text-black text-lg pr-3  flex  items-center cursor-pointer"
-              onClick={handleDislike}
+              onClick={ heclickLike ? handleDislike : () => {}}
             >
               <span>
                 {animeEpsURL[0]?.Likes ? animeEpsURL[0].Likes.HeDesLiked : 0}
