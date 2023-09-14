@@ -344,7 +344,7 @@ export default function Watch() {
           </Link>
 
           {/* Like Button */}
-          <div className="w-32 h-12 border rounded-lg flex justify-between items-center bg-slate-100 select-none">
+          <div className="w-32 h-12  rounded-lg flex justify-between items-center bg-yellow-500 select-none">
             <p
               className="text-black text-lg p-3 flex  items-center cursor-pointer"
               onClick={ heclickLike ? handleLike : () => {}}
@@ -358,6 +358,7 @@ export default function Watch() {
                   alt="Like"
                   draggable={false}
                   className=" cursor-pointer "
+                  style={{filter: "drop-shadow(0px 0px 10px white)"}}
                 />
               </figure>{" "}
             </p>
