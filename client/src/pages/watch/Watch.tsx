@@ -306,11 +306,19 @@ export default function Watch() {
     <>
     <MainHeader />
 
-    <div className="w-full h-96 border-none">
-      {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (
-        <iframe src={animeEpsURL[0].epsurl} className="w-full h-full" allowFullScreen></iframe>
-      )}
-    </div>
+    <div
+        className="w-full relative"
+        style={{ paddingBottom: '56.25%' }} // Adjust this value for the desired aspect ratio
+      >
+        {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (
+          <iframe
+            src={animeEpsURL[0].epsurl}
+            className="absolute top-0 left-0 w-full h-full"
+            allowFullScreen
+          ></iframe>
+        )}
+      </div>
+
 
     <div className="h-56 w-[80%] m-16 space-y-4  ">
       <h1 className="text-orange-500 text-3xl font-bold md:flex justify-between items-center ">
