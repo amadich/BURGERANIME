@@ -307,7 +307,7 @@ export default function Watch() {
         <h1 className="text-orange-500 text-3xl font-bold md:flex justify-between items-center ">
           <span>{anime.title} | </span>
 
-          <div className="inline-flex space-x-3 mt-5 md:mt-0  ">
+          <div className="md:inline-flex md:space-x-3 space-y-3 md:space-y-0  mt-5 md:mt-0  ">
             {nexteps && (
               <a href={`/series/${anime._id}/${nexteps}`}>
                 <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
