@@ -76,7 +76,10 @@ export default function Watch() {
   const [likeStatus, setLikeStatus] = useState(false);
   const [dislikeStatus, setDislikeStatus] = useState(false);
 
-  const [heclickLike , setHeclickLike] = useState<boolean>(true);
+  const [heclickLike, setHeclickLike] = useState<boolean>(true);
+
+  const [likeCount, setLikeCount] = useState(0);
+  const [dislikeCount, setDislikeCount] = useState(0);
 
   useEffect(() => {
     try {
@@ -139,6 +142,10 @@ export default function Watch() {
         setLikeStatus(userLike.HeLiked);
         setDislikeStatus(userLike.HeDesLiked);
       }
+
+      // Set the like and dislike counts from the episode data
+      episode.Likes ? setLikeCount(episode.Likes.HeLiked) : setLikeCount(0);
+      episode.Likes ? setDislikeCount(episode.Likes.HeDesLiked) : setDislikeCount(0);
     }
   }, [animeEpsURL, decodeduser]);
 
@@ -152,14 +159,13 @@ export default function Watch() {
 
     if (!decodeduser || likeStatus) {
       // User not authenticated or already liked, handle accordingly
-      
       return;
     }
-  
-    if ( anime && animeEpsURL.length > 0) {
+
+    if (anime && animeEpsURL.length > 0) {
       const IDanime = anime._id;
       const IDeps = animeEpsURL[0]._id;
-  
+
       try {
         const response = await axios.post(
           `${SERVER}/api/animes/watchlike/${IDanime}/${IDeps}`,
@@ -169,38 +175,27 @@ export default function Watch() {
             DesLike: false,
           }
         );
-  
+
         if (response.data.message === "User Updated Likes ANIME!!") {
           setLikeStatus(true);
           setDislikeStatus(false);
-  
+
           // Update the like count in the state
-          setAnime((prevAnime) => {
-            if (prevAnime) {
-              const updatedEps = prevAnime.eps.map((ep) => {
-                if (ep._id === IDeps) {
-                  const updatedLikes = { ...ep.Likes };
-                  updatedLikes.HeLiked += 1;
-                  updatedLikes.HeDesLiked = dislikeStatus ? updatedLikes.HeDesLiked - 1 : updatedLikes.HeDesLiked;
-                  window.location.href = "";
-                  return { ...ep, Likes: updatedLikes };
-                  
-                }
-                return ep;
-              });
-              return { ...prevAnime, eps: updatedEps };
-            }
-            
-            return prevAnime;
-            
-          });
+          setLikeCount((prevLikeCount) => prevLikeCount + 1);
+          // Update the dislike count in the state if needed
+          if (dislikeStatus) {
+            setDislikeCount((prevDislikeCount) => prevDislikeCount - 1);
+          }
+
+          // Update the like count in local storage
+          localStorage.setItem(`likeCount_${IDeps}`, likeCount.toString());
         }
       } catch (error) {
         console.error(error);
       }
     }
   };
-  
+
   const handleDislike = async () => {
     setHeclickLike(false);
     if (!decodeduser) {
@@ -209,14 +204,13 @@ export default function Watch() {
     }
     if (!decodeduser || dislikeStatus) {
       // User not authenticated or already disliked, handle accordingly
-      
       return;
     }
-  
-    if ( anime && animeEpsURL.length > 0) {
+
+    if (anime && animeEpsURL.length > 0) {
       const IDanime = anime._id;
       const IDeps = animeEpsURL[0]._id;
-  
+
       try {
         const response = await axios.post(
           `${SERVER}/api/animes/watchlike/${IDanime}/${IDeps}`,
@@ -226,35 +220,26 @@ export default function Watch() {
             DesLike: true,
           }
         );
-  
+
         if (response.data.message === "User Updated Likes ANIME!!") {
           setLikeStatus(false);
           setDislikeStatus(true);
-  
+
           // Update the dislike count in the state
-          setAnime((prevAnime) => {
-            if (prevAnime) {
-              const updatedEps = prevAnime.eps.map((ep) => {
-                if (ep._id === IDeps) {
-                  const updatedLikes = { ...ep.Likes };
-                  updatedLikes.HeDesLiked += 1;
-                  updatedLikes.HeLiked = likeStatus ? updatedLikes.HeLiked - 1 : updatedLikes.HeLiked;
-                  window.location.href = "";
-                  return { ...ep, Likes: updatedLikes };
-                }
-                return ep;
-              });
-              return { ...prevAnime, eps: updatedEps };
-            }
-            return prevAnime;
-          });
+          setDislikeCount((prevDislikeCount) => prevDislikeCount + 1);
+          // Update the like count in the state if needed
+          if (likeStatus) {
+            setLikeCount((prevLikeCount) => prevLikeCount - 1);
+          }
+
+          // Refresh the page
+          //window.location.href = "";
         }
       } catch (error) {
         console.error(error);
       }
     }
   };
-  
 
   if (!token && anime && anime.premium === 1) {
     return (
@@ -288,9 +273,7 @@ export default function Watch() {
         <MainFooter />
       </>
     );
-  }
-
-  else if (!anime || !id || !epsid) {
+  } else if (!anime || !id || !epsid) {
     return (
       <>
         <div className="select-none mt-[5%]">
@@ -308,12 +291,9 @@ export default function Watch() {
 
   return (
     <>
-    <MainHeader />
+      <MainHeader />
 
-    <div
-        className="w-full relative"
-        style={{ paddingBottom: '56.25%' }} // Adjust this value for the desired aspect ratio
-      >
+      <div className="w-full relative" style={{ paddingBottom: '56.25%' }}>
         {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (
           <iframe
             src={animeEpsURL[0].epsurl}
@@ -323,80 +303,74 @@ export default function Watch() {
         )}
       </div>
 
+      <div className="h-56 w-[80%] m-16 space-y-4  ">
+        <h1 className="text-orange-500 text-3xl font-bold md:flex justify-between items-center ">
+          <span>{anime.title} | </span>
 
-    <div className="h-56 w-[80%] m-16 space-y-4  ">
-      <h1 className="text-orange-500 text-3xl font-bold md:flex justify-between items-center ">
-        <span>{anime.title} | </span>
+          <div className="inline-flex space-x-3 mt-5 md:mt-0  ">
+            {nexteps && (
+              <a href={`/series/${anime._id}/${nexteps}`}>
+                <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
+                  Next Episode
+                </button>
+              </a>
+            )}
 
-        <div className="inline-flex space-x-3 mt-5 md:mt-0  ">
-          {nexteps && (
-            <a href={`/series/${anime._id}/${nexteps}`}>
-              <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
-                Next Episode
+            <Link to={`/series/${anime._id}`}>
+              <button className="btn bg-blue-500 text-white duration-500 hover:bg-green-500">
+                Back To List
               </button>
-            </a>
-          )}
+            </Link>
 
-          <Link to={`/series/${anime._id}`}>
-            <button className="btn bg-blue-500 text-white duration-500 hover:bg-green-500">
-              Back To List
-            </button>
-          </Link>
-
-          {/* Like Button */}
-          <div className="w-32 h-12  rounded-lg flex justify-between items-center bg-yellow-500 select-none">
-            <p
-              className="text-black text-lg p-3 flex  items-center cursor-pointer"
-              onClick={ heclickLike ? handleLike : () => {}}
-            >
-              <span>
-                {animeEpsURL[0]?.Likes ? animeEpsURL[0].Likes.HeLiked : 0}
-              </span>{" "}
-              <figure className="ml-2">
-                <img
-                  src={likeStatus ? LikeYes : Like}
-                  alt="Like"
-                  draggable={false}
-                  className=" cursor-pointer "
-                  style={{filter: "drop-shadow(0px 0px 10px white)"}}
-                />
-              </figure>{" "}
-            </p>
-            <p
-              className="text-black text-lg pr-3  flex  items-center cursor-pointer"
-              onClick={ heclickLike ? handleDislike : () => {}}
-            >
-              <span>
-                {animeEpsURL[0]?.Likes ? animeEpsURL[0].Likes.HeDesLiked : 0}
-              </span>{" "}
-              <figure className="ml-2 mt-2">
-                <img
-                  src={dislikeStatus ? DisLikeYes : DisLike}
-                  alt="Like"
-                  draggable={false}
-                  className=" cursor-pointer "
-                />
-              </figure>{" "}
-            </p>
+            <div className="w-32 h-12 rounded-lg flex justify-between items-center bg-green-500 select-none">
+              <p
+                className="text-black text-lg p-3 flex  items-center cursor-pointer"
+                onClick={heclickLike ? handleLike : () => {}}
+              >
+                <span>{likeCount}</span>{" "}
+                <figure className="ml-2">
+                  <img
+                    src={likeStatus ? LikeYes : Like}
+                    alt="Like"
+                    draggable={false}
+                    className=" cursor-pointer "
+                  />
+                </figure>{" "}
+              </p>
+                            <p
+                className="text-black text-lg pr-3  flex  items-center cursor-pointer"
+                onClick={heclickLike ? handleDislike : () => {}}
+              >
+                <span>{dislikeCount}</span>{" "}
+                <figure className="ml-2 mt-2">
+                  <img
+                    src={dislikeStatus ? DisLikeYes : DisLike}
+                    alt="Like"
+                    draggable={false}
+                    className=" cursor-pointer "
+                  />
+                </figure>{" "}
+              </p>
+            </div>
           </div>
-        </div>
-      </h1>
-      {animeEpsURL.length > 0 && (
-        <p className="text-2xl text-slate-200">Episode - {animeEpsURL[0].nbrps}</p>
-      )}
-      <p>
-        VOST | <span className="text-blue-500 font-bold">Dub</span>
-      </p>
-      <p className="text-gray-400">{anime.description}</p>
+        </h1>
+        {animeEpsURL.length > 0 && (
+          <p className="text-2xl text-slate-200">Episode - {animeEpsURL[0].nbrps}</p>
+        )}
+        <p>
+          VOST | <span className="text-blue-500 font-bold">Dub</span>
+        </p>
+        <p className="text-gray-400">{anime.description}</p>
 
-      <Link to="/contactus">
-        <span className="text-red-500 block float-right font-mono">
-          Report an anime episode that does not work?
-        </span>
-      </Link>
+        <Link to="/contactus">
+          <span className="text-red-500 block float-right font-mono">
+            Report an anime episode that does not work?
+          </span>
+        </Link>
 
-      <Mainfooter />
-    </div>
-  </>
+        <Mainfooter />
+      </div>
+    </>
   );
 }
+
