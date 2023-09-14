@@ -36,6 +36,8 @@ app.use("/api/dashboard", require("./routes/dashboard/Banusers"));
 app.use("/api/dashboard", require("./routes/dashboard/Rankedusers"));
 app.use("/api/dashboard", require("./routes/dashboard/Premium"));
 
+app.use("/api/animes" , require("./routes/Animes/WatchLike") );
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server listening on PORT : ${PORT}`);

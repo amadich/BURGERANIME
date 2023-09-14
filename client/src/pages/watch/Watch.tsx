@@ -8,12 +8,27 @@ import axios from "axios";
 import Mainfooter from "../../components/MainFooter";
 import jwtDecode from "jwt-decode";
 
+import LikeYes from "./assets/icons/like_checked.png";
+import Like from "./assets/icons/like.png";
+
+import DisLike from "./assets/icons/dislike.png";
+import DisLikeYes from "./assets/icons/dislike_checked.png";
+
 interface Episode {
   _id: string;
   title: string;
   nbrps: number;
   epsimage: string;
   epsurl: string;
+  SystemLikeUser: {
+    userID: string;
+    HeLiked: boolean;
+    HeDesLiked: boolean;
+  }[];
+  Likes: {
+    HeLiked: number;
+    HeDesLiked: number;
+  };
 }
 
 interface Anime {
@@ -24,9 +39,15 @@ interface Anime {
   imageUrl1: string;
   imageUrl2: string;
   rating?: number;
+  format: {
+    // Define the properties of the 'format' object here
+  };
   seasonal?: number;
   premium: number;
-  eps: (Episode | null)[];
+  by_admin: {
+    // Define the properties of the 'by_admin' object here
+  };
+  eps: Episode[];
 }
 
 // Define the interface for the decoded object
@@ -52,7 +73,8 @@ export default function Watch() {
   const [animeEpsURL, setAnimeEpsURL] = useState<Episode[]>([]);
   const [nexteps, setNextEps] = useState<string | undefined>("");
 
- 
+  const [likeStatus, setLikeStatus] = useState(false);
+  const [dislikeStatus, setDislikeStatus] = useState(false);
 
   useEffect(() => {
     try {
@@ -89,34 +111,156 @@ export default function Watch() {
     });
   }, [id, epsid]);
 
+  useEffect(() => {
+    if (!token && anime && anime.premium === 1) {
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 1000);
+    }
+  }, [anime]);
 
   useEffect(() => {
-      if (!token && anime && (anime.premium === 1)  ) {
-         setTimeout(() => {
-            window.location.replace("/");
-          },1000)
-        
-      }
-  },[anime])
-
-  useEffect(() => {
-    if (   anime && (anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1)  ) {
+    if (anime && anime.premium === 1 && decodeduser && decodeduser.ranks.vip !== 1) {
       // Redirect if the anime is premium and the user is not a VIP
       setTimeout(() => {
         window.location.replace("/");
-      },1000)
+      }, 1000);
     }
   }, [anime, decodeduser]);
 
-  if (!token && anime && (anime.premium === 1)  ) {
+  useEffect(() => {
+    // Initialize like and dislike statuses based on user's previous actions
+    if (animeEpsURL.length > 0) {
+      const episode = animeEpsURL[0];
+      const userLike = episode.SystemLikeUser.find((user) => user.userID === decodeduser?.id);
+      if (userLike) {
+        setLikeStatus(userLike.HeLiked);
+        setDislikeStatus(userLike.HeDesLiked);
+      }
+    }
+  }, [animeEpsURL, decodeduser]);
+
+  const handleLike = async () => {
+
+    if (!decodeduser) {
+      window.location.href = "/signin";
+      return;
+    }
+
+    if (!decodeduser || likeStatus) {
+      // User not authenticated or already liked, handle accordingly
+      
+      return;
+    }
+  
+    if ( anime && animeEpsURL.length > 0) {
+      const IDanime = anime._id;
+      const IDeps = animeEpsURL[0]._id;
+  
+      try {
+        const response = await axios.post(
+          `${SERVER}/api/animes/watchlike/${IDanime}/${IDeps}`,
+          {
+            IDuser: decodeduser.id,
+            Like: true,
+            DesLike: false,
+          }
+        );
+  
+        if (response.data.message === "User Updated Likes ANIME!!") {
+          setLikeStatus(true);
+          setDislikeStatus(false);
+  
+          // Update the like count in the state
+          setAnime((prevAnime) => {
+            if (prevAnime) {
+              const updatedEps = prevAnime.eps.map((ep) => {
+                if (ep._id === IDeps) {
+                  const updatedLikes = { ...ep.Likes };
+                  updatedLikes.HeLiked += 1;
+                  updatedLikes.HeDesLiked = dislikeStatus ? updatedLikes.HeDesLiked - 1 : updatedLikes.HeDesLiked;
+                  window.location.href = "";
+                  return { ...ep, Likes: updatedLikes };
+                  
+                }
+                return ep;
+              });
+              return { ...prevAnime, eps: updatedEps };
+            }
+            
+            return prevAnime;
+            
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  
+  const handleDislike = async () => {
+    if (!decodeduser) {
+      window.location.href = "/signin";
+      return;
+    }
+    if (!decodeduser || dislikeStatus) {
+      // User not authenticated or already disliked, handle accordingly
+      
+      return;
+    }
+  
+    if ( anime && animeEpsURL.length > 0) {
+      const IDanime = anime._id;
+      const IDeps = animeEpsURL[0]._id;
+  
+      try {
+        const response = await axios.post(
+          `${SERVER}/api/animes/watchlike/${IDanime}/${IDeps}`,
+          {
+            IDuser: decodeduser.id,
+            Like: false,
+            DesLike: true,
+          }
+        );
+  
+        if (response.data.message === "User Updated Likes ANIME!!") {
+          setLikeStatus(false);
+          setDislikeStatus(true);
+  
+          // Update the dislike count in the state
+          setAnime((prevAnime) => {
+            if (prevAnime) {
+              const updatedEps = prevAnime.eps.map((ep) => {
+                if (ep._id === IDeps) {
+                  const updatedLikes = { ...ep.Likes };
+                  updatedLikes.HeDesLiked += 1;
+                  updatedLikes.HeLiked = likeStatus ? updatedLikes.HeLiked - 1 : updatedLikes.HeLiked;
+                  window.location.href = "";
+                  return { ...ep, Likes: updatedLikes };
+                }
+                return ep;
+              });
+              return { ...prevAnime, eps: updatedEps };
+            }
+            return prevAnime;
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  
+
+  if (!token && anime && anime.premium === 1) {
     return (
       <>
         <div className="select-none mt-[5%]">
           <figure className="m-auto relative">
             <img draggable={false} src={KonataErrorVIP} alt="Error 404" width={250} className="m-auto" />
             <p className="mt-[-4.3em] text-[#222] w-48 m-auto font-bold relative z-10 text-center ">
-              <span className="text-blue-600" >Only Premuim</span>  <span className="text-green-600  ">VIP</span>
-              <br /> <Link to="/main" ><button className=" p-1 w-16 rounded-full bg-green-500 text-white duration-300 hover:bg-green-900 " >Back</button></Link>
+              <span className="text-blue-600">Only Premuim</span> <span className="text-green-600">VIP</span>
+              <br /> <Link to="/main"><button className="p-1 w-16 rounded-full bg-green-500 text-white duration-300 hover:bg-green-900">Back</button></Link>
             </p>
           </figure>
         </div>
@@ -132,8 +276,8 @@ export default function Watch() {
           <figure className="m-auto relative">
             <img draggable={false} src={KonataErrorVIP} alt="Error 404" width={250} className="m-auto" />
             <p className="mt-[-4.3em] text-[#222] w-48 m-auto font-bold relative z-10 text-center ">
-              <span className="text-blue-600" >Only Premuim</span>  <span className="text-green-600  ">VIP</span>
-              <br /> <Link to="/main" ><button className=" p-1 w-16 rounded-full bg-green-500 text-white duration-300 hover:bg-green-900 " >Back</button></Link>
+              <span className="text-blue-600">Only Premuim</span> <span className="text-green-600">VIP</span>
+              <br /> <Link to="/main"><button className="p-1 w-16 rounded-full bg-green-500 text-white duration-300 hover:bg-green-900">Back</button></Link>
             </p>
           </figure>
         </div>
@@ -160,50 +304,86 @@ export default function Watch() {
 
   return (
     <>
-      <MainHeader />
+    <MainHeader />
 
-      <div className="w-full h-96 border-none">
-        {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (
-          <iframe src={animeEpsURL[0].epsurl} className="w-full h-full" allowFullScreen></iframe>
-        )}
-      </div>
+    <div className="w-full h-96 border-none">
+      {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (
+        <iframe src={animeEpsURL[0].epsurl} className="w-full h-full" allowFullScreen></iframe>
+      )}
+    </div>
 
-      <div className="h-56 w-[80%] m-16 space-y-4">
-        <h1 className="text-orange-500 text-3xl font-bold">
-          <span>{anime.title} | </span>
+    <div className="h-56 w-[80%] m-16 space-y-4  ">
+      <h1 className="text-orange-500 text-3xl font-bold md:flex justify-between items-center ">
+        <span>{anime.title} | </span>
 
-          <div className="inline-flex space-x-3">
-            {nexteps && (
-              <Link to={`/series/${anime._id}/${nexteps}`}>
-                <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
-                  Next Episode
-                </button>
-              </Link>
-            )}
-
-            <Link to={`/series/${anime._id}`}>
-              <button className="btn bg-blue-500 text-white duration-500 hover:bg-green-500">
-                Back To List
+        <div className="inline-flex space-x-3 mt-5 md:mt-0  ">
+          {nexteps && (
+            <Link to={`/series/${anime._id}/${nexteps}`}>
+              <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
+                Next Episode
               </button>
             </Link>
+          )}
+
+          <Link to={`/series/${anime._id}`}>
+            <button className="btn bg-blue-500 text-white duration-500 hover:bg-green-500">
+              Back To List
+            </button>
+          </Link>
+
+          {/* Like Button */}
+          <div className="w-32 h-12 border rounded-lg flex justify-between items-center bg-slate-100 select-none">
+            <p
+              className="text-black text-lg p-3 flex  items-center cursor-pointer"
+              onClick={handleLike}
+            >
+              <span>
+                {animeEpsURL[0]?.Likes ? animeEpsURL[0].Likes.HeLiked : 0}
+              </span>{" "}
+              <figure className="ml-2">
+                <img
+                  src={likeStatus ? LikeYes : Like}
+                  alt="Like"
+                  draggable={false}
+                  className=" cursor-pointer "
+                />
+              </figure>{" "}
+            </p>
+            <p
+              className="text-black text-lg pr-3  flex  items-center cursor-pointer"
+              onClick={handleDislike}
+            >
+              <span>
+                {animeEpsURL[0]?.Likes ? animeEpsURL[0].Likes.HeDesLiked : 0}
+              </span>{" "}
+              <figure className="ml-2 mt-2">
+                <img
+                  src={dislikeStatus ? DisLikeYes : DisLike}
+                  alt="Like"
+                  draggable={false}
+                  className=" cursor-pointer "
+                />
+              </figure>{" "}
+            </p>
           </div>
-        </h1>
-        {animeEpsURL.length > 0 && (
-          <p className="text-2xl text-slate-200">Episode - {animeEpsURL[0].nbrps}</p>
-        )}
-        <p>
-          VOST | <span className="text-blue-500 font-bold">Dub</span>
-        </p>
-        <p className="text-gray-400">{anime.description}</p>
+        </div>
+      </h1>
+      {animeEpsURL.length > 0 && (
+        <p className="text-2xl text-slate-200">Episode - {animeEpsURL[0].nbrps}</p>
+      )}
+      <p>
+        VOST | <span className="text-blue-500 font-bold">Dub</span>
+      </p>
+      <p className="text-gray-400">{anime.description}</p>
 
-        <Link to="/contactus">
-          <span className="text-red-500 block float-right font-mono">
-            Report an anime episode that does not work?
-          </span>
-        </Link>
+      <Link to="/contactus">
+        <span className="text-red-500 block float-right font-mono">
+          Report an anime episode that does not work?
+        </span>
+      </Link>
 
-        <Mainfooter />
-      </div>
-    </>
+      <Mainfooter />
+    </div>
+  </>
   );
 }
