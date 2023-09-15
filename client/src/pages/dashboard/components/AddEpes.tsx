@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { useState , useEffect } from "react";
+import { useState , useEffect  } from "react";
 import MainHeader from "../../../components/MainHeader";
 import K404 from "../../../../public/assets/images/konata_error_404_.png";
 import KReadCataAfk from "../assets/images/catalog_afk.png";
@@ -35,13 +35,14 @@ export default function AddEpes() {
    const [btndisable , setBtndisable] = useState<boolean>(true);
 
    
-   const [idanime , setIDanime] = useState<String>("");
+   const [idanime , setIDanime] = useState<string>("");
    const [animeurl , setAnimeurl] = useState<String>("");
    const [nbrps , setNbrps] = useState<Number>(0);
 
    // get state for show loading uploaded ...
    const [loadup , setLoadUp] = useState<String>("Loading ...");
    const [fixloadup , setFixloadUp] = useState<boolean>(false);
+
 
   {/* Submit The Form Data to Server .... */}
    const handsubmit = () => {
@@ -183,12 +184,18 @@ export default function AddEpes() {
    }, [token]);
 
 
+    // Function to set idanime in AddEpes component
+  const handleAddToIDanime = (IDanime: string) => {
+   setIDanime(IDanime);
+ };
+
+
    return ( 
       <>
             <MainHeader />
              {/* Filter ID Anime */}
 
-           <FilterIDanime />
+           <FilterIDanime onAddToIDanime={handleAddToIDanime} />
 
            <nav className="  carousel w-full flex items-center m-auto text-center md:hidden  ">
 
@@ -233,7 +240,11 @@ export default function AddEpes() {
                            className=" w-96 m-5 input bg-transparent text-white border border-green-500 font-bold" 
                            placeholder="ID Anime "
                            type="text" 
-                           onChange={(e) => {setIDanime(e.target.value)}}/>
+                           value={idanime}
+                           onChange={(e) => {setIDanime(e.target.value)}}
+                           
+                           />
+                           
                            <a href={!btndisable ? "#slide2" : ""}>
                            <button 
                            

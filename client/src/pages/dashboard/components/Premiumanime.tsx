@@ -45,10 +45,15 @@ export default function Premiumanime() {
 
 }
 
+       // Function to set idanime in AddEpes component
+  const handleAddToIDanime = (IDanime: string) => {
+   setIDanime(IDanime);
+ };
+
    return ( 
       <>
             <MainHeader />
-            <FilterIDanime />
+            <FilterIDanime onAddToIDanime={handleAddToIDanime} />
 
             <nav className="  carousel w-full flex items-center m-auto text-center md:hidden  ">
 
@@ -82,6 +87,7 @@ export default function Premiumanime() {
                            style={{filter: "drop-shadow(0 0 10px gold)"}} 
                            placeholder="ID Anime "
                            type="text" 
+                           value={IDanime}
                            onChange={(e) => {setIDanime(e.target.value)}}
                            />
                           

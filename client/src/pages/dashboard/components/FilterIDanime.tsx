@@ -28,7 +28,11 @@ interface DecodedObject {
    };
 }
 
-export default function FilterIDanime() {
+interface FilterIDanimeProps {
+  onAddToIDanime: (IDanime: string) => void;
+}
+
+export default function FilterIDanime({ onAddToIDanime }: FilterIDanimeProps) {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
   const [animeList, setAnimeList] = useState<AnimeData[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -72,6 +76,12 @@ export default function FilterIDanime() {
     anime._id.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
 
+  // Click #idinputanime
+  const AddtoIDinputAnime = (IDanime: string) => {
+    onAddToIDanime(IDanime);
+  };
+  
+
   return (
     <>
       <div className="flex justify-around items-center mt-10 p-10 select-none m-auto ">
@@ -104,7 +114,7 @@ export default function FilterIDanime() {
             {filteredanime.map((user: AnimeData, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
-                <th>{user._id}</th>
+                <th onClick={ () => AddtoIDinputAnime(user._id)} className=" cursor-pointer duration-300 hover:text-green-500 hover:text-xl " >{user._id}</th>
                 <td>{user.title}</td>
                 <td> <span>{user.by_admin?.Name || ""}</span> |  <span className="text-green-500" >{ user.by_admin?.adminID || "" }</span> </td> {/* Use optional chaining */}
                 
