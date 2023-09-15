@@ -147,7 +147,7 @@ export default function Profile() {
             onClick={handupdateabout}
             style={me ? {display:"block"} : {display: "none"}}
              type="button" 
-             className="btn btn-secondary">
+             className="btn btn-secondary text-white ">
                Update Information
             </button>
 
@@ -160,7 +160,7 @@ export default function Profile() {
                   className="flex justify-between items-center space-x-4"
                   to={ decoded?.ranks.vip === 1 ? `/profile/${decoded.id}/changeavatar` : "" } 
                   >
-                    <p>Change Avatar</p>
+                    <p className="text-white" >Change Avatar</p>
                     <img src={Crownbtn} alt="Crownbtn" width={20} />
                   </Link>
                 </button>

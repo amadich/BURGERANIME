@@ -310,14 +310,14 @@ export default function Watch() {
           <div className="md:inline-flex md:space-x-3 space-y-3 md:space-y-0  mt-5 md:mt-0  ">
             {nexteps && (
               <a href={`/series/${anime._id}/${nexteps}`}>
-                <button className="btn bg-orange-500 text-white duration-500 hover:bg-red-500">
+                <button className="btn border-none bg-orange-500 text-white duration-500 hover:bg-yellow-500 hover:text-black ">
                   Next Episode
                 </button>
               </a>
             )}
 
             <Link to={`/series/${anime._id}`}>
-              <button className="btn bg-blue-500 text-white duration-500 hover:bg-green-500">
+              <button className="btn border-none bg-blue-500 text-white duration-500 hover:bg-red-500">
                 Back To List
               </button>
             </Link>

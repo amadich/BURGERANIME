@@ -57,7 +57,7 @@ export default function Avatardash() {
       {showAvatar ? (
         // Show the "Create new" button if showAvatar is true
         <Link to="/signup">
-          <button className="p-2 rounded-md bg-[#d64d2b] duration-300 text-white hover:bg-[#e48022]">
+          <button className=" p-2 rounded-md bg-[#d64d2b] duration-300 text-white hover:bg-[#e48022]">
             Create new
           </button>
         </Link>
@@ -111,13 +111,13 @@ export default function Avatardash() {
               </li>
               {
                decoded.ranks.admin === 1 && decoded.ranks.demo === 0
-                      ? <Link to="/dashboard" className="text-center"><li className="btn bg-orange-500 text-white mt-5">Dashboard</li></Link>
+                      ? <Link to="/dashboard" className="text-center"><li className="btn border-none bg-orange-500 text-white mt-5">Dashboard</li></Link>
                       : null
                }
 
 {
                decoded.ranks.helper === 1
-                      ? <Link to="/dashboard_helper" className="text-center"><li className="btn bg-blue-700 text-white mt-5">Dashboard Helper</li></Link>
+                      ? <Link to="/dashboard_helper" className="text-center"><li className="btn border-none bg-blue-700 text-white mt-5">Dashboard Helper</li></Link>
                       : null
                }
             </ul>

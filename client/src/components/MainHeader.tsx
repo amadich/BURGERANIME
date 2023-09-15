@@ -26,9 +26,9 @@ function MainHeader() {
                   <Link to="/"><li className="hidden md:block text-orange-500 ">Home</li></Link>
                   <Link to="/main"><li className="hidden md:block">Animes</li></Link>
                   <li onClick={moveDown} className="hidden md:block cursor-pointer ">More</li>
-                  <Link to="/search"><li className="hidden md:block">Search</li></Link>
+                 
 
-                  <Link to="/search" className="block md:hidden">
+                  <Link to="/search" className="">
                         <div className="form-control">
                            <img src={SearchLogo} alt="Search" width={25}
                            style={{ filter: 'brightness(0) invert(1)', color: 'white' }}

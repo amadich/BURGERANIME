@@ -180,14 +180,14 @@ useEffect(() => {
             <form onSubmit={handupload}>
                   <div style={me ? {display:"block"} : {display: "none"}} className="space-y-5">
                   <button
-                   className="btn btn-primary"
+                   className="btn btn-primary text-white "
                     disabled={disableChangeAvatar || isSubmitting} >
                     Change Avatar</button>
                   <input 
                       accept=".png, .jpg, .jpeg"
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAvatar(e.target.files && e.target.files[0])}}
                       type="file"
-                      className="file-input file-input-bordered file-input-primary w-full max-w-xs ml-1 md:ml-5" />
+                      className="file-input file-input-bordered file-input-primary w-full max-w-xs ml-1 md:ml-5 bg-[#222] text-white " />
 
                   <span className="pl-5 text-green-500 font-mono " > {messageResavatar} </span>
 
