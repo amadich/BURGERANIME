@@ -24,7 +24,7 @@ function MainHeader() {
                </div>
                <ul className="flex space-x-8 text-gray-300 items-center">
                   <Link to="/"><li className="hidden md:block text-orange-500 ">Home</li></Link>
-                  <Link to="/main"><li className="hidden md:block">Animes</li></Link>
+                  <Link to="/main"><li className="hidden md:block text-pink-300 ">Animes</li></Link>
                   <li onClick={moveDown} className="hidden md:block cursor-pointer ">More</li>
                  
 
