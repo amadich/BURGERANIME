@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const allowedDomains = ["gmail.com", "yahoo.com", "hotmail.com"];
+const allowedDomains = ["gmail.com", "yahoo.com", "hotmail.com","proton.me"];
 
 export const userSchema = Yup.object().shape({
   username: Yup.string().required(),
