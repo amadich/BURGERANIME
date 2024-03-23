@@ -1,7 +1,9 @@
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/6037fbdf-989d-495b-965d-a26450f8e86f)
 
-Burgeranime is a captivating virtual sanctuary where anime enthusiasts embark on an exhilarating journey through a world of vibrant storytelling, boundless creativity, and awe-inspiring artistry. Nestled within its digital realm .
+BURGERANIME,  is a virtual web world anime that caters to anime enthusiasts, offering a captivating experience of vibrant storytelling, boundless creativity, and awe-inspiring artistry.
+
 # New Home Page Design 🐱‍👤
+
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/7d8b97b6-7fe4-480c-9c50-98252b640366)
 
 # Back to the Main page 🙈
