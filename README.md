@@ -31,6 +31,10 @@ BURGERANIME,  is a virtual web world anime that caters to anime enthusiasts, off
 ![image](https://github.com/amadich/BURGERANIME/assets/74735976/b3729464-fc5e-431f-a032-9e41e0e7e358)
 
 
+# Class diagram 🐳
+![image](https://github.com/amadich/BURGERANIME/assets/74735976/cc8a56aa-4dfe-4d69-9d82-2c856a2bb7d8)
+
+
 ###
 #
 The site is still under development. I will upload the Frontend and complete the Backend in the plan. It may be downloaded on Vercel hosting.
