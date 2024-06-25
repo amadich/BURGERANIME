@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import MainHeader from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
 import KonataError404 from "../../../public/assets/images/konata_error_404_.png";
 import KonataErrorVIP from "../../../public/assets/images/konata_error_vip_.png";
