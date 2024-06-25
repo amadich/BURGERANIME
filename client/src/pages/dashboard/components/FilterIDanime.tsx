@@ -102,7 +102,7 @@ export default function FilterIDanime({ onAddToIDanime }: FilterIDanimeProps) {
       <div className="overflow-x-auto ">
         <table className="table table-xs text-white font-bold text-center  " style={showsearchterm ? {display: "inline-table"}:  {display: "none"}}>
           <thead className="text-green-500">
-            <tr>
+            <tr className="border-b border-green-500">
               <th></th>
               <th>ID</th>
               <th>Title</th>
@@ -112,7 +112,7 @@ export default function FilterIDanime({ onAddToIDanime }: FilterIDanimeProps) {
           </thead>
           <tbody>
             {filteredanime.map((user: AnimeData, index) => (
-              <tr key={user._id}>
+              <tr key={user._id} className="border-none">
                 <th>{index + 1}</th>
                 <th onClick={ () => AddtoIDinputAnime(user._id)} className=" cursor-pointer duration-300 hover:text-green-500 hover:text-xl " >{user._id}</th>
                 <td>{user.title}</td>

@@ -85,8 +85,8 @@ export default function Showallusers() {
       </div>
       <div className="overflow-x-auto ">
         <table className="table table-xs text-white font-bold ">
-          <thead className="text-blue-500">
-            <tr>
+          <thead className="text-blue-500 ">
+            <tr className=" border-b border-blue-500 ">
               <th></th>
               <th>ID</th>
               <th>Name</th>
@@ -101,17 +101,18 @@ export default function Showallusers() {
           </thead>
           <tbody>
             {filteredUsers.map((user: UserData, index) => (
-              <tr key={user._id}>
+              <tr key={user._id} className=" border-none ">
                 <th>{index + 1}</th>
                 <th>{user._id}</th>
                 <td>{user.username}</td>
                 <Link to={`/profile/${user._id}`}>
                   <td>
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                      <div className="w-10 rounded-full">
+                      <div className=" w-10 duration-150 hover:w-36  rounded-full">
                           <img
                           draggable={false} 
-                          src={user.avatar} />
+                          src={user.avatar} 
+                          />
                       </div>
                     </label>
                   </td>

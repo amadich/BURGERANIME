@@ -13,6 +13,7 @@ import Like from "./assets/icons/like.png";
 
 import DisLike from "./assets/icons/dislike.png";
 import DisLikeYes from "./assets/icons/dislike_checked.png";
+import AvatarHeader from "../ch/components/Avatarheader";
 
 interface Episode {
   _id: string;
@@ -291,7 +292,7 @@ export default function Watch() {
 
   return (
     <>
-      <MainHeader />
+      <AvatarHeader />
 
       <div className="w-full relative" style={{ paddingBottom: '56.25%' }}>
         {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (
@@ -355,10 +356,10 @@ export default function Watch() {
           </div>
         </h1>
         {animeEpsURL.length > 0 && (
-          <p className="text-2xl text-slate-200">Episode - {animeEpsURL[0].nbrps}</p>
+          <p className="text-2xl text-white">Episode - {animeEpsURL[0].nbrps}</p>
         )}
         <p>
-          VOST | <span className="text-blue-500 font-bold">Dub</span>
+          <span className="text-white" >VOST</span> | <span className="text-blue-500 font-bold">DUB</span>
         </p>
         <p className="text-gray-400">{anime.description}</p>
 

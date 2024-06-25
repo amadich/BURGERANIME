@@ -64,7 +64,7 @@ export default function GetMySeries() {
       <>
 
       
-      <article className=" w-full h-full   ">
+      <article className=" w-full h-full m-auto   " style={{display: "ruby"}}>
       <nav className="border border-blue-500  "></nav>
             <Backdrop
                      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}

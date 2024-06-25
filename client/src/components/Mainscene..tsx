@@ -2,7 +2,7 @@ import Vmainscene from "../../public/assets/videos/mainscene.mp4";
 function Mainscene() {
    return ( 
       <>
-         <div className="relative">
+         <div>
             <video
                src={Vmainscene} // Replace 'your_video_file.mp4' with the actual video file name
                autoPlay

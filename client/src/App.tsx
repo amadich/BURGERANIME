@@ -24,6 +24,7 @@ import Dashboard_helper from "./pages/dashboard_helper/dashboard_helper";
 import Premiumanime from "./pages/dashboard/components/Premiumanime";
 import ProfileVip from "./pages/Profile/ProfileVip";
 import Myseries from "./pages/MySeries/Myseries";
+import MyFilms from "./pages/MyFilms/MyFilms";
 
 
 // Define the interface for the decoded object
@@ -166,6 +167,7 @@ function App() {
                   
                   <Route path="/learn_discord" element={<Learn_discord />} />
                   <Route path="/series" element={<Myseries />} />
+                  <Route path="/movies" element={<MyFilms />} />
                   <Route path="/series/:id" element={<Series />} />
                   <Route path="/series/:id/:epsid" element={<Watch />} />
                   <Route path="/search" element={<Search />} />

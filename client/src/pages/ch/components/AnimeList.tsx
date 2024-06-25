@@ -132,7 +132,7 @@ function Mainarticle() {
                <MdChevronLeft 
                onClick={sliderLeft}
                size={40} 
-               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               className=" text-white  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
                <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
 
@@ -171,7 +171,7 @@ function Mainarticle() {
                <MdChevronRight 
                onClick={sliderRight}
                size={40} 
-               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               className=" text-white duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
             </div>
 
@@ -198,7 +198,7 @@ function Mainarticle() {
                <MdChevronLeft 
                onClick={sliderLeft_2}
                size={40} 
-               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               className=" text-white duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
                <div id="slider_2" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
 
@@ -239,7 +239,7 @@ function Mainarticle() {
                <MdChevronRight 
                onClick={sliderRight_2}
                size={40} 
-               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               className=" text-white duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
 
             </div>
 

@@ -71,7 +71,7 @@ export default function Search() {
       {/* Genre selection section */}
       <div className="text-center mt-4">
         <h2 className="text-white text-xl font-bold">Filter by Genres:</h2>
-        <div className="flex flex-wrap justify-center space-x-4 space-y-4 mt-5 w-[70%] m-auto ">
+        <div className=" flex-wrap justify-center space-x-4 space-y-4 mt-5 w-[70%] m-auto ">
           {listAnime.reduce((genres, anime) => {
             anime.genres.forEach((genre) => {
               if (!genres.includes(genre)) {
@@ -96,18 +96,18 @@ export default function Search() {
       </div>
 
       <div className="w-full h-full mt-16 p-16 space-y-4 m-auto text-center">
-        <h1 className="text-white text-2xl font-bold">Meilleurs résultats</h1>
+        <h1 className="text-white text-2xl font-bold"></h1>
 
-        <div className="flex overflow-auto md:inline-grid md:grid-cols-2 gap-4">
+        <div className="flex overflow-auto md:inline-grid md:grid-cols-2 gap-4 space-x-4" style={{display: "ruby" , alignItems: "center"}}>
           {filteredAnime.map((anime) => (
             <Link to={`/series/${anime._id}`} key={anime._id}>
-              <div className="w-72 h-56 bg-[#0000004a] cursor-pointer">
+              <div className="w-64  m-1 bg-[#0000004a] cursor-pointer">
                 <div
-                  style={{ backgroundImage: `url(${anime.imageUrl2})` }}
+                  style={{ backgroundImage: `url(${anime.imageUrl2})` , backgroundSize: "cover" , backgroundPosition: "center" , backgroundRepeat: "no-repeat"}}
                   className="h-32 bg-cover bg-center bg-no-repeat duration-500 hover:transition-opacity hover:opacity-25"
                 ></div>
-                <div className="p-5">
-                  <h1 className="text-xl text-white font-bold overflow-hidden overflow-ellipsis">
+                <div className="p-5" title={anime.title}>
+                  <h1 className="text-xl text-white font-bold overflow-hidden overflow-ellipsis truncate">
                     {anime.title}
                   </h1>
                   {/* Add other details like genres, description, etc. */}

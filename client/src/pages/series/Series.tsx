@@ -130,10 +130,10 @@ export default function Series() {
             className="md:w-64 md:h-96 w-16 h-28 bg-cover bg-center bg-no-repeat rounded-lg"
             style={{ backgroundImage: `url(${anime.imageUrl1})` }}
           ></div>
-          <div className="md:w-[70%]  space-y-4 md:border md:border-[#222] md:bg-[#222] md:p-5 rounded-lg">
+          <div className="md:w-[70%]  space-y-4  md:bg-[#0000007a]  duration-150 md:hover:bg-[#222] md:p-5 rounded-lg">
             <h1 className="text-white font-bold text-3xl">
               {anime.title}
-              <span className="text-black rounded-lg p-2 float-right text-sm bg-orange-500">
+              <span className="text-white rounded-lg p-2 float-right text-sm bg-orange-500">
                 { anime?.format ?  anime?.format?.seriesChecked == 1 ? <span>Serie</span> : <span>Film</span> : null  }
               </span>
               
@@ -154,9 +154,9 @@ export default function Series() {
                 {anime.rating && anime.rating*2 || "-"}
               </span>
             </p>
-            <p className="text-slate-300">{anime.description}</p>
+            <p className="text-white font-bold">{anime.description}</p>
             <div className="flex justify-around items-center space-x-4">
-              <button className="btn" disabled={true}>
+              <button className="btn" disabled={false}>
                 Watch Trailer
               </button>
               <Link to={`/series/${id}/${firsteps}`}>
@@ -183,7 +183,7 @@ export default function Series() {
                <MdChevronLeft 
                onClick={sliderLeft}
                size={40} 
-               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               className=" text-white duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
       <div id="slider" className=" relative m-auto p-3   w-[85%] h-full flex space-x-10 overflow-x-scroll whitespace-nowrap scroll-smooth">
        
       {animeEps.length == 1 ? (
@@ -236,7 +236,7 @@ export default function Series() {
               <MdChevronRight 
                onClick={sliderRight}
                size={40} 
-               className="  duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
+               className=" text-white duration-300 opacity-100 hover:opacity-40 cursor-pointer" />
       </article>
 
       <Mainfooter />

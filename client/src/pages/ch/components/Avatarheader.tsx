@@ -3,17 +3,19 @@ import SearchLogo from "../../../../public/assets/icons/search.png";
 import Logo from "../../../../public/assets/logo.png";
 import Avatardash from "../../../components/Avatardash";
 import Crown from "../../../../public/assets/icons/crown.png";
+
+
 function AvatarHeader() {
    return ( 
       <>
          <div className="navbar select-none relative z-50 ">
-                  <div className="flex-1">
-                     <ul className="md:flex hidden space-x-10 text-white ml-16 ">
-                        <Link to="/"><li>Home</li></Link>
+                  <div className="flex-1 ">
+                     <ul className="md:flex hidden space-x-10 text-white ml-16 items-center ">
+                        <Link to="/"><li><img src={Logo} width={40} className=" duration-150 hover:w-[45px] " /></li></Link>
                         <Link to="/series"><li>Series</li></Link>
-                        <li className=" cursor-not-allowed ">Movies</li>
+                        <Link to="/movies"><li>Movies</li></Link>
                         <li 
-                              className="inline-flex items-center space-x-3 cursor-not-allowed duration-300 hover:text-black" >
+                              className="inline-flex items-center space-x-3 cursor-not-allowed duration-300 hover:text-orange-500 hover:font-semibold" >
                               <span>Premium</span>
                               <img src={Crown} alt="Crown Logo" width={16} draggable={false} /> 
                         </li>
