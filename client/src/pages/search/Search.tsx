@@ -98,7 +98,7 @@ export default function Search({ userCount }: { userCount: number}) {
       <div className="w-full h-full mt-16 p-16 space-y-4 m-auto text-center">
         <h1 className="text-white text-2xl font-bold"></h1>
 
-        <div className="flex overflow-auto md:inline-grid md:grid-cols-2 gap-4 space-x-4" style={{display: "ruby" , alignItems: "center"}}>
+        <div className="flex overflow-auto md:inline-grid md:grid-cols-2 gap-4 space-x-4">
           {filteredAnime.map((anime) => (
             <Link to={`/series/${anime._id}`} key={anime._id}>
               <div className="w-64  m-1 bg-[#0000004a] cursor-pointer">
