@@ -64,7 +64,7 @@ export default function GetMyFilms() {
       <>
 
       
-      <article className=" w-full h-full m-auto   " style={{display: "ruby"}}>
+      <article className=" w-full h-full block m-auto text-center   ">
       <nav className="border border-blue-500  "></nav>
             <Backdrop
                      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
