@@ -25,11 +25,13 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Socket.io
-mysocket(server);
+
 
 // Connect to MongoDB
 connectDB();
+
+// Socket.io
+mysocket(server);
 
 
 // Routes
