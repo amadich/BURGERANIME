@@ -23,7 +23,7 @@ interface DecodedObject {
      vip: number;
    };
  }
-export default function AddEpes() {
+export default function AddEpes({ userCount }: { userCount: number}) {
 
    const SERVER = import.meta.env.VITE_HOSTSERVER;
 
@@ -192,7 +192,7 @@ export default function AddEpes() {
 
    return ( 
       <>
-            <MainHeader />
+            <MainHeader userCount={userCount} />
              {/* Filter ID Anime */}
 
            <FilterIDanime onAddToIDanime={handleAddToIDanime} />

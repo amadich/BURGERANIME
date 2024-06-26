@@ -6,7 +6,7 @@ import KReadCataAfk from "../assets/images/Burgeranime_premium_anime.png";
 import Mainfooter from "../../../components/MainFooter";
 import axios from "axios";
 
-export default function Premiumanime() {
+export default function Premiumanime({ userCount } : { userCount: number}) {
 
    const SERVER = import.meta.env.VITE_HOSTSERVER;
    const [ IDanime , setIDanime ] = useState<string>("");
@@ -52,7 +52,7 @@ export default function Premiumanime() {
 
    return ( 
       <>
-            <MainHeader />
+            <MainHeader userCount={userCount} />
             <FilterIDanime onAddToIDanime={handleAddToIDanime} />
 
             <nav className="  carousel w-full flex items-center m-auto text-center md:hidden  ">

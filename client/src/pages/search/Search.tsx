@@ -23,7 +23,7 @@ interface Anime {
   eps: Episode[];
 }
 
-export default function Search() {
+export default function Search({ userCount }: { userCount: number}) {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
   const [listAnime, setListAnime] = useState<Anime[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -57,7 +57,7 @@ export default function Search() {
 
   return (
     <>
-      <AvatarHeader />
+      <AvatarHeader userCount={userCount} />
       <div className="text-center">
         <input
           className="w-[80%] border-b border-b-orange-500 bg-transparent text-3xl p-5 outline-none text-white font-bold"

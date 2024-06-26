@@ -22,7 +22,7 @@ interface DecodedObject {
      vip: number;
    };
  }
-export default function Uploadanime() {
+export default function Uploadanime({ userCount } : { userCount: number}) {
 
    const SERVER = import.meta.env.VITE_HOSTSERVER;
 
@@ -236,7 +236,7 @@ export default function Uploadanime() {
 
    return ( 
       <>
-            <MainHeader />
+            <MainHeader userCount={userCount} />
            <nav className="  carousel w-full flex items-center m-auto text-center md:hidden  ">
 
            <figure className="m-auto relative">

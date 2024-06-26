@@ -4,11 +4,11 @@ import MainHeader from "../components/MainHeader";
 import Mainnav from "../components/Mainnav";
 import Mainscene from "../components/Mainscene.";
 
-function Main() {
+function Main({userCount} : any) {
    return ( 
       <>
          <Mainscene />
-         <MainHeader />
+         <MainHeader userCount={userCount} />
          <Mainnav />
          <Mainarticle />
          <Mainfooter />

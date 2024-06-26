@@ -3,9 +3,10 @@ import SearchLogo from "../../../../public/assets/icons/search.png";
 import Logo from "../../../../public/assets/logo.png";
 import Avatardash from "../../../components/Avatardash";
 import Crown from "../../../../public/assets/icons/crown.png";
+import UserConnecting from "../../../components/UserConnecting";
 
 
-function AvatarHeader() {
+function AvatarHeader({userCount} : any) {
    return ( 
       <>
          <div className="navbar select-none relative z-50 ">
@@ -19,12 +20,16 @@ function AvatarHeader() {
                               <span>Premium</span>
                               <img src={Crown} alt="Crown Logo" width={16} draggable={false} /> 
                         </li>
+                        <li>
+                           <UserConnecting userCount={userCount} />
+                        </li>
                      </ul>
                     <Link to="/">
                         <img src={Logo} alt="Logo" width={50} draggable={false}
                         className="flex md:hidden ml-16" />
                     </Link>
                   </div>
+                
                   <div className="flex-none gap-6">
                      <Link to="/search">
                         <div className="form-control">

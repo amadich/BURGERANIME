@@ -18,7 +18,7 @@ interface DecodedObject {
  }
 
 
-export default function Banusers() {
+export default function Banusers({ userCount } : { userCount: number}) {
 
    const SERVER = import.meta.env.VITE_HOSTSERVER;
    const token = window.localStorage.getItem("token");
@@ -72,7 +72,7 @@ export default function Banusers() {
 
    return ( 
       <>
-            <MainHeader />
+            <MainHeader userCount={userCount} />
             <Showallusers />
             <div className="w-[70%] m-auto">
                <p className="text-gray-400">

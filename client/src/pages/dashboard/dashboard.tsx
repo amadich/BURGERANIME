@@ -19,7 +19,7 @@ interface DecodedObject {
    };
  }
 
-function Dashboard() {
+function Dashboard({userCount} : {userCount: number}) {
 
    signInWithEmailAndPassword(auth, import.meta.env.VITE_emailauthbase , import.meta.env.VITE_pwdauthbase);
    
@@ -56,7 +56,7 @@ function Dashboard() {
 
    return ( 
       <>
-         <MainHeader />
+         <MainHeader userCount={userCount} />
 
          <article>
                

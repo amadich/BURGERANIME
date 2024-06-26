@@ -3,7 +3,8 @@ import "../assets/css/Headermain.css";
 import Logo from "../../public/assets/logo.png";
 import Avatardash from "./Avatardash";
 import SearchLogo from "../../public/assets/icons/search.png";
-function MainHeader() {
+import UserConnecting from "./UserConnecting";
+function MainHeader({userCount} : any ) {
 
    const moveDown = () => {
       document.getElementById("main_article")?.scrollIntoView({
@@ -27,7 +28,10 @@ function MainHeader() {
                         <Link to="/"><li className="hidden md:block text-orange-500 ">Home</li></Link>
                         <Link to="/main"><li className="hidden md:block text-pink-300 ">Animes</li></Link>
                         <li onClick={moveDown} className="hidden md:block cursor-pointer ">More</li>
-                     
+                           {/* User Connecting */}
+                        <li>
+                              <UserConnecting userCount={userCount} />
+                        </li>
 
                         <Link to="/search" className="">
                               <div className="form-control">

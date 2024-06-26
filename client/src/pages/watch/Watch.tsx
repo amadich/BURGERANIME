@@ -62,7 +62,7 @@ interface DecodedObject {
   };
 }
 
-export default function Watch() {
+export default function Watch({ userCount }: { userCount: number}) {
   const { id, epsid } = useParams();
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
@@ -291,7 +291,7 @@ export default function Watch() {
 
   return (
     <>
-      <AvatarHeader />
+      <AvatarHeader userCount={userCount} />
 
       <div className="w-full relative" style={{ paddingBottom: '56.25%' }}>
         {animeEpsURL.length > 0 && animeEpsURL[0]?.epsurl && (

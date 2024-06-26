@@ -1,10 +1,10 @@
 import Konata_error_404_ from "../../public/assets/images/konata_error_404_.png";
 import Mainfooter from "../components/MainFooter";
 import MainHeader from "../components/MainHeader";
-export default function NotFound() {
+export default function NotFound({userCount} : {userCount: number}) {
    return ( 
       <>
-      <MainHeader />
+      <MainHeader userCount={userCount} />
             <div className=" select-none mt-[5%] ">
          
                   <figure className="m-auto relative  grayscale ">

@@ -21,7 +21,7 @@ interface DecodedObject {
   aboutme:string
 }
 
-export default function Profile() {
+export default function Profile({userCount} : {userCount: number}) {
   const { id } = useParams<{ id: string }>(); // Add type annotation for useParams
 
   const SERVER = import.meta.env.VITE_HOSTSERVER;
@@ -107,7 +107,7 @@ export default function Profile() {
   },[aboutme])
 
   useEffect(() => {
-    console.log(notone);
+    //console.log(notone);
     setAboutme(decoded && me ? decoded.aboutme : otheraboutme);
     
   }, [ token, notone])
@@ -118,7 +118,7 @@ export default function Profile() {
     // Add a loading state
     return (
       <>
-      <AvatarHeader />
+      <AvatarHeader userCount={userCount} />
 
         <div className=" select-none mt-[5%] ">
          
@@ -154,7 +154,7 @@ export default function Profile() {
       <>
         {/* Header */}
   
-        <MainHeader />
+        <MainHeader userCount={userCount} />
   
         {/* Hero */}
         <div className="hero min-h-screen bg-base-400">

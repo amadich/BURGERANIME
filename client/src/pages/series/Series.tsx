@@ -37,7 +37,7 @@ interface Anime {
   // Add other fields specific to anime data as needed
 }
 
-export default function Series() {
+export default function Series({userCount} : {userCount: number}) {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
   const { id } = useParams();
@@ -82,7 +82,7 @@ export default function Series() {
     // Add a loading state
     return (
       <>
-      <AvatarHeader />
+      <AvatarHeader userCount={userCount} />
 
         <div className=" select-none mt-[5%] ">
          
@@ -123,7 +123,7 @@ export default function Series() {
       />
       {/* Content */}
       <div className="relative  ">
-        <AvatarHeader />
+        <AvatarHeader userCount={userCount} />
         {/* Other content */}
         <div className="w-full h-full grid m-auto md:flex justify-around items-center  bg-[#222] p-5 md:bg-transparent md:p-0 ">
           <div

@@ -1,4 +1,5 @@
 import {  Route , Routes , useLocation } from "react-router-dom";
+import { io } from "socket.io-client";
 import Main from "./pages/Main";
 import Mainch from "./pages/ch/Main";
 import Signup from "./pages/register/Signup";
@@ -42,15 +43,40 @@ interface DecodedObject {
 
 function App() {
 
-  
-  
+  // Define the server URL
+  const SERVER = import.meta.env.VITE_HOSTSERVER;
+  const [userCount, setUserCount] = useState(0);
 
+  // Create a new socket connection
+  const socket = io(SERVER, {
+    autoConnect: false,
+  });
+
+  // Connect the socket
+  useEffect(() => {
+    socket.connect();
+
+    socket.on("connect", () => {
+      //console.log("Connected to server");
+    });
+
+    socket.on("update_user_count", (count) => {
+      setUserCount(count);
+    });
+
+    return () => {
+      socket.off("connect");
+      socket.off("update_user_count");
+      socket.close();
+    };
+  }, []);
+  
+  // Get the token from local storage
   const [_,setCookies] = useCookies(["burgertoken"]);
   const location = useLocation();
   const token = window.localStorage.getItem("token");
   const [decoded, setDecoded] = useState<DecodedObject | null >(null); // Set initial decoded to null
   
-  const SERVER = import.meta.env.VITE_HOSTSERVER;
 
  
 
@@ -114,12 +140,12 @@ function App() {
             
       
             <Routes>
-                  <Route path="*" element={<NotFound />} />
-                  <Route path="/" element={<Main />} />
+                  <Route path="*" element={<NotFound userCount={userCount} />} />
+                  <Route path="/" element={<Main userCount={userCount} />} />
                   <Route path="/main" element={<Mainch />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/signin" element={<Signin />} />
-                  <Route path="/profile/:id" element={<Profile />} />
+                  <Route path="/profile/:id" element={<Profile userCount={userCount} />} />
                 {
                     decoded?.ranks.vip == 1 &&
                     (
@@ -133,13 +159,13 @@ function App() {
                     
                         (
                           <>
-                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/dashboard" element={<Dashboard userCount={userCount} />} />
                             <Route path="/dashboard/showallusers" element={<Showallusers />} />
-                            <Route path="/dashboard/uploadanime" element={<Uploadanime />} />
-                            <Route path="/dashboard/AddEpes" element={<AddEpes />} />
-                            <Route path="/dashboard/Banusers" element={<Banusers />} />
+                            <Route path="/dashboard/uploadanime" element={<Uploadanime userCount={userCount} />} />
+                            <Route path="/dashboard/AddEpes" element={<AddEpes userCount={userCount} />} />
+                            <Route path="/dashboard/Banusers" element={<Banusers userCount={userCount} />} />
                             <Route path="/dashboard/Rankedusers" element={<Rankedusers />} />
-                            <Route path="/dashboard/Premiumanime" element={<Premiumanime />} />
+                            <Route path="/dashboard/Premiumanime" element={<Premiumanime userCount={userCount} />} />
                           </>
                         )
       
@@ -152,11 +178,11 @@ function App() {
                     
                         (
                           <>
-                            <Route path="/dashboard_helper" element={<Dashboard_helper />} />
+                            <Route path="/dashboard_helper" element={<Dashboard_helper userCount={userCount} />} />
                            
-                            <Route path="/dashboard_helper/uploadanime" element={<Uploadanime />} />
-                            <Route path="/dashboard_helper/AddEpes" element={<AddEpes />} />
-                            <Route path="/dashboard_helper/Premiumanime" element={<Premiumanime />} />
+                            <Route path="/dashboard_helper/uploadanime" element={<Uploadanime userCount={userCount} />} />
+                            <Route path="/dashboard_helper/AddEpes" element={<AddEpes userCount={userCount} />} />
+                            <Route path="/dashboard_helper/Premiumanime" element={<Premiumanime userCount={userCount} />} />
                             
                             
                           </>
@@ -166,11 +192,11 @@ function App() {
                   }
                   
                   <Route path="/learn_discord" element={<Learn_discord />} />
-                  <Route path="/series" element={<Myseries />} />
-                  <Route path="/movies" element={<MyFilms />} />
-                  <Route path="/series/:id" element={<Series />} />
-                  <Route path="/series/:id/:epsid" element={<Watch />} />
-                  <Route path="/search" element={<Search />} />
+                  <Route path="/series" element={<Myseries userCount={userCount} />} />
+                  <Route path="/movies" element={<MyFilms userCount={userCount} />} />
+                  <Route path="/series/:id" element={<Series userCount={userCount} />} />
+                  <Route path="/series/:id/:epsid" element={<Watch userCount={userCount} />} />
+                  <Route path="/search" element={<Search userCount={userCount} />} />
                   
                   
       
