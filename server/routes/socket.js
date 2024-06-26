@@ -7,7 +7,7 @@ const mysocket = (server) => {
    // io is the server instance , it will listen to the server
    const io = new Server(server, {
       cors: {
-         origin: 'https://burgeranime.vercel.app',
+         origin: process.env.CLIENT_URL,
          methods: ['GET', 'POST'],
       },
    });

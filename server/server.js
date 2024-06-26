@@ -10,7 +10,7 @@ const server = http.createServer(app);
 app.use(express.json());
 
 // CORS Configuration
-const allowedOrigins = ['https://burgeranime.vercel.app']; // https://burgeranime.vercel.app
+const allowedOrigins = [process.env.CLIENT_URL]; // https://burgeranime.vercel.app
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.includes(origin)) {
