@@ -50,6 +50,8 @@ function App() {
   // Create a new socket connection
   const socket = io(SERVER, {
     autoConnect: false,
+    // only https://burgeranimeserver.vercel.app/
+    transports: ["websocket"],
   });
 
   // Connect the socket
