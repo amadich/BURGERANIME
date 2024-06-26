@@ -24,11 +24,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Connect to MongoDB
-connectDB();
 
 // Socket.io
 mysocket(server);
+
+// Connect to MongoDB
+connectDB();
+
 
 // Routes
 app.use("/api", require("./routes/Register"));
