@@ -36,7 +36,7 @@ export default function Search({ userCount }: { userCount: number}) {
     });
   }, []);
 
-  // Function to handle genre selection/deselection
+  // Function to handle genre selection/deselections
   const handleGenreSelect = (genre: string) => {
     if (selectedGenres.includes(genre)) {
       // Deselect genre
