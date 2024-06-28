@@ -29,7 +29,7 @@ interface Anime {
    seasonal?: number;
    premium?:  number;
    eps: Episode[];
-   // Add other fields specific to anime data as needed
+   // Add other fields specific to anime data as needed...
  }
 
 export default function GetMyFilms() {
