@@ -185,9 +185,9 @@ export default function Profile({userCount} : {userCount: number}) {
                        readOnly={!me}
                        style={!me ? { resize: "none" } : {}}
                        maxLength={250}
-                       placeholder="..."
+                       
                        className="bg-transparent outline-none w-96 md:w-full text-white font-bold "
-                       value={decoded && me ? `${decoded.aboutme}` : `${otheraboutme}`}
+                       placeholder={decoded && me ? `${decoded.aboutme}` : `${otheraboutme}`}
                        />
   
               </div>
