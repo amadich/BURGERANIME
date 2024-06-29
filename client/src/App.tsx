@@ -28,7 +28,7 @@ import Myseries from "./pages/MySeries/Myseries";
 import MyFilms from "./pages/MyFilms/MyFilms";
 
 
-// Define the interface for the decoded objects
+// Define the interface for the decoded objects from the token
 interface DecodedObject {
   id : String,
   avatar: String,
