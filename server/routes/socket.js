@@ -19,8 +19,14 @@ const mysocket = (server) => {
    io.on("connection", (socket) => {
       connectedUsers++;
       io.emit('update_user_count', connectedUsers);
-      console.log('A user connected, ID:', socket.id);
       
+      // Extract and log handshake details
+      const clientIp = socket.handshake.address;
+      const clientHeaders = socket.handshake.headers;
+      console.log('A user connected, ID:', socket.id);
+      console.log('Client IP:', clientIp);
+      console.log('Client Headers:', clientHeaders);
+
       // disconnect event will be emitted when a user disconnects
       socket.on("disconnect", () => {
          connectedUsers--;
