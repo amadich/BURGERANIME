@@ -1,0 +1,17 @@
+version: '3'
+services:
+  server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app_server
+      - node_modules:/app_server/node_modules
+    
+    env_file:
+      - .env
+  
+volumes:
+  node_modules:
