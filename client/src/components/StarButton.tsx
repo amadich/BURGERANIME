@@ -5,6 +5,7 @@ import axios from 'axios'; // Import axios for making HTTP requests
 
 const StarButton = ({ idanime, iduser, favoriteAnime } : any) => {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
+  const token = localStorage.getItem('token');
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,11 @@ const StarButton = ({ idanime, iduser, favoriteAnime } : any) => {
   }, [idanime, favoriteAnime]);
 
   const toggleFavorite = async () => {
+    if (token == null) {
+      alert('You must be logged in to favorite an anime.');
+      window.location.href = '/signin';
+      return;
+    }
     try {
       if (!isFavorited) {
         await axios.post(`${SERVER}/api/profile/favAnimelist/${idanime}/${iduser}`);
