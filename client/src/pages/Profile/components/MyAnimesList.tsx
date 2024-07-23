@@ -107,7 +107,7 @@ function MyAnimeList(idUser: any) {
    return ( 
       <>
          {/* IF you are used image 'Supramain' in MainNav  change md:mt-[-620px] */}
-         <article id="main_article" className=" w-[80%] pt-[1%]  bg-[#222] md:relative md:mt-[-120px] m-auto">
+         <article id="main_article" className=" w-full pt-[1%]  bg-[#222] md:relative  m-auto">
          
 
             {/* Details List animes saison   */}
@@ -127,7 +127,7 @@ function MyAnimeList(idUser: any) {
                      <p className="text-[15px] text-gray-400 font-mono">
                      Share Your Favorite Animes with your Friends     </p>
                   </h1>
-                  <div className="w-[80%] h-[5px] rounded-xl m-5 md:m-10 md:ml-32 bg-custom-gradient"></div>
+                  <div className=" h-[5px] rounded-xl m-5 md:m-10 md:ml-32 bg-custom-gradient"></div>
 
                </div>
 
