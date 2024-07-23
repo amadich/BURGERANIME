@@ -60,7 +60,7 @@ function MyAnimeList(idUser: any) {
              const listAnime: Anime[] = response.data;
              setOpen(false);
 
-             console.log(listAnime);
+             //console.log(listAnime);
 
              if ( listAnime == null) {
                setMyFavoriteAnime([]);
