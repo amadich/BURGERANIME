@@ -5,6 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(45deg, #f5c607, rgb(255 152 8), #ff6014, maroon)',
+      },
+    },
     screens: {
       'sm': '400px',
       // => @media (min-width: 640px) { ... }

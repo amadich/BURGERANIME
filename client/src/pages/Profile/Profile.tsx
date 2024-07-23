@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import AvatarHeader from "../ch/components/Avatarheader";
 import Konata_error_404_ from "../../../public/assets/images/konata_error_404_.png";
+import MyAnimesList from "./components/MyAnimesList";
 
 interface DecodedObject {
   id: string; // Change 'String' to 'string' to match TypeScript type conventions
@@ -219,6 +220,8 @@ export default function Profile({userCount} : {userCount: number}) {
             </div>
           </div>
         </div>
+
+        <MyAnimesList idUser={id} />
   
         {/* Footer */}
   
