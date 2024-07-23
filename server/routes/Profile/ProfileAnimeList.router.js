@@ -5,6 +5,6 @@ const { GetFavAnimeList ,AddFavAnime , removeFavAnimeList } = require("../../con
 
 router.get("/profile/favAnimelist/:iduser", GetFavAnimeList);
 router.post("/profile/favAnimelist/:idanime/:iduser", AddFavAnime);
-router.delete("/profile/favAnimelist/:idanime/:iduser", removeFavAnimeList);
+router.post("/profile/removefavAnimelist/:idanime/:iduser", removeFavAnimeList);
 
 module.exports = router;

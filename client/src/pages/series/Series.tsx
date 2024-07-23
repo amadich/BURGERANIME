@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { MdChevronLeft , MdChevronRight } from "react-icons/md";
 import axios from "axios";
 import Mainfooter from "../../components/MainFooter";
+import StarButton from "../../components/StarButton";
 
 
 
@@ -37,10 +38,18 @@ interface Anime {
   // Add other fields specific to anime data as needed
 }
 
-export default function Series({userCount} : {userCount: number}) {
+interface SeriesProps {
+  userCount: number;
+  userID: String;
+  userFavAnime: String[];
+}
+
+export default function Series({ userCount, userID , userFavAnime }: SeriesProps) {
   const SERVER = import.meta.env.VITE_HOSTSERVER;
 
   const { id } = useParams();
+  
+
   const [anime, setAnime] = useState<Anime | null>(null); // Change to nullable type
   const [animeEps , setAnimeEps] = useState<Episode[]>([]);
   const [firsteps , setFiestEps] = useState<String>("");
@@ -133,9 +142,12 @@ export default function Series({userCount} : {userCount: number}) {
           <div className="md:w-[70%]  space-y-4  md:bg-[#0000007a]  duration-150 md:hover:bg-[#222] md:p-5 rounded-lg">
             <h1 className="text-white font-bold text-3xl">
               {anime.title}
-              <span className="text-white rounded-lg p-2 float-right text-sm bg-orange-500">
-                { anime?.format ?  anime?.format?.seriesChecked == 1 ? <span>Serie</span> : <span>Film</span> : null  }
-              </span>
+              <div className=" inline space-x-4 p-2">
+                <StarButton idanime={id} iduser={userID} favoriteAnime={userFavAnime} />
+                <span className="text-white rounded-lg p-2 float-right text-sm bg-orange-500">
+                  { anime?.format ?  anime?.format?.seriesChecked == 1 ? <span>Serie</span> : <span>Film</span> : null  }
+                </span>
+              </div>
               
             </h1>
             <p className="font-bold text-slate-200">

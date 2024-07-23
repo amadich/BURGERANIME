@@ -30,14 +30,18 @@ import MyFilms from "./pages/MyFilms/MyFilms";
 
 // Define the interface for the decoded objects from the token
 interface DecodedObject {
-  id : String,
-  avatar: String,
+  id: string;
+  avatar: string;
   ranks: {
     admin: number;
-    helper:number;
+    helper: number;
     demo: number;
     vip: number;
   };
+  favoriteAnime: string[]; // Assuming favoriteAnime is an array of strings
+  aboutme: string;
+  datecreate: string;
+  iat: number;
 }
 
 
@@ -46,6 +50,8 @@ function App() {
   // Define the server URL
   const SERVER = import.meta.env.VITE_HOSTSERVER;
   const [userCount, setUserCount] = useState(0);
+
+ 
 
   // Create a new socket connection
   const socket = io(SERVER, {
@@ -79,6 +85,9 @@ function App() {
   const token = window.localStorage.getItem("token");
   const [decoded, setDecoded] = useState<DecodedObject | null >(null); // Set initial decoded to null
   
+   // get id User from token && favoriteanime
+   const [iduser, setIduser] = useState<String>("");
+   const [userfavoriteanime, setUserFavoriteanime] = useState<String[]>([]);
 
  
 
@@ -92,12 +101,19 @@ function App() {
             window.localStorage.removeItem("token");
             window.localStorage.setItem("token",newToken);
             setCookies("burgertoken",newToken);
+            
 
                 try {
 
                   // Decode the token and store the decoded object in state
                   const decodedToken = jwtDecode(token);
                   setDecoded(decodedToken as DecodedObject);
+                 
+                  if ( decoded != null) {
+                    setIduser(decoded.id);
+                    setUserFavoriteanime(decoded.favoriteAnime);
+                  }
+                  
                   
                 } catch (error) {
                   console.log(error);
@@ -196,7 +212,7 @@ function App() {
                   <Route path="/learn_discord" element={<Learn_discord />} />
                   <Route path="/series" element={<Myseries userCount={userCount} />} />
                   <Route path="/movies" element={<MyFilms userCount={userCount} />} />
-                  <Route path="/series/:id" element={<Series userCount={userCount} />} />
+                  <Route path="/series/:id" element={<Series userCount={userCount} userID={iduser} userFavAnime={userfavoriteanime}  />} />
                   <Route path="/series/:id/:epsid" element={<Watch userCount={userCount} />} />
                   <Route path="/search" element={<Search userCount={userCount} />} />
                   

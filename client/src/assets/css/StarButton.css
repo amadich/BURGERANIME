@@ -1,0 +1,20 @@
+/* StarButton.css */
+@keyframes star-burst {
+   0% {
+     transform: scale(1);
+     opacity: 1;
+   }
+   50% {
+     transform: scale(1.5);
+     opacity: 0.8;
+   }
+   100% {
+     transform: scale(1);
+     opacity: 1;
+   }
+ }
+ 
+ .star-animate {
+   animation: star-burst 0.5s ease-in-out;
+ }
+ 
