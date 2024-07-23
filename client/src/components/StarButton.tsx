@@ -8,9 +8,14 @@ const StarButton = ({ idanime, iduser, favoriteAnime } : any) => {
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    if (favoriteAnime.includes(idanime)) {
-      setIsFavorited(true);
+    
+    
+    if( favoriteAnime != null ) {
+      if (favoriteAnime.includes(idanime)) {
+        setIsFavorited(true);
+      }
     }
+    
   }, [idanime, favoriteAnime]);
 
   const toggleFavorite = async () => {
