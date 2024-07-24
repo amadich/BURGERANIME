@@ -8,6 +8,7 @@ import axios, { AxiosResponse } from 'axios';
 import { useCookies } from 'react-cookie';
 import ReCAPTCHA from 'react-google-recaptcha'; // Import ReCAPTCHA
 
+
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -68,17 +69,24 @@ export default function Signup() {
 
   return (
     <>
-      <header className="block m-auto text-center h-16">
-        <Link to="/">
-          <img src={Logo} alt="Logo" width={60} className="m-auto mt-5" draggable={false} />
-        </Link>
-      </header>
+          <header className=' relative w-[100%] p-3 '>
+                    <div className='flex items-center space-x-4'>
+                      <Link to="/">
+                          <img src={Logo} alt="Logo" width={60} draggable={false} />
+                      </Link>
+                      <p className='font-bold text-2xl'>
+                        <span className='text-orange-300'>BURGER</span>
+                        <span className='text-white'>ANIME</span>
+                      </p>
+                    </div>
+                
+          </header>
 
-      <div className="signup-container">
+      <div className="signup-container p-10">
         <div className="w-[80%] h-full bg-blue-50">
-          <div className="float-left md:w-1/2 h-full">
+          <div className="float-left md:w-1/2 h-full p-5">
             <form action="" id="signupform" onSubmit={handsubmit}>
-              <h1 className="text-blue-800 font-bold text-3xl pl-16 pt-10 uppercase"> ♦ Create an account </h1>
+              <h1 className="text-blue-500 font-bold text-3xl pl-10 pt-10 uppercase"> Let's go into the world of anime </h1>
               {!checker ? (
                 <span className="text-center text-red-500 block w-[80%] m-auto mt-10 font-mono font-bold">
                   You have entered an invalid email address or the password you have entered is too short and must contain
@@ -141,6 +149,7 @@ export default function Signup() {
           </div>
         </div>
       </div>
+
     </>
   );
 }

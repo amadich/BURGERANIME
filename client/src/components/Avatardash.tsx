@@ -57,7 +57,7 @@ export default function Avatardash() {
       {showAvatar ? (
         // Show the "Create new" button if showAvatar is true
         <Link to="/signup">
-          <button className=" p-2 rounded-md bg-[#d64d2b] duration-300 text-white hover:bg-[#e48022]">
+          <button className=" p-2 rounded-md bg-[#d64d2b] duration-300 text-white hover:bg-[#e48022] uppercase font-bold ">
             Create new
           </button>
         </Link>

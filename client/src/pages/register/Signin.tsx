@@ -86,10 +86,16 @@ export default function Signin() {
   return (
    <>
 
-            <header className='block m-auto text-center h-16'>
-                <Link to="/">
-                    <img src={Logo} alt="Logo" width={60} className='m-auto mt-5' draggable={false} />
-                </Link>
+            <header className=' relative w-[100%] p-3 '>
+                <div className='flex items-center space-x-4'>
+                  <Link to="/">
+                      <img src={Logo} alt="Logo" width={60} draggable={false} />
+                  </Link>
+                  <p className='font-bold text-2xl'>
+                    <span className='text-orange-300'>BURGER</span>
+                    <span className='text-white'>ANIME</span>
+                  </p>
+                </div>
             </header>
 
         <div className="signup-container">
@@ -104,7 +110,8 @@ export default function Signin() {
                       
                       <form action="" id='signupform' onSubmit={handsubmit}>
 
-                        <h1 className='text-blue-800 font-bold text-3xl pl-16 pt-10 uppercase '>♦ Se connecter </h1>
+                        <h1 className='text-blue-500 font-bold text-3xl pl-16 pt-10 uppercase '> WELCOME BACK </h1>
+                        <span className='pl-16 font-mono text-gray-500'>We are happy to have you as a member with us</span>
                         {
                               !checker ? <span className='text-center text-red-500 block w-[80%] m-auto mt-10 font-mono font-bold'>You have entered an invalid email address or the password you have entered is too short and must contain at least 8 characters</span> : null
                         }
