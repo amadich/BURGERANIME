@@ -76,7 +76,7 @@ export default function Avatardash() {
             </label>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-white rounded-box w-52 bg-[#222]"
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-white rounded-box w-56 bg-[#222]"
             >
               <Link to={`/profile/${decoded.id}`} >
                   <li>
@@ -85,16 +85,20 @@ export default function Avatardash() {
                       <span
                         className="badge border-none text-black"
                         style={
-                          decoded.ranks.admin === 1 && decoded.ranks.demo === 0
+                            decoded.ranks.admin === 1 
                             ? { backgroundColor: "orangered" }
-                            : { backgroundColor: "gold" }
+                            : decoded.ranks.helper === 1  ? 
+                            { backgroundColor: "deepskyblue" , display: "inline" } 
+                            : decoded.ranks.vip === 1 ? { backgroundColor: "limegreen" }
+
+                            :{ backgroundColor: "gold" }
                         }
                       >
                         {decoded.ranks.vip === 1 ? "VIP " : null}
-                        {decoded.ranks.admin === 1 && decoded.ranks.helper === 1
+                        {decoded.ranks.admin === 1 
                           ? "Admin"
                           : 
-                          decoded.ranks.helper === 1 && decoded.ranks.admin === 0 ? "Helper " : null
+                          decoded.ranks.helper === 1  ? "Helper " : null
                           }
                         
                         
