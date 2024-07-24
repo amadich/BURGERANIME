@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AvatarDemo from "../../public/assets/icons/avatar.png";
+import Crownbtn from "../../public/assets/icons/crown.png";
 import jwtDecode from "jwt-decode";
 import { useCookies } from "react-cookie";
 
@@ -77,9 +78,9 @@ export default function Avatardash() {
               tabIndex={0}
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-white rounded-box w-52 bg-[#222]"
             >
-              <Link to={`/profile/${decoded.id}`}>
+              <Link to={`/profile/${decoded.id}`} >
                   <li>
-                    <span className="justify-between">
+                    <span className="justify-between duration-150 hover:text-green-500 ">
                       Profile
                       <span
                         className="badge border-none text-black"
@@ -103,21 +104,39 @@ export default function Avatardash() {
                   </li>
               </Link>
               
-              <li>
-                <a>Settings</a>
-              </li>
-              <li onClick={Logoutuser}>
-                <a>Logout</a>
+             
+             {
+              /*
+                   <li>
+                    <a>Settings</a>
+                  </li>
+              */
+             }
+
+
+             {
+              decoded.ranks.vip === 1 ?
+                <li> 
+                  <Link to={`/profile/${decoded.id}/changeavatar`} className=" duration-150 hover:text-orange-500 ">
+                    Change Avatar
+                    <img src={Crownbtn} alt="Crownbtn" width={20} />
+                  </Link> 
+                </li>
+              : null
+             }
+
+              <li onClick={Logoutuser} >
+                <a className="duration-150 hover:text-red-500">Logout</a>
               </li>
               {
                decoded.ranks.admin === 1 && decoded.ranks.demo === 0
-                      ? <Link to="/dashboard" className="text-center"><li className="btn border-none bg-orange-500 text-white mt-5">Dashboard</li></Link>
+                      ? <Link to="/dashboard" className="text-center"><li className="btn border-none bg-orange-500 text-white mt-5 duration-150 hover:bg-orange-700 ">Dashboard</li></Link>
                       : null
                }
 
 {
                decoded.ranks.helper === 1
-                      ? <Link to="/dashboard_helper" className="text-center"><li className="btn border-none bg-blue-700 text-white mt-5">Dashboard Helper</li></Link>
+                      ? <Link to="/dashboard_helper" className="text-center"><li className="btn border-none bg-blue-700 text-white mt-5 duration-150 hover:bg-blue-900 ">Dashboard Helper</li></Link>
                       : null
                }
             </ul>

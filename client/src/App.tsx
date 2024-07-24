@@ -168,7 +168,7 @@ function App() {
                     decoded?.ranks.vip == 1 &&
                     (
                       <>
-                        <Route path="/profile/:id/changeavatar" element={<ProfileVip />} />
+                        <Route path="/profile/:id/changeavatar" element={<ProfileVip userCount={userCount} />} />
                       </>
                     )
                   }

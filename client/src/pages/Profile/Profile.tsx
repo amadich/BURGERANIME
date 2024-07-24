@@ -167,21 +167,24 @@ export default function Profile({userCount} : {userCount: number}) {
   
             <div>
               <h1 
-                className="text-5xl font-bold text-white">
+                className=" flex items-center text-5xl font-bold text-white space-x-4">
                 {user.toUpperCase()}
                 <span 
                   style={otherRanks === "Demo" ? { color : "gold"} : otherRanks === "VIP" ? {color:  "limegreen"} : otherRanks === "Admin" ? {color: "orangered"} : otherRanks === "Helper" ? { color: "deepskyblue" } :  {}  }
                   
-                  className="pl-5  text-sm select-none">
+                  className="text-sm select-none ml-5 badge badge-secondary badge-outline ">
                   {otherRanks}
                 </span>
+                
+                { otherRanks === "VIP" || otherRanks === "Admin" || otherRanks === "Helper" ? <img src={Crownbtn} alt="Crownbtn" width={20} draggable={false} /> : null }
+                
               </h1>
   
               <div className="py-6">
-                <h1 className=" text-3xl font-mono text-gray-500">About me</h1>
+                <h1 className=" text-3xl font-mono text-gray-500 uppercase ">Description</h1>
                 <textarea
                 onChange={(e) => {setAboutme(e.target.value)}}
-                       rows={5}
+                       rows={3}
                        cols={100}
                        readOnly={!me}
                        style={!me ? { resize: "none" } : {}}
@@ -202,20 +205,22 @@ export default function Profile({userCount} : {userCount: number}) {
                  Update Information
               </button>
   
-              
+              <Link
+                  to={ decoded?.ranks.vip === 1 ? `/profile/${decoded.id}/changeavatar` : "" }   >
+                  
                   <button 
-                  disabled={ decoded?.ranks.vip == 1 ? false : true }
+                    disabled={ decoded?.ranks.vip == 1 ? false : true }
                     style={ me ? {display: "block"} : {display:"none"} }
-                  className="  btn btn-accent mt-5  ">
-                    <Link 
-                    className="flex justify-between items-center space-x-4"
-                    to={ decoded?.ranks.vip === 1 ? `/profile/${decoded.id}/changeavatar` : "" } 
-                    >
+                    className="  btn btn-accent mt-5  ">
+                   
+                    <div className="flex  justify-between items-center space-x-4">
                       <p className="text-white" >Change Avatar</p>
                       <img src={Crownbtn} alt="Crownbtn" width={20} />
-                    </Link>
+                    </div>
+                     
+                   
                   </button>
-             
+              </Link>
               
             </div>
           </div>

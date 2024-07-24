@@ -10,6 +10,7 @@ import { ref , uploadBytes } from "firebase/storage";
 
 import { auth } from "../../models/Firebase";
 import { signInWithEmailAndPassword , signOut } from "firebase/auth";
+import Crownbtn from "../../../public/assets/icons/crown.png";
 
 interface DecodedObject {
   id: string; // Change 'String' to 'string' to match TypeScript type conventions
@@ -18,7 +19,7 @@ interface DecodedObject {
   aboutme:string
 }
 
-export default function ProfileVip() {
+export default function ProfileVip({userCount} : {userCount: number}) {
   const { id } = useParams<{ id: string }>(); // Add type annotation for useParams
 
   const SERVER = import.meta.env.VITE_HOSTSERVER;
@@ -153,7 +154,7 @@ useEffect(() => {
     <>
       {/* Header */}
 
-      <MainHeader />
+      <MainHeader userCount={userCount} />
 
       {/* Hero */}
       <div className="hero min-h-screen bg-base-400">
@@ -164,35 +165,44 @@ useEffect(() => {
           draggable={false} />
 
           <div>
+           
             <h1 
-              className="text-5xl font-bold text-white">
+              className=" flex items-center text-5xl font-bold text-white space-x-4">
               {user.toUpperCase()}
               <span 
                 style={otherRanks === "Demo" ? { color : "gold"} : otherRanks === "VIP" ? {color:  "limegreen"} : otherRanks === "Admin" ? {color: "orangered"} : otherRanks === "Helper" ? { color: "deepskyblue" } :  {}  }
                 
-                className="pl-5  text-sm select-none">
+                className="  text-sm select-none ml-5 badge badge-secondary badge-outline ">
                 {otherRanks}
               </span>
+              <img src={Crownbtn} alt="Crownbtn" width={20} />
             </h1>
 
-            
+           
 
             <form onSubmit={handupload}>
                   <div style={me ? {display:"block"} : {display: "none"}} className="space-y-5">
-                  <button
-                   className="btn btn-primary text-white "
-                    disabled={disableChangeAvatar || isSubmitting} >
-                    Change Avatar</button>
+                 
                   <input 
                       accept=".png, .jpg, .jpeg"
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setAvatar(e.target.files && e.target.files[0])}}
                       type="file"
-                      className="file-input file-input-bordered file-input-primary w-full max-w-xs ml-1 md:ml-5 bg-[#222] text-white " />
+                      className="file-input file-input-bordered file-input-primary w-full max-w-xs  md:ml-5 bg-[#222] text-white " />
 
-                  <span className="pl-5 text-green-500 font-mono " > {messageResavatar} </span>
+                  <button
+                   className="btn btn-accent ml-5 "
+                    disabled={disableChangeAvatar || isSubmitting} >
+                    Change Avatar
+                  </button>
+
+                  <span className=" block ml-7 text-green-500 font-mono " > {messageResavatar} </span>
 
                   </div>
             </form>
+
+            <p className=" text-gray-400 font-mono text-center uppercase ">
+                Through this page, you can change your profile picture. To learn more about subscription and features, <span title="DISCORD : amadich" className="text-purple-500 cursor-default ">contact us</span>
+            </p>
             
           </div>
         </div>
