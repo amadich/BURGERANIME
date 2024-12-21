@@ -1,0 +1,34 @@
+/*body {
+  background: #222;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+}*/
+
+.snow {
+   position: fixed; /* Changed from absolute to fixed to cover the entire viewport */
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh; /* Ensure the container covers the full height of the viewport */
+   pointer-events: none;
+   z-index: 1000; /* Keeps it above other content */
+   overflow: hidden; /* Ensure that snowflakes falling beyond the screen are hidden */
+}
+
+.snowflake {
+   position: absolute;
+   top: -10px;
+   width: 5px;
+   height: 5px;
+   background-color: white;
+   border-radius: 50%;
+   opacity: 0.8;
+   animation: fall linear infinite;
+}
+
+@keyframes fall {
+   to {
+     transform: translateY(calc(100vh + 50px)); /* Makes snowflakes fall a little beyond the viewport height */
+   }
+}
