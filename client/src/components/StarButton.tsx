@@ -45,7 +45,10 @@ const StarButton = ({ idanime, iduser, favoriteAnime } : any) => {
         ${isFavorited ? 'star-animate' : ''}
       `}
     >
-      <i className={`fas fa-star ${isFavorited ? 'text-yellow-500' : 'text-gray-300'}`}></i>
+      <i 
+          title='Favorite List'
+          className={`fas fa-heart ${isFavorited ? 'text-orange-500' : 'text-gray-300'}`}></i>
+
     </button>
   );
 };

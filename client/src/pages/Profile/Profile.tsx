@@ -158,7 +158,7 @@ export default function Profile({userCount} : {userCount: number}) {
         <MainHeader userCount={userCount} />
   
         {/* Hero */}
-        <div className="hero min-h-screen bg-base-400">
+        <div className="hero  bg-base-400 mt-20">
           <div className="hero-content flex-col lg:flex-row">
             <img 
             src={decoded && me ? decoded.avatar : otheravatar ? `${otheravatar}` : `https://firebasestorage.googleapis.com/v0/b/burgeranime-4a245.appspot.com/o/avatars%2Favatar.png?alt=media`} 

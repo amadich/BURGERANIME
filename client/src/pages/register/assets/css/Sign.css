@@ -2,7 +2,7 @@
 .signup-container {
    margin: 0;
    padding: 0;
-   /*background-image: url('../../../../../public/assets/images/signback.jpg'); */
+   background-image: url('../../../../../public/assets/images/signback.jpg'); 
    background-color: white;
    background-size: cover;
    background-position: center;
