@@ -26,6 +26,7 @@ import Premiumanime from "./pages/dashboard/components/Premiumanime";
 import ProfileVip from "./pages/Profile/ProfileVip";
 import Myseries from "./pages/MySeries/Myseries";
 import MyFilms from "./pages/MyFilms/MyFilms";
+import Chat from "./pages/ChatRoom/Chat";
 
 
 // Define the interface for the decoded objects from the token
@@ -215,7 +216,7 @@ function App() {
                   <Route path="/series/:id" element={<Series userCount={userCount} userID={iduser} userFavAnime={userfavoriteanime}  />} />
                   <Route path="/series/:id/:epsid" element={<Watch userCount={userCount} />} />
                   <Route path="/search" element={<Search userCount={userCount} />} />
-                  
+                  <Route path="/chat" element={<Chat userCount={userCount} socket={socket} />} />
                   
       
             </Routes>
