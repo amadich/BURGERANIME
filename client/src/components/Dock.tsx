@@ -31,7 +31,7 @@ const Dock = () => {
     { id: "home", label: "Home", icon: "fas fa-home", path: "/" },
     { id: "seriesanime", label: "Series", icon: "fas fa-tv", path: "/series" },
     { id: "movies", label: "Movies", icon: "fas fa-film", path: "/movies" },
-    // Add the Chat item here
+    // Chat item that uses <a href> instead of <Link>
     { id: "chat", label: "Chat", icon: "fas fa-comment", path: "/chat" },
   ];
 
@@ -153,22 +153,45 @@ const Dock = () => {
                 {item.label}
               </span>
 
-              <Link to={item.path} className="w-full h-full flex items-center justify-center">
-                <button
-                  className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${
-                    active === item.id
-                      ? "border-orange-500 text-white shadow-lg"
-                      : "border-transparent bg-transparent text-gray-400"
-                  } transform hover:scale-110 transition-all duration-300`}
-                  onClick={() => setActive(item.id)}
+              {/* If it's the chat route, use <a href>, otherwise use <Link to> */}
+              {item.path === "/chat" ? (
+                <a
+                  href={item.path}
+                  className="w-full h-full flex items-center justify-center"
                 >
-                  <i
-                    className={`${item.icon} text-xl ${
-                      active === item.id ? "animate-spin-slow" : ""
-                    }`}
-                  ></i>
-                </button>
-              </Link>
+                  <button
+                    className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${
+                      active === item.id
+                        ? "border-orange-500 text-white shadow-lg"
+                        : "border-transparent bg-transparent text-gray-400"
+                    } transform hover:scale-110 transition-all duration-300`}
+                    onClick={() => setActive(item.id)}
+                  >
+                    <i
+                      className={`${item.icon} text-xl ${
+                        active === item.id ? "animate-spin-slow" : ""
+                      }`}
+                    ></i>
+                  </button>
+                </a>
+              ) : (
+                <Link to={item.path} className="w-full h-full flex items-center justify-center">
+                  <button
+                    className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${
+                      active === item.id
+                        ? "border-orange-500 text-white shadow-lg"
+                        : "border-transparent bg-transparent text-gray-400"
+                    } transform hover:scale-110 transition-all duration-300`}
+                    onClick={() => setActive(item.id)}
+                  >
+                    <i
+                      className={`${item.icon} text-xl ${
+                        active === item.id ? "animate-spin-slow" : ""
+                      }`}
+                    ></i>
+                  </button>
+                </Link>
+              )}
             </div>
           ))}
         </div>
