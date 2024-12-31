@@ -41,6 +41,7 @@ const mysocket = (server) => {
         text: data.text,
         avatar: data.avatar,
         ranks: data.ranks,
+        timestamp: new Date().toISOString(),
       };
 
       io.emit("chat_message", message);

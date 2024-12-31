@@ -124,14 +124,14 @@ const Dock = () => {
       {/* Mini Icon Button to toggle Dock */}
       <div
         onClick={() => setShowDock(!showDock)}
-        className="fixed bottom-6 left-10 transform z-50 flex items-center justify-center bg-blue-500 text-white w-10 h-10 rounded-full cursor-pointer"
+        className="fixed bottom-6 left-10 transform z-50 flex items-center justify-center bg-orange-500 text-white w-10 h-10 rounded-full cursor-pointer"
       >
         <i className={`${showDock ? "fas fa-chevron-left" : "fas fa-chevron-right"} text-xl`}></i>
       </div>
 
       {/* Dock Container */}
       <div
-        className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-in-out ${
+        className={`fixed z-50 bottom-6 left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-in-out ${
           showDock
             ? "opacity-100 visibility-visible "
             : "opacity-0 visibility-hidden translate-x-[100%]"
