@@ -27,6 +27,8 @@ import ProfileVip from "./pages/Profile/ProfileVip";
 import Myseries from "./pages/MySeries/Myseries";
 import MyFilms from "./pages/MyFilms/MyFilms";
 import Chat from "./pages/ChatRoom/Chat";
+import ForgotPassword from "./pages/register/ForgotPassword";
+import ResetPassword from "./pages/register/ResetPassword";
 
 
 // Define the interface for the decoded objects from the token
@@ -164,6 +166,8 @@ function App() {
                   <Route path="/main" element={<Mainch />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/signin" element={<Signin />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
                   <Route path="/profile/:id" element={<Profile userCount={userCount} />} />
                 {
                     decoded?.ranks.vip == 1 &&

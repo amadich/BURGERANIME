@@ -136,6 +136,7 @@ export default function Signin() {
                                       <p className='text-center w-[80%] block m-auto text-gray-500 '>
                                       If you forgot your password and do not remember it, please contact our team via 
                                       <span title='amadich' className='text-purple-800 cursor-pointer duration-100 hover:font-bold'> Discord!</span>
+                                      <Link to="/forgot-password"><span className='text-blue-800 font-bold'> Forgot Password</span></Link>
                                     </p>
 
                                       <label>
