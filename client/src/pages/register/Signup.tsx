@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './assets/css/Sign.css';
-import RejAS1 from './assets/images/1318226.png';
+import RejAS1 from './assets/images/13182260.webp';
 import Logo from './assets/images/logo.png';
 import { userSchema } from './Validations/Uservalidation';
 import { FormEvent, useState } from 'react';
