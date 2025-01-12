@@ -29,6 +29,7 @@ import MyFilms from "./pages/MyFilms/MyFilms";
 import Chat from "./pages/ChatRoom/Chat";
 import ForgotPassword from "./pages/register/ForgotPassword";
 import ResetPassword from "./pages/register/ResetPassword";
+import CopyRight from "./pages/CopyRight";
 
 
 // Define the interface for the decoded objects from the token
@@ -164,6 +165,7 @@ function App() {
                   <Route path="*" element={<NotFound userCount={userCount} />} />
                   <Route path="/" element={<Main userCount={userCount} />} />
                   <Route path="/main" element={<Mainch />} />
+                  <Route path="/copyright" element={<CopyRight />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/signin" element={<Signin />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
