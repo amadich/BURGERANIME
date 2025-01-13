@@ -119,10 +119,13 @@ router.post("/register/forgot-password", async (req, res) => {
  
      // Create a reset URL to send in the email
      const resetUrl = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
+     console.log(resetUrl);
  
      // Set up the email transport (assuming you're using Gmail, but you can use another service)
      const transporter = nodemailer.createTransport({
-       service: "gmail",
+      host: "smtp.zoho.com",
+      port: 465,
+      secure: true,
        auth: {
          user: `${process.env.EMAIL_TRANS}`,
          pass: `${process.env.APPMAIL_PASSWORD}`,
