@@ -116,7 +116,7 @@ export default function Signup() {
                 <label>
                   <ReCAPTCHA
                     className=' ml-14'
-                    sitekey="6LffuGYsAAAAADr4BsM6GI-pOd3WCvDE5CNrpfUK" // Replace with your reCAPTCHA site key
+                    sitekey="6Lf5qiIoAAAAAPbrHnWcjdum-jTzeddw9e1Pz9DM" // Replace with your reCAPTCHA site key
                     onChange={handleRecaptchaChange}
                   />
                   <button
